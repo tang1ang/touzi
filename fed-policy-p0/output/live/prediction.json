@@ -1,0 +1,572 @@
+{
+  "schema_version": "live.p2.0.0",
+  "generated_at": "2026-11-22T20:52:31+08:00",
+  "as_of": "2026-11-22",
+  "policy_basis": {
+    "current_rate": 3.88,
+    "rate_basis": "EFFR",
+    "current_rate_as_of": "2026-11-19",
+    "target_range": {
+      "lower": 3.75,
+      "upper": 4.0,
+      "midpoint": 3.875,
+      "as_of": "2026-11-21"
+    },
+    "step_bp": 25,
+    "decision_effective_lag_days": 1,
+    "contract": "CME 30-Day Fed Funds Futures (ZQ)",
+    "settlement": "月度平均 EFFR",
+    "method_priority": "次月无政策会议时用次月合约；否则用当月合约按生效日拆分日权重",
+    "min_post_days": 7
+  },
+  "predictions": [
+    {
+      "decision_date": "2026-12-09",
+      "effective_date": "2026-12-10",
+      "contract": "ZQZ26",
+      "market": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.098182,
+          "hike": 0.901818
+        },
+        "most_likely": "hike",
+        "expected_bp": 22.55,
+        "reliability": "high"
+      },
+      "macro_probability": {
+        "cut": 0.0,
+        "hold": 0.2054,
+        "hike": 0.7946
+      },
+      "text_score": 0.3144,
+      "anchor": {
+        "applied": false,
+        "reason": "偏离强度为 0",
+        "market_dir": 1,
+        "macro_dir": 1,
+        "text_dir": 1
+      },
+      "raw_probability": {
+        "cut": 0.0,
+        "hold": 0.098182,
+        "hike": 0.901818
+      },
+      "calibrated_probability": {
+        "cut": 0.0,
+        "hold": 0.014129,
+        "hike": 0.985871
+      },
+      "calibrators": {
+        "raw": {
+          "cut": 0.0,
+          "hold": 0.098182,
+          "hike": 0.901818
+        },
+        "shrinkage": {
+          "cut": 0.0,
+          "hold": 0.098182,
+          "hike": 0.901818
+        },
+        "platt": {
+          "cut": 0.0,
+          "hold": 0.014129,
+          "hike": 0.985871
+        }
+      },
+      "most_likely": "hike",
+      "market_most_likely": "hike",
+      "direction_flip_by_calibration": false,
+      "direction_confidence": 0.9859,
+      "expected_bp": 24.65,
+      "magnitude_bp": 22.55,
+      "magnitude_interval_bp": [
+        18.15,
+        24.38
+      ],
+      "edge_pp": {
+        "hike": 8.41,
+        "hold": -8.41,
+        "cut": 0.0
+      },
+      "anchor_edge_pp": {
+        "hike": 0.0,
+        "hold": 0.0,
+        "cut": 0.0
+      },
+      "calibration_shift_pp": {
+        "hike": 8.41,
+        "hold": -8.41,
+        "cut": 0.0
+      },
+      "cumulative_magnitude_bp": 22.55,
+      "action_hint": "市场锚定，校准上调概率约 8.4pp，非方向 alpha"
+    },
+    {
+      "decision_date": "2027-01-27",
+      "effective_date": "2027-01-28",
+      "contract": "ZQF27",
+      "market": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.441818,
+          "hike": 0.558182
+        },
+        "most_likely": "hike",
+        "expected_bp": 13.95,
+        "reliability": "high"
+      },
+      "macro_probability": {
+        "cut": 0.0,
+        "hold": 0.40405,
+        "hike": 0.59595
+      },
+      "text_score": 0.3144,
+      "anchor": {
+        "applied": false,
+        "reason": "偏离强度为 0",
+        "market_dir": 1,
+        "macro_dir": 1,
+        "text_dir": 1
+      },
+      "raw_probability": {
+        "cut": 0.0,
+        "hold": 0.441818,
+        "hike": 0.558182
+      },
+      "calibrated_probability": {
+        "cut": 0.0,
+        "hold": 0.336677,
+        "hike": 0.663323
+      },
+      "calibrators": {
+        "raw": {
+          "cut": 0.0,
+          "hold": 0.441818,
+          "hike": 0.558182
+        },
+        "shrinkage": {
+          "cut": 0.0,
+          "hold": 0.441818,
+          "hike": 0.558182
+        },
+        "platt": {
+          "cut": 0.0,
+          "hold": 0.336677,
+          "hike": 0.663323
+        }
+      },
+      "most_likely": "hike",
+      "market_most_likely": "hike",
+      "direction_flip_by_calibration": false,
+      "direction_confidence": 0.6633,
+      "expected_bp": 16.58,
+      "magnitude_bp": 13.95,
+      "magnitude_interval_bp": [
+        9.55,
+        15.78
+      ],
+      "edge_pp": {
+        "hike": 10.51,
+        "hold": -10.51,
+        "cut": 0.0
+      },
+      "anchor_edge_pp": {
+        "hike": 0.0,
+        "hold": 0.0,
+        "cut": 0.0
+      },
+      "calibration_shift_pp": {
+        "hike": 10.51,
+        "hold": -10.51,
+        "cut": 0.0
+      },
+      "cumulative_magnitude_bp": 36.5,
+      "action_hint": "市场锚定，校准上调概率约 10.5pp，非方向 alpha"
+    },
+    {
+      "decision_date": "2027-03-17",
+      "effective_date": "2027-03-18",
+      "contract": "ZQH27",
+      "market": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.512857,
+          "hike": 0.487143
+        },
+        "most_likely": "hold",
+        "expected_bp": 12.18,
+        "reliability": "medium"
+      },
+      "macro_probability": {
+        "cut": 0.0,
+        "hold": 0.553038,
+        "hike": 0.446962
+      },
+      "text_score": 0.3144,
+      "anchor": {
+        "applied": false,
+        "reason": "偏离强度为 0",
+        "market_dir": 1,
+        "macro_dir": 1,
+        "text_dir": 1
+      },
+      "raw_probability": {
+        "cut": 0.0,
+        "hold": 0.512857,
+        "hike": 0.487143
+      },
+      "calibrated_probability": {
+        "cut": 0.0,
+        "hold": 0.458777,
+        "hike": 0.541223
+      },
+      "calibrators": {
+        "raw": {
+          "cut": 0.0,
+          "hold": 0.512857,
+          "hike": 0.487143
+        },
+        "shrinkage": {
+          "cut": 0.0,
+          "hold": 0.512857,
+          "hike": 0.487143
+        },
+        "platt": {
+          "cut": 0.0,
+          "hold": 0.458777,
+          "hike": 0.541223
+        }
+      },
+      "most_likely": "hike",
+      "market_most_likely": "hold",
+      "direction_flip_by_calibration": true,
+      "direction_confidence": 0.5412,
+      "expected_bp": 13.53,
+      "magnitude_bp": 12.18,
+      "magnitude_interval_bp": [
+        7.78,
+        14.01
+      ],
+      "edge_pp": {
+        "hike": 5.41,
+        "hold": -5.41,
+        "cut": 0.0
+      },
+      "anchor_edge_pp": {
+        "hike": 0.0,
+        "hold": 0.0,
+        "cut": 0.0
+      },
+      "calibration_shift_pp": {
+        "hike": 5.41,
+        "hold": -5.41,
+        "cut": 0.0
+      },
+      "cumulative_magnitude_bp": 48.68,
+      "action_hint": "市场锚定，校准上调概率约 5.4pp，非方向 alpha；校准使判断由 hold 翻为 hike，需人工复核"
+    }
+  ],
+  "model": {
+    "weights": {
+      "market": 0.85,
+      "macro": 0.1,
+      "text": 0.05
+    },
+    "blend": 0.0,
+    "calibrator": "platt",
+    "magnitude": "identity",
+    "calibration_losses": {
+      "raw": 0.069134,
+      "shrinkage": 0.069134,
+      "platt": 0.052683
+    },
+    "magnitude_losses": {
+      "identity": 2.85,
+      "linear": 3.3,
+      "class": 7.32
+    },
+    "residual_interval_bp": [
+      -4.4,
+      1.83
+    ],
+    "edge_threshold_pp": 5.0
+  },
+  "training": {
+    "start": "2021-01-01",
+    "end": "2026-10-28",
+    "n": 47,
+    "metrics": {
+      "n": 47,
+      "accuracy": 1.0,
+      "correct": 47,
+      "brier": 0.0253,
+      "log_loss": 0.0549,
+      "confusion": {
+        "cut": {
+          "cut": 6,
+          "hold": 0,
+          "hike": 0
+        },
+        "hold": {
+          "cut": 0,
+          "hold": 29,
+          "hike": 0
+        },
+        "hike": {
+          "cut": 0,
+          "hold": 0,
+          "hike": 12
+        }
+      },
+      "by_class": {
+        "cut": {
+          "support": 6,
+          "predicted": 6,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "hold": {
+          "support": 29,
+          "predicted": 29,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "hike": {
+          "support": 12,
+          "predicted": 12,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      }
+    }
+  },
+  "data_quality": {
+    "as_of": "2026-11-22",
+    "market": {
+      "latest": "2026-11-20",
+      "age_days": 2,
+      "max_age_days": 3,
+      "ok": true
+    },
+    "rates": {
+      "DFEDTARU": {
+        "latest": "2026-11-21",
+        "age_days": 1,
+        "ok": true
+      },
+      "DFEDTARL": {
+        "latest": "2026-11-21",
+        "age_days": 1,
+        "ok": true
+      },
+      "EFFR": {
+        "latest": "2026-11-19",
+        "age_days": 3,
+        "ok": true
+      }
+    },
+    "macro": {
+      "PCEPILFE": {
+        "latest": "2026-09-01",
+        "age_days": 82,
+        "max_age_days": 100,
+        "ok": true
+      },
+      "CPILFESL": {
+        "latest": "2026-10-01",
+        "age_days": 52,
+        "max_age_days": 75,
+        "ok": true
+      },
+      "UNRATE": {
+        "latest": "2026-10-01",
+        "age_days": 52,
+        "max_age_days": 75,
+        "ok": true
+      },
+      "PAYEMS": {
+        "latest": "2026-10-01",
+        "age_days": 52,
+        "max_age_days": 75,
+        "ok": true
+      },
+      "GDPC1": {
+        "latest": "2026-07-01",
+        "age_days": 144,
+        "max_age_days": 150,
+        "ok": true
+      },
+      "NROU": {
+        "latest": "2026-10-01",
+        "age_days": 52,
+        "max_age_days": 120,
+        "ok": true
+      },
+      "NFCI": {
+        "latest": "2026-11-13",
+        "age_days": 9,
+        "max_age_days": 10,
+        "ok": true
+      },
+      "BAMLH0A0HYM2": {
+        "latest": "2026-11-19",
+        "age_days": 3,
+        "max_age_days": 5,
+        "ok": true
+      },
+      "BAA10Y": {
+        "latest": "2026-11-19",
+        "age_days": 3,
+        "max_age_days": 5,
+        "ok": true
+      },
+      "DGS2": {
+        "latest": "2026-11-19",
+        "age_days": 3,
+        "max_age_days": 5,
+        "ok": true
+      },
+      "DGS10": {
+        "latest": "2026-11-19",
+        "age_days": 3,
+        "max_age_days": 5,
+        "ok": true
+      },
+      "T10YIE": {
+        "latest": "2026-11-20",
+        "age_days": 2,
+        "max_age_days": 5,
+        "ok": true
+      }
+    },
+    "statements": {
+      "latest": "2026-10-28",
+      "age_days": 25,
+      "max_age_days": 60,
+      "ok": true
+    },
+    "stale_sources": [],
+    "critical_stale": false,
+    "inputs": [
+      {
+        "path": "/workspace/fed-policy-p0/data/fomc_calendar.json",
+        "exists": true,
+        "bytes": 12014,
+        "sha256": "8ea0e9b3bb614d3559521ad9dcc241a44b4b3c0bea67cfd1653a8471132a3a5e"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/backtest/zq_history.csv",
+        "exists": true,
+        "bytes": 2396854,
+        "sha256": "a23fe155b64f63e3b5268355bca65415887562d56d0c7e7c682ebe173da90574"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/backtest/rates_long.csv",
+        "exists": true,
+        "bytes": 775443,
+        "sha256": "9159e2c72f2862a742da262c95362f58fed79ef163e796f814ae5ee7bd10bb6d"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/backtest/statements.json",
+        "exists": true,
+        "bytes": 130698,
+        "sha256": "7803c5942981bf7ca9fe4376a0131f561de05c981fe192140a281cafa17479cc"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/T10YIE.csv",
+        "exists": true,
+        "bytes": 101010,
+        "sha256": "501717a0099003d793bffbef93f62808a768baf75d1c2927fbb4d2f18ed62258"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/PCEPILFE.csv",
+        "exists": true,
+        "bytes": 15485,
+        "sha256": "75cc45f8ef85d6a0f165e7367aa774a8382d64417994f4056c1b6b21a928786b"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/NFCI.csv",
+        "exists": true,
+        "bytes": 54240,
+        "sha256": "f6f7048ded9309a5164a0cda6c40280deae5114834a123582b61f49b8e7ff0ef"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/BAA10Y.csv",
+        "exists": true,
+        "bytes": 173781,
+        "sha256": "42431f4d30130fdd6a3da6bb91636c49a916d8bddeaea544a8ecbab6c40bd6c7"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/DGS10.csv",
+        "exists": true,
+        "bytes": 274931,
+        "sha256": "9b13aec8eb4f1137e09959ab118d346343251ba39f0637e129652cca02621622"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/UNRATE.csv",
+        "exists": true,
+        "bytes": 14965,
+        "sha256": "01f6bd5343f309a460b9e322ed22f1bc176049b70f6905fc51d84bebef9f7cb8"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/PAYEMS.csv",
+        "exists": true,
+        "bytes": 19477,
+        "sha256": "c52df75ab6b4d9ebf344006dd1d4614455d672e6cc55bb0199b15aadc623176c"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/DGS2.csv",
+        "exists": true,
+        "bytes": 214144,
+        "sha256": "0da2b12b0b0752c990b04fa55a0e37dc0d4b2ab07f49d53fcdc4d79e936ba5bf"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/CPILFESL.csv",
+        "exists": true,
+        "bytes": 15096,
+        "sha256": "c464478d1acfb43c37fba8c6d8d3029b632c21e85de1440d59c14b338ce78312"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/BAMLH0A0HYM2.csv",
+        "exists": true,
+        "bytes": 13295,
+        "sha256": "d107709f9c60ee5fd99f3c82a108a82563925db923a0f8c69895cc92f3e541b4"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/NROU.csv",
+        "exists": true,
+        "bytes": 6531,
+        "sha256": "42f3e5a99b9deb965b60b4fc95799d73a28157837e4af2c2828943056fabd540"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/raw/GDPC1.csv",
+        "exists": true,
+        "bytes": 6825,
+        "sha256": "03a6e50066d8f4eeb8701143cddc7d622c6d7a62f54bb2bdb4ab70387ccbe835"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/macro/vintages/vintages_long.csv",
+        "exists": true,
+        "bytes": 27612499,
+        "sha256": "92df52a7aad8f1dc084ec99648f73043d5d645f7bc1b27022c3d8789d4cdbecf"
+      },
+      {
+        "path": "/workspace/fed-policy-p0/data/market/zq_curve_2026-11-20.csv",
+        "exists": true,
+        "bytes": 851,
+        "sha256": "d70fb0b160faacf6b86508a73db5a8a41db8365d7f18587355ebbef518c3674e"
+      }
+    ]
+  },
+  "caveats": [
+    "实时模式使用当前版本数据（可能含修订），不使用历史 vintage；vintage 仅用于训练。",
+    "市场概率来自 ZQ 期货的第三方延迟日线，不是 CME 实时结算价。",
+    "概率是风险中性定价 + 历史校准，不构成投资建议；实盘前需纸面交易与扣费验证。",
+    "幅度区间为训练期历史残差的 10%-90% 分位，不是严格的预测置信区间。",
+    "校准器在训练样本上选择并拟合；当锚定未触发时，edge 主要来自校准抬升而非方向 alpha。"
+  ]
+}

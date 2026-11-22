@@ -1,0 +1,128 @@
+{
+  "schema_version": "live.p2.0.0",
+  "generated_at": "2026-11-22T20:52:31+08:00",
+  "as_of": "2026-11-22",
+  "vintages": "/workspace/fed-policy-p0/data/macro/vintages/vintages_long.csv",
+  "quote_snapshot": "/workspace/fed-policy-p0/data/market/zq_curve_2026-11-20.csv",
+  "outputs": {
+    "prediction.json": {
+      "sha256": "8687a4772db2e0d853f3206fb75cfe6769f8251f40eb162aadd31bf3e5c17e29",
+      "bytes": 14782
+    },
+    "prediction.md": {
+      "sha256": "5707e6b874927799cb75ce4cb8d29ede60090c2c6e660a946ba16793b7f0af01",
+      "bytes": 1724
+    }
+  },
+  "inputs": [
+    {
+      "path": "/workspace/fed-policy-p0/data/fomc_calendar.json",
+      "exists": true,
+      "bytes": 12014,
+      "sha256": "8ea0e9b3bb614d3559521ad9dcc241a44b4b3c0bea67cfd1653a8471132a3a5e"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/backtest/zq_history.csv",
+      "exists": true,
+      "bytes": 2396854,
+      "sha256": "a23fe155b64f63e3b5268355bca65415887562d56d0c7e7c682ebe173da90574"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/backtest/rates_long.csv",
+      "exists": true,
+      "bytes": 775443,
+      "sha256": "9159e2c72f2862a742da262c95362f58fed79ef163e796f814ae5ee7bd10bb6d"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/backtest/statements.json",
+      "exists": true,
+      "bytes": 130698,
+      "sha256": "7803c5942981bf7ca9fe4376a0131f561de05c981fe192140a281cafa17479cc"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/T10YIE.csv",
+      "exists": true,
+      "bytes": 101010,
+      "sha256": "501717a0099003d793bffbef93f62808a768baf75d1c2927fbb4d2f18ed62258"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/PCEPILFE.csv",
+      "exists": true,
+      "bytes": 15485,
+      "sha256": "75cc45f8ef85d6a0f165e7367aa774a8382d64417994f4056c1b6b21a928786b"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/NFCI.csv",
+      "exists": true,
+      "bytes": 54240,
+      "sha256": "f6f7048ded9309a5164a0cda6c40280deae5114834a123582b61f49b8e7ff0ef"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/BAA10Y.csv",
+      "exists": true,
+      "bytes": 173781,
+      "sha256": "42431f4d30130fdd6a3da6bb91636c49a916d8bddeaea544a8ecbab6c40bd6c7"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/DGS10.csv",
+      "exists": true,
+      "bytes": 274931,
+      "sha256": "9b13aec8eb4f1137e09959ab118d346343251ba39f0637e129652cca02621622"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/UNRATE.csv",
+      "exists": true,
+      "bytes": 14965,
+      "sha256": "01f6bd5343f309a460b9e322ed22f1bc176049b70f6905fc51d84bebef9f7cb8"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/PAYEMS.csv",
+      "exists": true,
+      "bytes": 19477,
+      "sha256": "c52df75ab6b4d9ebf344006dd1d4614455d672e6cc55bb0199b15aadc623176c"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/DGS2.csv",
+      "exists": true,
+      "bytes": 214144,
+      "sha256": "0da2b12b0b0752c990b04fa55a0e37dc0d4b2ab07f49d53fcdc4d79e936ba5bf"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/CPILFESL.csv",
+      "exists": true,
+      "bytes": 15096,
+      "sha256": "c464478d1acfb43c37fba8c6d8d3029b632c21e85de1440d59c14b338ce78312"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/BAMLH0A0HYM2.csv",
+      "exists": true,
+      "bytes": 13295,
+      "sha256": "d107709f9c60ee5fd99f3c82a108a82563925db923a0f8c69895cc92f3e541b4"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/NROU.csv",
+      "exists": true,
+      "bytes": 6531,
+      "sha256": "42f3e5a99b9deb965b60b4fc95799d73a28157837e4af2c2828943056fabd540"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/raw/GDPC1.csv",
+      "exists": true,
+      "bytes": 6825,
+      "sha256": "03a6e50066d8f4eeb8701143cddc7d622c6d7a62f54bb2bdb4ab70387ccbe835"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/macro/vintages/vintages_long.csv",
+      "exists": true,
+      "bytes": 27612499,
+      "sha256": "92df52a7aad8f1dc084ec99648f73043d5d645f7bc1b27022c3d8789d4cdbecf"
+    },
+    {
+      "path": "/workspace/fed-policy-p0/data/market/zq_curve_2026-11-20.csv",
+      "exists": true,
+      "bytes": 851,
+      "sha256": "d70fb0b160faacf6b86508a73db5a8a41db8365d7f18587355ebbef518c3674e"
+    }
+  ],
+  "stale_sources": []
+}

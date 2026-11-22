@@ -2,7 +2,7 @@
   "source": "Federal Reserve Bank of St. Louis (FRED)",
   "base_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series}",
   "as_of": "2026-11-22",
-  "retrieved_at": "2026-11-22T13:20:22+08:00",
+  "retrieved_at": "2026-11-22T20:45:47+08:00",
   "note": "保存截至基准日的最新可用观测；FRED 为当前版本（可能含修订），非实时 vintage。",
   "series": {
     "PCEPILFE": {

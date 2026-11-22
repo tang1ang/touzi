@@ -13,6 +13,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import io
 import json
@@ -29,7 +30,7 @@ from fetch_fomc_text import STATEMENT_URL, parse_statement  # noqa: E402
 BACKTEST_DIR = ROOT / "data/backtest"
 RAW_DIR = BACKTEST_DIR / "raw"
 WINDOW_START = date(2021, 1, 1)
-WINDOW_END = date(2026, 11, 22)
+WINDOW_END = date.today()
 # 文本信号需要会议之前的声明，因此多抓取半年以上，保证首次回测会议也有两份历史声明。
 STATEMENT_HISTORY_START = date(2020, 6, 1)
 # 2020 年会议不在当前日历页（页面只保留 2021 年起），但首批 2021 会议需要两份会前声明。
@@ -51,12 +52,12 @@ def curl(url: str, timeout: int = 90) -> bytes:
     return result.stdout
 
 
-def fetch_rates() -> Path:
+def fetch_rates(force: bool = False) -> Path:
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     rows: list[tuple[str, date, float]] = []
     for series in SERIES:
         path = RAW_DIR / f"{series}.csv"
-        if not path.exists() or path.stat().st_size == 0:
+        if force or not path.exists() or path.stat().st_size == 0:
             path.write_bytes(curl(FRED_CSV.format(series=series)))
         with path.open(newline="", encoding="utf-8") as fh:
             for row in csv.DictReader(fh):
@@ -77,13 +78,13 @@ def fetch_rates() -> Path:
     return out
 
 
-def fetch_macro_extra() -> None:
+def fetch_macro_extra(force: bool = False) -> None:
     """补充长历史金融条件序列，供扩展回测窗口使用。"""
     raw_macro = ROOT / "data/macro/raw"
     raw_macro.mkdir(parents=True, exist_ok=True)
     for series in MACRO_EXTRA:
         path = raw_macro / f"{series}.csv"
-        if path.exists() and path.stat().st_size > 0:
+        if not force and path.exists() and path.stat().st_size > 0:
             print(f"macro {series} exists -> {path}")
             continue
         raw = curl(FRED_CSV.format(series=series)).decode("utf-8")
@@ -113,8 +114,16 @@ def fetch_statements() -> Path:
     meetings.sort(key=lambda row: row["decision_date"])
     days = [date.fromisoformat(row["decision_date"]) for row in meetings]
     days = sorted(set(days) | set(PRE_WINDOW_STATEMENTS))
+    out = BACKTEST_DIR / "statements.json"
+    existing = {}
+    if out.exists():
+        cached = json.loads(out.read_text(encoding="utf-8"))
+        existing = {row["date"]: row for row in cached.get("statements", [])}
     statements = []
     for day in days:
+        if day.isoformat() in existing:
+            statements.append(existing[day.isoformat()])
+            continue
         url = STATEMENT_URL.format(date=day.strftime("%Y%m%d"))
         page = curl(url).decode("utf-8", errors="replace")
         parsed = parse_statement(page, day, url)
@@ -145,13 +154,15 @@ def fetch_statements() -> Path:
         },
         "statements": statements,
     }
-    out = BACKTEST_DIR / "statements.json"
     out.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"statements -> {out} ({len(statements)})")
     return out
 
 
 if __name__ == "__main__":
-    fetch_rates()
-    fetch_macro_extra()
+    parser = argparse.ArgumentParser(description="准备回测/实时数据")
+    parser.add_argument("--force", action="store_true", help="强制重新下载已存在的数据")
+    args = parser.parse_args()
+    fetch_rates(force=args.force)
+    fetch_macro_extra(force=args.force)
     fetch_statements()
