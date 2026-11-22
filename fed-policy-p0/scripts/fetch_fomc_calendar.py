@@ -18,10 +18,11 @@ from pathlib import Path
 URL = "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
 ROOT = Path(__file__).resolve().parents[1]
 MONTHS = {name.lower(): idx for idx, name in enumerate(calmod.month_name) if name}
+MONTH_ABBR = {name.lower()[:3]: idx for idx, name in enumerate(calmod.month_name) if name}
 
 YEAR_HEADER = re.compile(r'<a id="\d+">(\d{4}) FOMC Meetings</a>')
 MONTH_ROW = re.compile(
-    r'class="[^"]*fomc-meeting__month[^"]*"[^>]*><strong>([A-Za-z]+)</strong></div>\s*'
+    r'class="[^"]*fomc-meeting__month[^"]*"[^>]*><strong>([A-Za-z/ ]+)</strong></div>\s*'
     r'<div class="[^"]*fomc-meeting__date[^"]*"[^>]*>([^<]+)</div>'
 )
 
@@ -59,22 +60,30 @@ def parse_meetings(html: str, start_year: int, end_year: int) -> list[dict]:
         section = html[begin:end]
         rows = list(MONTH_ROW.finditer(section))
         for index, row in enumerate(rows):
-            month_name = row.group(1).lower()
-            month = MONTHS.get(month_name)
+            label = row.group(1).lower().replace(" ", "")
+            parts = [part for part in label.split("/") if part]
+            months = [MONTHS.get(part) or MONTH_ABBR.get(part) for part in parts]
             parsed = parse_date_range(row.group(2))
-            if month is None or parsed is None:
+            if not months or any(month is None for month in months) or parsed is None:
                 continue
+            start_month = months[0]
+            end_month = months[-1]
             day_start, day_end = parsed
             note_end = rows[index + 1].start() if index + 1 < len(rows) else len(section)
             note = section[row.end() : note_end]
-            meeting_type = "strategy" if "Monetary Policy Strategy Meeting" in note else "policy"
+            if "notation vote" in row.group(2).lower():
+                meeting_type = "notation"
+            elif "Monetary Policy Strategy Meeting" in note:
+                meeting_type = "strategy"
+            else:
+                meeting_type = "policy"
 
-            start = date(year, month, day_start)
-            decision = date(year, month, day_end)
+            start = date(year, start_month, day_start)
+            decision = date(year, end_month, day_end)
             meetings.append(
                 {
                     "year": year,
-                    "month": month,
+                    "month": end_month,
                     "start": start.isoformat(),
                     "end": decision.isoformat(),
                     "decision_date": decision.isoformat(),

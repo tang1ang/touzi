@@ -14,6 +14,7 @@
 from __future__ import annotations
 
 import csv
+import io
 import json
 import re
 import subprocess
@@ -27,11 +28,15 @@ from fetch_fomc_text import STATEMENT_URL, parse_statement  # noqa: E402
 
 BACKTEST_DIR = ROOT / "data/backtest"
 RAW_DIR = BACKTEST_DIR / "raw"
-WINDOW_START = date(2023, 11, 22)
+WINDOW_START = date(2021, 1, 1)
 WINDOW_END = date(2026, 11, 22)
-# 文本信号需要会议之前的声明，因此多抓取半年，保证首次回测会议也有两份历史声明。
-STATEMENT_HISTORY_START = date(2023, 6, 1)
+# 文本信号需要会议之前的声明，因此多抓取半年以上，保证首次回测会议也有两份历史声明。
+STATEMENT_HISTORY_START = date(2020, 6, 1)
+# 2020 年会议不在当前日历页（页面只保留 2021 年起），但首批 2021 会议需要两份会前声明。
+PRE_WINDOW_STATEMENTS = (date(2020, 11, 5), date(2020, 12, 16))
 SERIES = ("DFEDTARU", "DFEDTARL", "EFFR")
+# ICE BofA 高收益 OAS 在 FRED 只有约三年历史；2021-2023 回测用 BAA10Y 作为金融条件替代。
+MACRO_EXTRA = ("BAA10Y",)
 FRED_CSV = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series}"
 
 
@@ -72,6 +77,29 @@ def fetch_rates() -> Path:
     return out
 
 
+def fetch_macro_extra() -> None:
+    """补充长历史金融条件序列，供扩展回测窗口使用。"""
+    raw_macro = ROOT / "data/macro/raw"
+    raw_macro.mkdir(parents=True, exist_ok=True)
+    for series in MACRO_EXTRA:
+        path = raw_macro / f"{series}.csv"
+        if path.exists() and path.stat().st_size > 0:
+            print(f"macro {series} exists -> {path}")
+            continue
+        raw = curl(FRED_CSV.format(series=series)).decode("utf-8")
+        reader = csv.DictReader(io.StringIO(raw))
+        rows = [
+            (row["observation_date"], row[series])
+            for row in reader
+            if row.get(series) not in (None, "", ".")
+        ]
+        with path.open("w", newline="", encoding="utf-8") as fh:
+            writer = csv.writer(fh)
+            writer.writerow(["observation_date", "value"])
+            writer.writerows(rows)
+        print(f"macro {series} -> {path} ({len(rows)} rows)")
+
+
 def fetch_statements() -> Path:
     calendar = json.loads((ROOT / "data/fomc_calendar.json").read_text(encoding="utf-8"))
     meetings = [
@@ -83,9 +111,10 @@ def fetch_statements() -> Path:
         <= WINDOW_END
     ]
     meetings.sort(key=lambda row: row["decision_date"])
+    days = [date.fromisoformat(row["decision_date"]) for row in meetings]
+    days = sorted(set(days) | set(PRE_WINDOW_STATEMENTS))
     statements = []
-    for row in meetings:
-        day = date.fromisoformat(row["decision_date"])
+    for day in days:
         url = STATEMENT_URL.format(date=day.strftime("%Y%m%d"))
         page = curl(url).decode("utf-8", errors="replace")
         parsed = parse_statement(page, day, url)
@@ -124,4 +153,5 @@ def fetch_statements() -> Path:
 
 if __name__ == "__main__":
     fetch_rates()
+    fetch_macro_extra()
     fetch_statements()

@@ -16,7 +16,7 @@ from pathlib import Path
 
 from fedp0.calendar import Calendar, Meeting
 from fedp0.contracts import contract_symbol
-from fedp0.implied import estimate_step
+from fedp0.implied import estimate_step, implied_rate
 from fedp0.market import Quote
 from fedp0.probability import three_class_probabilities
 from fedp1.combine import CLASSES, expected_bp, most_likely, pool
@@ -32,6 +32,7 @@ DEFAULT_PUBLICATION_LAGS = {
     "NROU": 120,
     "NFCI": 7,
     "BAMLH0A0HYM2": 1,
+    "BAA10Y": 0,
     "DGS2": 0,
     "DGS10": 0,
     "T10YIE": 0,
@@ -46,6 +47,7 @@ class BacktestConfig:
     weights: tuple[float, float, float] = (0.60, 0.25, 0.15)
     text_scale: float = 2.0
     smoothing_eps: float = 0.005
+    use_dissent: bool = False
     publication_lags: dict[str, int] = field(
         default_factory=lambda: dict(DEFAULT_PUBLICATION_LAGS)
     )
@@ -164,6 +166,12 @@ def market_signal(
         if estimate.method == "next_clean_month" and next_quote is not None
         else quote.volume
     )
+    next_rate = implied_rate(next_quote.close) if next_quote is not None else None
+    shape_bp = (
+        (next_rate - implied_rate(quote.close)) * 100.0
+        if next_rate is not None
+        else None
+    )
     return {
         "contract": symbol,
         "pricing_symbol": pricing_symbol,
@@ -172,6 +180,9 @@ def market_signal(
         "quote_age_days": (as_of - quote.as_of).days,
         "quote_volume": quote.volume,
         "pricing_volume": pricing_volume,
+        "next_contract": next_symbol,
+        "next_implied_rate": _r(next_rate, 6) if next_rate is not None else None,
+        "pricing_shape_bp": _r(shape_bp, 2) if shape_bp is not None else None,
         "pre_rate": _r(estimate.pre_rate, 6),
         "post_rate": _r(estimate.post_rate, 6),
         "change_bp": _r(estimate.change_bp, 2),
@@ -237,17 +248,33 @@ def text_signal_for(statements: list[dict], as_of: date, config: BacktestConfig)
     text_score = _clip(
         0.5 * statement_score["score"] + 0.5 * float(diff["diff_score"])
     )
+    dissent_score = 0.0
+    if config.use_dissent:
+        # 异议票方向作为小幅修正项；不改变 P1 默认口径。
+        dissent_score = _clip(
+            (current.get("hike_dissents", 0) - current.get("cut_dissents", 0)) / 3.0
+        )
+        text_score = _clip(
+            0.45 * statement_score["score"]
+            + 0.45 * float(diff["diff_score"])
+            + 0.10 * dissent_score
+        )
     return {
         "as_of_statement": current["date"],
         "previous_statement": previous["date"] if previous is not None else None,
         "statement_score": statement_score["score"],
         "diff_score": diff["diff_score"],
+        "dissent_score": _r(dissent_score, 4),
         "text_score": _r(text_score, 4),
         "action": current.get("action"),
         "vote": current.get("vote"),
         "hike_dissents": current.get("hike_dissents", 0),
         "cut_dissents": current.get("cut_dissents", 0),
-        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "notes": (
+            "声明 0.45 / diff 0.45 / 异议票 0.10"
+            if config.use_dissent
+            else "省略演讲信号，声明与 diff 按 0.5/0.5 归一"
+        ),
     }
 
 

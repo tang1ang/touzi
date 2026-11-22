@@ -28,6 +28,8 @@ class MacroConfig:
     nfci_half_width: float = 0.5
     hy_oas_center: float = 4.0
     hy_oas_half_width: float = 2.0
+    baa10y_center: float = 2.0
+    baa10y_half_width: float = 1.0
     labor_momentum_adjust_weight: float = 0.10
     financial_adjust_weight: float = 0.25
     convergence_lambda: float = 0.25
@@ -203,7 +205,20 @@ def build_macro_signal(
     gdp_qoq = quarterly_annualized(series("GDPC1"), as_of)
 
     nfci = change_over_days(series("NFCI"), as_of, 28)
-    hy_oas_day, hy_oas = latest_on_or_before(series("BAMLH0A0HYM2"), as_of)
+    # ICE BofA 高收益 OAS 在 FRED 仅约三年历史。更早的会议改用 BAA10Y
+    # （穆迪 Baa 企业债与 10 年国债利差）作为信用利差替代，并在特征中标注。
+    try:
+        credit_day, credit_spread = latest_on_or_before(
+            series("BAMLH0A0HYM2"), as_of
+        )
+        credit_series = "BAMLH0A0HYM2"
+        credit_center = cfg.hy_oas_center
+        credit_half_width = cfg.hy_oas_half_width
+    except ValueError:
+        credit_day, credit_spread = latest_on_or_before(series("BAA10Y"), as_of)
+        credit_series = "BAA10Y"
+        credit_center = cfg.baa10y_center
+        credit_half_width = cfg.baa10y_half_width
     dgs2 = change_over_days(series("DGS2"), as_of, 30)
     dgs10_day, dgs10 = latest_on_or_before(series("DGS10"), as_of)
     t10yie_day, t10yie = latest_on_or_before(series("T10YIE"), as_of)
@@ -223,7 +238,7 @@ def build_macro_signal(
     growth_score = _scale(gdp_qoq["pct"], cfg.potential_growth, cfg.growth_half_width)
     financial_score = _clip(
         0.6 * (-_scale(nfci["latest"], 0.0, cfg.nfci_half_width))
-        + 0.4 * (-_scale(hy_oas, cfg.hy_oas_center, cfg.hy_oas_half_width))
+        + 0.4 * (-_scale(credit_spread, credit_center, credit_half_width))
     )
 
     output_gap = -cfg.okun_coefficient * unemployment_gap
@@ -280,8 +295,13 @@ def build_macro_signal(
             "nfci": nfci["latest"],
             "nfci_date": nfci["latest_date"],
             "nfci_change_4w": round(nfci["change"], 4),
-            "hy_oas": hy_oas,
-            "hy_oas_date": hy_oas_day.isoformat(),
+            "credit_spread_series": credit_series,
+            "credit_spread": credit_spread,
+            "credit_spread_date": credit_day.isoformat(),
+            "hy_oas": credit_spread if credit_series == "BAMLH0A0HYM2" else None,
+            "hy_oas_date": (
+                credit_day.isoformat() if credit_series == "BAMLH0A0HYM2" else None
+            ),
         },
         "market_rates": {
             "dgs2": dgs2["latest"],
