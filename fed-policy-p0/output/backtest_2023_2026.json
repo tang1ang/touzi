@@ -1,0 +1,3958 @@
+{
+  "schema_version": "bt.1.0.0",
+  "window": {
+    "start": "2023-11-22",
+    "end": "2026-11-22"
+  },
+  "config": {
+    "cutoff_days": 7,
+    "step": 0.25,
+    "min_post_days": 7,
+    "weights": {
+      "market": 0.6,
+      "macro": 0.25,
+      "text": 0.15
+    },
+    "text_scale": 2.0,
+    "smoothing_eps": 0.005,
+    "publication_lags": {
+      "PCEPILFE": 55,
+      "CPILFESL": 40,
+      "UNRATE": 35,
+      "PAYEMS": 35,
+      "GDPC1": 110,
+      "NROU": 120,
+      "NFCI": 7,
+      "BAMLH0A0HYM2": 1,
+      "DGS2": 0,
+      "DGS10": 0,
+      "T10YIE": 0
+    }
+  },
+  "sample_size": 24,
+  "actual_counts": {
+    "cut": 6,
+    "hold": 17,
+    "hike": 1
+  },
+  "metrics": {
+    "combined": {
+      "n": 24,
+      "accuracy": 0.9583,
+      "correct": 23,
+      "brier": 0.0734,
+      "log_loss": 0.1411,
+      "confusion": {
+        "cut": {
+          "cut": 6,
+          "hold": 0,
+          "hike": 0
+        },
+        "hold": {
+          "cut": 0,
+          "hold": 16,
+          "hike": 1
+        },
+        "hike": {
+          "cut": 0,
+          "hold": 0,
+          "hike": 1
+        }
+      },
+      "by_class": {
+        "cut": {
+          "support": 6,
+          "predicted": 6,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "hold": {
+          "support": 17,
+          "predicted": 16,
+          "precision": 1.0,
+          "recall": 0.9412,
+          "f1": 0.9697
+        },
+        "hike": {
+          "support": 1,
+          "predicted": 2,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667
+        }
+      }
+    },
+    "market": {
+      "n": 24,
+      "accuracy": 1.0,
+      "correct": 24,
+      "brier": 0.0273,
+      "log_loss": 0.0677,
+      "confusion": {
+        "cut": {
+          "cut": 6,
+          "hold": 0,
+          "hike": 0
+        },
+        "hold": {
+          "cut": 0,
+          "hold": 17,
+          "hike": 0
+        },
+        "hike": {
+          "cut": 0,
+          "hold": 0,
+          "hike": 1
+        }
+      },
+      "by_class": {
+        "cut": {
+          "support": 6,
+          "predicted": 6,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "hold": {
+          "support": 17,
+          "predicted": 17,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "hike": {
+          "support": 1,
+          "predicted": 1,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      }
+    },
+    "macro": {
+      "n": 24,
+      "accuracy": 0.5,
+      "correct": 12,
+      "brier": 0.6178,
+      "log_loss": 1.7721,
+      "confusion": {
+        "cut": {
+          "cut": 2,
+          "hold": 4,
+          "hike": 0
+        },
+        "hold": {
+          "cut": 4,
+          "hold": 9,
+          "hike": 4
+        },
+        "hike": {
+          "cut": 0,
+          "hold": 0,
+          "hike": 1
+        }
+      },
+      "by_class": {
+        "cut": {
+          "support": 6,
+          "predicted": 6,
+          "precision": 0.3333,
+          "recall": 0.3333,
+          "f1": 0.3333
+        },
+        "hold": {
+          "support": 17,
+          "predicted": 13,
+          "precision": 0.6923,
+          "recall": 0.5294,
+          "f1": 0.6
+        },
+        "hike": {
+          "support": 1,
+          "predicted": 5,
+          "precision": 0.2,
+          "recall": 1.0,
+          "f1": 0.3333
+        }
+      }
+    },
+    "text": {
+      "n": 24,
+      "accuracy": 0.25,
+      "correct": 6,
+      "brier": 0.6353,
+      "log_loss": 1.0261,
+      "confusion": {
+        "cut": {
+          "cut": 5,
+          "hold": 0,
+          "hike": 1
+        },
+        "hold": {
+          "cut": 4,
+          "hold": 0,
+          "hike": 13
+        },
+        "hike": {
+          "cut": 0,
+          "hold": 0,
+          "hike": 1
+        }
+      },
+      "by_class": {
+        "cut": {
+          "support": 6,
+          "predicted": 9,
+          "precision": 0.5556,
+          "recall": 0.8333,
+          "f1": 0.6667
+        },
+        "hold": {
+          "support": 17,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "hike": {
+          "support": 1,
+          "predicted": 15,
+          "precision": 0.0667,
+          "recall": 1.0,
+          "f1": 0.125
+        }
+      }
+    },
+    "always_hold": {
+      "n": 24,
+      "accuracy": 0.7083,
+      "correct": 17,
+      "brier": 0.5833,
+      "log_loss": 4.0295,
+      "confusion": {
+        "cut": {
+          "cut": 0,
+          "hold": 6,
+          "hike": 0
+        },
+        "hold": {
+          "cut": 0,
+          "hold": 17,
+          "hike": 0
+        },
+        "hike": {
+          "cut": 0,
+          "hold": 1,
+          "hike": 0
+        }
+      },
+      "by_class": {
+        "cut": {
+          "support": 6,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "hold": {
+          "support": 17,
+          "predicted": 24,
+          "precision": 0.7083,
+          "recall": 1.0,
+          "f1": 0.8293
+        },
+        "hike": {
+          "support": 1,
+          "predicted": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    }
+  },
+  "calibration": {
+    "combined": [
+      {
+        "bin": "0-10%",
+        "count": 21,
+        "mean_predicted": 0.006,
+        "actual_rate": 0.0
+      },
+      {
+        "bin": "20-30%",
+        "count": 1,
+        "mean_predicted": 0.2466,
+        "actual_rate": 0.0
+      },
+      {
+        "bin": "70-80%",
+        "count": 2,
+        "mean_predicted": 0.7233,
+        "actual_rate": 0.5
+      }
+    ],
+    "market": [
+      {
+        "bin": "0-10%",
+        "count": 21,
+        "mean_predicted": 0.0,
+        "actual_rate": 0.0
+      },
+      {
+        "bin": "10-20%",
+        "count": 1,
+        "mean_predicted": 0.16,
+        "actual_rate": 0.0
+      },
+      {
+        "bin": "30-40%",
+        "count": 1,
+        "mean_predicted": 0.34,
+        "actual_rate": 0.0
+      },
+      {
+        "bin": "60-70%",
+        "count": 1,
+        "mean_predicted": 0.6,
+        "actual_rate": 1.0
+      }
+    ]
+  },
+  "signal_contribution": {
+    "macro_hike_mean_pp": 2.59,
+    "text_hike_mean_pp": 0.4,
+    "divergence_count": 1,
+    "divergence_help": 0,
+    "divergence_hurt": 1
+  },
+  "data_quality": {
+    "zq_symbols": 37,
+    "zq_observations": 15502,
+    "quote_age_max_days": 0,
+    "next_clean_month": 12,
+    "meeting_month": 12,
+    "min_pricing_volume": 5462.0,
+    "low_reliability": [],
+    "non_high_reliability": [
+      "2024-12-18",
+      "2025-06-18",
+      "2025-09-17",
+      "2026-03-18",
+      "2026-06-17",
+      "2026-09-16"
+    ]
+  },
+  "meetings": [
+    {
+      "decision_date": "2023-12-13",
+      "effective_date": "2023-12-14",
+      "as_of": "2023-12-06",
+      "market": {
+        "contract": "ZQZ23",
+        "pricing_symbol": "ZQZ23",
+        "method": "meeting_month",
+        "quote_date": "2023-12-06",
+        "quote_age_days": 0,
+        "quote_volume": 26017.0,
+        "pricing_volume": 26017.0,
+        "pre_rate": 5.33,
+        "post_rate": 5.33,
+        "change_bp": -0.0,
+        "probability": {
+          "cut": 0.0,
+          "hold": 1.0,
+          "hike": 0.0
+        },
+        "expected_bp": -0.0,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.6072,
+          "hike": 0.3928
+        },
+        "expected_bp": 9.82,
+        "most_likely": "hold",
+        "macro_target_rate": 5.7228,
+        "taylor_rate": 5.5698,
+        "policy_gap_bp": -23.98,
+        "scores": {
+          "inflation": 0.9113,
+          "labor": 0.842,
+          "labor_momentum": 0.4733,
+          "growth": 1.0,
+          "financial_conditions": 0.4228,
+          "taylor_signal": 0.4796,
+          "composite": 0.6485
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2023-10-01",
+            "latest": 120.321,
+            "yoy_pct": 3.5589,
+            "yoy_base_date": "2022-10-01",
+            "ann3m_pct": 2.7043,
+            "ann3m_base_date": "2023-07-01"
+          },
+          "core_cpi": {
+            "latest_date": "2023-10-01",
+            "yoy_pct": 4.0274,
+            "yoy_base_date": "2022-10-01",
+            "ann3m_pct": 3.2473,
+            "ann3m_base_date": "2023-07-01"
+          },
+          "labor": {
+            "unemployment_date": "2023-11-01",
+            "unemployment": 3.7,
+            "nrou_date": "2023-07-01",
+            "nrou": 4.4314,
+            "unemployment_gap_pp": -0.7314,
+            "payrolls_3m_avg_k": 147.33,
+            "payrolls_latest_date": "2023-11-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2023-07-01",
+            "gdp_yoy_pct": 3.1839,
+            "gdp_qoq_ann_pct": 4.526
+          },
+          "financial_conditions": {
+            "nfci": -0.319,
+            "nfci_date": "2023-11-24",
+            "nfci_change_4w": -0.037,
+            "hy_oas": 3.8,
+            "hy_oas_date": "2023-12-05"
+          },
+          "market_rates": {
+            "dgs2": 4.6,
+            "dgs2_date": "2023-12-06",
+            "dgs2_change_1m_bp": -33.0,
+            "dgs10": 4.12,
+            "dgs10_date": "2023-12-06",
+            "t10yie": 2.14,
+            "t10yie_date": "2023-12-06"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2023-11-01",
+        "previous_statement": "2023-09-20",
+        "statement_score": 0.3634,
+        "diff_score": 0.0784,
+        "text_score": 0.2209,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.201001,
+          "hold": 0.312658,
+          "hike": 0.486341
+        },
+        "expected_bp": 7.13,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.9823004401602319,
+          "hike": 0.01769955983976822
+        },
+        "expected_bp": 0.44,
+        "expected_post_rate": 5.334425,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 5.25,
+        "target_upper_before": 5.5,
+        "target_lower_after": 5.25,
+        "target_upper_after": 5.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": -1.66,
+          "hike": 1.66
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": -0.11,
+          "hike": 0.11
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": -1.77,
+          "hike": 1.77
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2024-01-31",
+      "effective_date": "2024-02-01",
+      "as_of": "2024-01-24",
+      "market": {
+        "contract": "ZQF24",
+        "pricing_symbol": "ZQG24",
+        "method": "next_clean_month",
+        "quote_date": "2024-01-24",
+        "quote_age_days": 0,
+        "quote_volume": 6688.0,
+        "pricing_volume": 70190.0,
+        "pre_rate": 5.33,
+        "post_rate": 5.325,
+        "change_bp": -0.5,
+        "probability": {
+          "cut": 0.02,
+          "hold": 0.98,
+          "hike": 0.0
+        },
+        "expected_bp": -0.5,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.8571,
+          "hike": 0.1429
+        },
+        "expected_bp": 3.57,
+        "most_likely": "hold",
+        "macro_target_rate": 5.4729,
+        "taylor_rate": 5.2871,
+        "policy_gap_bp": 4.29,
+        "scores": {
+          "inflation": 0.9682,
+          "labor": 0.84,
+          "labor_momentum": 0.4667,
+          "growth": 0.9154,
+          "financial_conditions": 0.5564,
+          "taylor_signal": -0.0857,
+          "composite": 0.382
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2023-11-01",
+            "latest": 120.525,
+            "yoy_pct": 3.4372,
+            "yoy_base_date": "2022-11-01",
+            "ann3m_pct": 2.894,
+            "ann3m_base_date": "2023-08-01"
+          },
+          "core_cpi": {
+            "latest_date": "2023-12-01",
+            "yoy_pct": 3.9155,
+            "yoy_base_date": "2022-12-01",
+            "ann3m_pct": 3.5368,
+            "ann3m_base_date": "2023-08-01"
+          },
+          "labor": {
+            "unemployment_date": "2023-12-01",
+            "unemployment": 3.8,
+            "nrou_date": "2023-07-01",
+            "nrou": 4.4314,
+            "unemployment_gap_pp": -0.6314,
+            "payrolls_3m_avg_k": 146.67,
+            "payrolls_latest_date": "2023-12-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2023-10-01",
+            "gdp_yoy_pct": 3.4154,
+            "gdp_qoq_ann_pct": 3.6308
+          },
+          "financial_conditions": {
+            "nfci": -0.382,
+            "nfci_date": "2024-01-12",
+            "nfci_change_4w": -0.034,
+            "hy_oas": 3.51,
+            "hy_oas_date": "2024-01-23"
+          },
+          "market_rates": {
+            "dgs2": 4.34,
+            "dgs2_date": "2024-01-24",
+            "dgs2_change_1m_bp": 3.0,
+            "dgs10": 4.18,
+            "dgs10_date": "2024-01-24",
+            "t10yie": 2.3,
+            "t10yie_date": "2024-01-24"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2023-12-13",
+        "previous_statement": "2023-11-01",
+        "statement_score": 0.2706,
+        "diff_score": -0.2667,
+        "text_score": 0.002,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.332001,
+          "hold": 0.333332,
+          "hike": 0.334668
+        },
+        "expected_bp": 0.07,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.014519648709408523,
+          "hold": 0.9735967567631132,
+          "hike": 0.011883594527478294
+        },
+        "expected_bp": -0.07,
+        "expected_post_rate": 5.329341,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 5.25,
+        "target_upper_before": 5.5,
+        "target_lower_after": 5.25,
+        "target_upper_after": 5.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": -0.55,
+          "hold": -0.64,
+          "hike": 1.19
+        },
+        "text": {
+          "cut": -0.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": -0.55,
+          "hold": -0.64,
+          "hike": 1.19
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2024-03-20",
+      "effective_date": "2024-03-21",
+      "as_of": "2024-03-13",
+      "market": {
+        "contract": "ZQH24",
+        "pricing_symbol": "ZQJ24",
+        "method": "next_clean_month",
+        "quote_date": "2024-03-13",
+        "quote_age_days": 0,
+        "quote_volume": 21863.0,
+        "pricing_volume": 41704.0,
+        "pre_rate": 5.33,
+        "post_rate": 5.325,
+        "change_bp": -0.5,
+        "probability": {
+          "cut": 0.02,
+          "hold": 0.98,
+          "hike": 0.0
+        },
+        "expected_bp": -0.5,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.2163,
+          "hold": 0.7837,
+          "hike": 0.0
+        },
+        "expected_bp": -5.41,
+        "most_likely": "hold",
+        "macro_target_rate": 5.1137,
+        "taylor_rate": 4.8655,
+        "policy_gap_bp": 46.45,
+        "scores": {
+          "inflation": 0.9806,
+          "labor": 0.935,
+          "labor_momentum": 0.7833,
+          "growth": 0.9154,
+          "financial_conditions": 0.6796,
+          "taylor_signal": -0.929,
+          "composite": -0.0154
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2024-01-01",
+            "latest": 121.201,
+            "yoy_pct": 3.2245,
+            "yoy_base_date": "2023-01-01",
+            "ann3m_pct": 2.9353,
+            "ann3m_base_date": "2023-10-01"
+          },
+          "core_cpi": {
+            "latest_date": "2024-02-01",
+            "yoy_pct": 3.762,
+            "yoy_base_date": "2023-02-01",
+            "ann3m_pct": 4.0924,
+            "ann3m_base_date": "2023-11-01"
+          },
+          "labor": {
+            "unemployment_date": "2024-02-01",
+            "unemployment": 3.9,
+            "nrou_date": "2023-10-01",
+            "nrou": 4.4288,
+            "unemployment_gap_pp": -0.5288,
+            "payrolls_3m_avg_k": 178.33,
+            "payrolls_latest_date": "2024-02-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2023-10-01",
+            "gdp_yoy_pct": 3.4154,
+            "gdp_qoq_ann_pct": 3.6308
+          },
+          "financial_conditions": {
+            "nfci": -0.433,
+            "nfci_date": "2024-03-01",
+            "nfci_change_4w": -0.031,
+            "hy_oas": 3.2,
+            "hy_oas_date": "2024-03-12"
+          },
+          "market_rates": {
+            "dgs2": 4.61,
+            "dgs2_date": "2024-03-13",
+            "dgs2_change_1m_bp": 15.0,
+            "dgs10": 4.19,
+            "dgs10_date": "2024-03-13",
+            "t10yie": 2.3,
+            "t10yie_date": "2024-03-13"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2024-01-31",
+        "previous_statement": "2023-12-13",
+        "statement_score": 0.2,
+        "diff_score": -0.1538,
+        "text_score": 0.0231,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.318057,
+          "hold": 0.333096,
+          "hike": 0.348846
+        },
+        "expected_bp": 0.77,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.037411955637278144,
+          "hold": 0.9625880443627219,
+          "hike": 0.0
+        },
+        "expected_bp": -0.94,
+        "expected_post_rate": 5.320647,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 5.25,
+        "target_upper_before": 5.5,
+        "target_lower_after": 5.25,
+        "target_upper_after": 5.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 1.77,
+          "hold": -1.77,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": -0.03,
+          "hold": 0.03,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 1.74,
+          "hold": -1.74,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2024-05-01",
+      "effective_date": "2024-05-02",
+      "as_of": "2024-04-24",
+      "market": {
+        "contract": "ZQK24",
+        "pricing_symbol": "ZQK24",
+        "method": "meeting_month",
+        "quote_date": "2024-04-24",
+        "quote_age_days": 0,
+        "quote_volume": 12469.0,
+        "pricing_volume": 12469.0,
+        "pre_rate": 5.33,
+        "post_rate": 5.324833,
+        "change_bp": -0.52,
+        "probability": {
+          "cut": 0.020667,
+          "hold": 0.979333,
+          "hike": 0.0
+        },
+        "expected_bp": -0.52,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.2675,
+          "hold": 0.7325,
+          "hike": 0.0
+        },
+        "expected_bp": -6.69,
+        "most_likely": "hold",
+        "macro_target_rate": 5.0625,
+        "taylor_rate": 4.7965,
+        "policy_gap_bp": 53.35,
+        "scores": {
+          "inflation": 1.0,
+          "labor": 1.0,
+          "labor_momentum": 1.0,
+          "growth": -0.1778,
+          "financial_conditions": 0.664,
+          "taylor_signal": -1.0,
+          "composite": -0.1514
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2024-02-01",
+            "latest": 121.57,
+            "yoy_pct": 3.1784,
+            "yoy_base_date": "2023-02-01",
+            "ann3m_pct": 3.4868,
+            "ann3m_base_date": "2023-11-01"
+          },
+          "core_cpi": {
+            "latest_date": "2024-03-01",
+            "yoy_pct": 3.8162,
+            "yoy_base_date": "2023-03-01",
+            "ann3m_pct": 4.3124,
+            "ann3m_base_date": "2023-11-01"
+          },
+          "labor": {
+            "unemployment_date": "2024-03-01",
+            "unemployment": 3.9,
+            "nrou_date": "2023-10-01",
+            "nrou": 4.4288,
+            "unemployment_gap_pp": -0.5288,
+            "payrolls_3m_avg_k": 203.0,
+            "payrolls_latest_date": "2024-03-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2024-01-01",
+            "gdp_yoy_pct": 2.9347,
+            "gdp_qoq_ann_pct": 1.4444
+          },
+          "financial_conditions": {
+            "nfci": -0.42,
+            "nfci_date": "2024-04-12",
+            "nfci_change_4w": 0.018,
+            "hy_oas": 3.2,
+            "hy_oas_date": "2024-04-23"
+          },
+          "market_rates": {
+            "dgs2": 4.89,
+            "dgs2_date": "2024-04-24",
+            "dgs2_change_1m_bp": 35.0,
+            "dgs10": 4.65,
+            "dgs10_date": "2024-04-24",
+            "t10yie": 2.41,
+            "t10yie_date": "2024-04-24"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2024-03-20",
+        "previous_statement": "2024-01-31",
+        "statement_score": 0.2,
+        "diff_score": 0.0,
+        "text_score": 0.1,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.269307,
+          "hold": 0.328933,
+          "hike": 0.40176
+        },
+        "expected_bp": 3.31,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.040094869624932104,
+          "hold": 0.959905130375068,
+          "hike": 0.0
+        },
+        "expected_bp": -1.0,
+        "expected_post_rate": 5.319976,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 5.25,
+        "target_upper_before": 5.5,
+        "target_lower_after": 5.25,
+        "target_upper_after": 5.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 2.06,
+          "hold": -2.06,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": -0.12,
+          "hold": 0.12,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 1.94,
+          "hold": -1.94,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2024-06-12",
+      "effective_date": "2024-06-13",
+      "as_of": "2024-06-05",
+      "market": {
+        "contract": "ZQM24",
+        "pricing_symbol": "ZQM24",
+        "method": "meeting_month",
+        "quote_date": "2024-06-05",
+        "quote_age_days": 0,
+        "quote_volume": 27894.0,
+        "pricing_volume": 27894.0,
+        "pre_rate": 5.33,
+        "post_rate": 5.325833,
+        "change_bp": -0.42,
+        "probability": {
+          "cut": 0.016667,
+          "hold": 0.983333,
+          "hike": 0.0
+        },
+        "expected_bp": -0.42,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.5923,
+          "hold": 0.4077,
+          "hike": 0.0
+        },
+        "expected_bp": -14.81,
+        "most_likely": "cut",
+        "macro_target_rate": 4.7377,
+        "taylor_rate": 4.5521,
+        "policy_gap_bp": 77.79,
+        "scores": {
+          "inflation": 1.0,
+          "labor": 0.77,
+          "labor_momentum": 0.2333,
+          "growth": -0.1778,
+          "financial_conditions": 0.6492,
+          "taylor_signal": -1.0,
+          "composite": -0.1759
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2024-04-01",
+            "latest": 122.252,
+            "yoy_pct": 3.0176,
+            "yoy_base_date": "2023-04-01",
+            "ann3m_pct": 3.9146,
+            "ann3m_base_date": "2023-12-01"
+          },
+          "core_cpi": {
+            "latest_date": "2024-04-01",
+            "yoy_pct": 3.626,
+            "yoy_base_date": "2023-04-01",
+            "ann3m_pct": 4.3183,
+            "ann3m_base_date": "2023-12-01"
+          },
+          "labor": {
+            "unemployment_date": "2024-05-01",
+            "unemployment": 3.9,
+            "nrou_date": "2024-01-01",
+            "nrou": 4.4257,
+            "unemployment_gap_pp": -0.5257,
+            "payrolls_3m_avg_k": 123.33,
+            "payrolls_latest_date": "2024-05-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2024-01-01",
+            "gdp_yoy_pct": 2.9347,
+            "gdp_qoq_ann_pct": 1.4444
+          },
+          "financial_conditions": {
+            "nfci": -0.411,
+            "nfci_date": "2024-05-24",
+            "nfci_change_4w": 0.002,
+            "hy_oas": 3.22,
+            "hy_oas_date": "2024-06-04"
+          },
+          "market_rates": {
+            "dgs2": 4.72,
+            "dgs2_date": "2024-06-05",
+            "dgs2_change_1m_bp": -10.0,
+            "dgs10": 4.29,
+            "dgs10_date": "2024-06-05",
+            "t10yie": 2.3,
+            "t10yie_date": "2024-06-05"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2024-05-01",
+        "previous_statement": "2024-03-20",
+        "statement_score": 0.2,
+        "diff_score": 0.0,
+        "text_score": 0.1,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.269307,
+          "hold": 0.328933,
+          "hike": 0.40176
+        },
+        "expected_bp": 3.31,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.047662824459410266,
+          "hold": 0.9523371755405897,
+          "hike": 0.0
+        },
+        "expected_bp": -1.19,
+        "expected_post_rate": 5.318084,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 5.25,
+        "target_upper_before": 5.5,
+        "target_lower_after": 5.25,
+        "target_upper_after": 5.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 3.24,
+          "hold": -3.24,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": -0.14,
+          "hold": 0.14,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 3.1,
+          "hold": -3.1,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2024-07-31",
+      "effective_date": "2024-08-01",
+      "as_of": "2024-07-24",
+      "market": {
+        "contract": "ZQN24",
+        "pricing_symbol": "ZQQ24",
+        "method": "next_clean_month",
+        "quote_date": "2024-07-24",
+        "quote_age_days": 0,
+        "quote_volume": 17197.0,
+        "pricing_volume": 148449.0,
+        "pre_rate": 5.33,
+        "post_rate": 5.315,
+        "change_bp": -1.5,
+        "probability": {
+          "cut": 0.06,
+          "hold": 0.94,
+          "hike": 0.0
+        },
+        "expected_bp": -1.5,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 1.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "expected_bp": -25.0,
+        "most_likely": "cut",
+        "macro_target_rate": 4.1753,
+        "taylor_rate": 4.0399,
+        "policy_gap_bp": 129.01,
+        "scores": {
+          "inflation": 0.7083,
+          "labor": 0.385,
+          "labor_momentum": -0.2367,
+          "growth": 0.8894,
+          "financial_conditions": 0.6364,
+          "taylor_signal": -1.0,
+          "composite": -0.1673
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2024-05-01",
+            "latest": 122.406,
+            "yoy_pct": 2.8095,
+            "yoy_base_date": "2023-05-01",
+            "ann3m_pct": 3.0314,
+            "ann3m_base_date": "2024-01-01"
+          },
+          "core_cpi": {
+            "latest_date": "2024-06-01",
+            "yoy_pct": 3.2654,
+            "yoy_base_date": "2023-06-01",
+            "ann3m_pct": 2.0177,
+            "ann3m_base_date": "2024-03-01"
+          },
+          "labor": {
+            "unemployment_date": "2024-06-01",
+            "unemployment": 4.1,
+            "nrou_date": "2024-01-01",
+            "nrou": 4.4257,
+            "unemployment_gap_pp": -0.3257,
+            "payrolls_3m_avg_k": 76.33,
+            "payrolls_latest_date": "2024-06-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2024-04-01",
+            "gdp_yoy_pct": 3.2887,
+            "gdp_qoq_ann_pct": 3.5788
+          },
+          "financial_conditions": {
+            "nfci": -0.367,
+            "nfci_date": "2024-07-12",
+            "nfci_change_4w": 0.027,
+            "hy_oas": 3.02,
+            "hy_oas_date": "2024-07-23"
+          },
+          "market_rates": {
+            "dgs2": 4.37,
+            "dgs2_date": "2024-07-24",
+            "dgs2_change_1m_bp": -34.0,
+            "dgs10": 4.28,
+            "dgs10_date": "2024-07-24",
+            "t10yie": 2.28,
+            "t10yie_date": "2024-07-24"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2024-06-12",
+        "previous_statement": "2024-05-01",
+        "statement_score": 0.2,
+        "diff_score": 0.0,
+        "text_score": 0.1,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.269307,
+          "hold": 0.328933,
+          "hike": 0.40176
+        },
+        "expected_bp": 3.31,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.31234800452211486,
+          "hold": 0.6739730388917053,
+          "hike": 0.013678956586179824
+        },
+        "expected_bp": -7.47,
+        "expected_post_rate": 5.255333,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 5.25,
+        "target_upper_before": 5.5,
+        "target_lower_after": 5.25,
+        "target_upper_after": 5.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 25.9,
+          "hold": -27.21,
+          "hike": 1.32
+        },
+        "text": {
+          "cut": -0.66,
+          "hold": 0.61,
+          "hike": 0.05
+        },
+        "total": {
+          "cut": 25.23,
+          "hold": -26.6,
+          "hike": 1.37
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2024-09-18",
+      "effective_date": "2024-09-19",
+      "as_of": "2024-09-11",
+      "market": {
+        "contract": "ZQU24",
+        "pricing_symbol": "ZQV24",
+        "method": "next_clean_month",
+        "quote_date": "2024-09-11",
+        "quote_age_days": 0,
+        "quote_volume": 47677.0,
+        "pricing_volume": 405043.0,
+        "pre_rate": 5.33,
+        "post_rate": 5.045,
+        "change_bp": -28.5,
+        "probability": {
+          "cut": 1.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "expected_bp": -28.5,
+        "most_likely": "cut",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 1.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "expected_bp": -25.0,
+        "most_likely": "cut",
+        "macro_target_rate": 4.0288,
+        "taylor_rate": 3.9354,
+        "policy_gap_bp": 139.46,
+        "scores": {
+          "inflation": 0.4553,
+          "labor": 0.16,
+          "labor_momentum": -0.5033,
+          "growth": 0.8894,
+          "financial_conditions": 0.5748,
+          "taylor_signal": -1.0,
+          "composite": -0.2465
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2024-07-01",
+            "latest": 122.872,
+            "yoy_pct": 2.8089,
+            "yoy_base_date": "2023-07-01",
+            "ann3m_pct": 2.1151,
+            "ann3m_base_date": "2024-03-01"
+          },
+          "core_cpi": {
+            "latest_date": "2024-08-01",
+            "yoy_pct": 3.2851,
+            "yoy_base_date": "2023-08-01",
+            "ann3m_pct": 2.0816,
+            "ann3m_base_date": "2024-05-01"
+          },
+          "labor": {
+            "unemployment_date": "2024-08-01",
+            "unemployment": 4.2,
+            "nrou_date": "2024-04-01",
+            "nrou": 4.4222,
+            "unemployment_gap_pp": -0.2222,
+            "payrolls_3m_avg_k": 49.67,
+            "payrolls_latest_date": "2024-08-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2024-04-01",
+            "gdp_yoy_pct": 3.2887,
+            "gdp_qoq_ann_pct": 3.5788
+          },
+          "financial_conditions": {
+            "nfci": -0.389,
+            "nfci_date": "2024-08-30",
+            "nfci_change_4w": -0.032,
+            "hy_oas": 3.46,
+            "hy_oas_date": "2024-09-10"
+          },
+          "market_rates": {
+            "dgs2": 3.62,
+            "dgs2_date": "2024-09-11",
+            "dgs2_change_1m_bp": -39.0,
+            "dgs10": 3.65,
+            "dgs10_date": "2024-09-11",
+            "t10yie": 2.04,
+            "t10yie_date": "2024-09-11"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2024-07-31",
+        "previous_statement": "2024-06-12",
+        "statement_score": 0.1579,
+        "diff_score": -0.1667,
+        "text_score": -0.0044,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.336271,
+          "hold": 0.333325,
+          "hike": 0.330404
+        },
+        "expected_bp": -0.15,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 1.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "expected_bp": -25.0,
+        "expected_post_rate": 5.08,
+        "most_likely": "cut"
+      },
+      "actual": {
+        "label": "cut",
+        "change_bp": -50.0,
+        "target_lower_before": 5.25,
+        "target_upper_before": 5.5,
+        "target_lower_after": 4.75,
+        "target_upper_after": 5.0
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": 0.0,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2024-11-07",
+      "effective_date": "2024-11-08",
+      "as_of": "2024-10-31",
+      "market": {
+        "contract": "ZQX24",
+        "pricing_symbol": "ZQX24",
+        "method": "meeting_month",
+        "quote_date": "2024-10-31",
+        "quote_age_days": 0,
+        "quote_volume": 57899.0,
+        "pricing_volume": 57899.0,
+        "pre_rate": 4.83,
+        "post_rate": 4.595217,
+        "change_bp": -23.48,
+        "probability": {
+          "cut": 0.93913,
+          "hold": 0.06087,
+          "hike": 0.0
+        },
+        "expected_bp": -23.48,
+        "most_likely": "cut",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.5884,
+          "hold": 0.4116,
+          "hike": 0.0
+        },
+        "expected_bp": -14.71,
+        "most_likely": "cut",
+        "macro_target_rate": 4.2416,
+        "taylor_rate": 4.0776,
+        "policy_gap_bp": 75.24,
+        "scores": {
+          "inflation": 0.7896,
+          "labor": 0.3625,
+          "labor_momentum": -0.2767,
+          "growth": 0.6765,
+          "financial_conditions": 0.7668,
+          "taylor_signal": -1.0,
+          "composite": -0.1615
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2024-09-01",
+            "latest": 123.462,
+            "yoy_pct": 2.8396,
+            "yoy_base_date": "2023-09-01",
+            "ann3m_pct": 2.5979,
+            "ann3m_base_date": "2024-06-01"
+          },
+          "core_cpi": {
+            "latest_date": "2024-09-01",
+            "yoy_pct": 3.2824,
+            "yoy_base_date": "2023-09-01",
+            "ann3m_pct": 2.9524,
+            "ann3m_base_date": "2024-06-01"
+          },
+          "labor": {
+            "unemployment_date": "2024-09-01",
+            "unemployment": 4.1,
+            "nrou_date": "2024-07-01",
+            "nrou": 4.4182,
+            "unemployment_gap_pp": -0.3182,
+            "payrolls_3m_avg_k": 72.33,
+            "payrolls_latest_date": "2024-09-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2024-07-01",
+            "gdp_yoy_pct": 2.9479,
+            "gdp_qoq_ann_pct": 3.153
+          },
+          "financial_conditions": {
+            "nfci": -0.439,
+            "nfci_date": "2024-10-18",
+            "nfci_change_4w": -0.02,
+            "hy_oas": 2.8,
+            "hy_oas_date": "2024-10-30"
+          },
+          "market_rates": {
+            "dgs2": 4.16,
+            "dgs2_date": "2024-10-31",
+            "dgs2_change_1m_bp": 55.0,
+            "dgs10": 4.28,
+            "dgs10_date": "2024-10-31",
+            "t10yie": 2.33,
+            "t10yie_date": "2024-10-31"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2024-09-18",
+        "previous_statement": "2024-07-31",
+        "statement_score": -0.1643,
+        "diff_score": -0.7222,
+        "text_score": -0.4432,
+        "action": "lower",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 1,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.632114,
+          "hold": 0.260517,
+          "hike": 0.107369
+        },
+        "expected_bp": -13.12,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.9067395257782361,
+          "hold": 0.09326047422176381,
+          "hike": 0.0
+        },
+        "expected_bp": -22.67,
+        "expected_post_rate": 4.603315,
+        "most_likely": "cut"
+      },
+      "actual": {
+        "label": "cut",
+        "change_bp": -25.0,
+        "target_lower_before": 4.75,
+        "target_upper_before": 5.0,
+        "target_lower_after": 4.5,
+        "target_upper_after": 4.75
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": -4.43,
+          "hold": 4.43,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": 1.19,
+          "hold": -1.19,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": -3.24,
+          "hold": 3.24,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2024-12-18",
+      "effective_date": "2024-12-19",
+      "as_of": "2024-12-11",
+      "market": {
+        "contract": "ZQZ24",
+        "pricing_symbol": "ZQZ24",
+        "method": "meeting_month",
+        "quote_date": "2024-12-11",
+        "quote_age_days": 0,
+        "quote_volume": 68349.0,
+        "pricing_volume": 68349.0,
+        "pre_rate": 4.58,
+        "post_rate": 4.341538,
+        "change_bp": -23.85,
+        "probability": {
+          "cut": 0.953846,
+          "hold": 0.046154,
+          "hike": 0.0
+        },
+        "expected_bp": -23.85,
+        "most_likely": "cut",
+        "reliability": "medium"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.2884,
+          "hold": 0.7116,
+          "hike": 0.0
+        },
+        "expected_bp": -7.21,
+        "most_likely": "hold",
+        "macro_target_rate": 4.2916,
+        "taylor_rate": 4.0753,
+        "policy_gap_bp": 50.47,
+        "scores": {
+          "inflation": 0.9524,
+          "labor": 0.3275,
+          "labor_momentum": 0.0733,
+          "growth": 0.6765,
+          "financial_conditions": 0.836,
+          "taylor_signal": -1.0,
+          "composite": -0.1255
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2024-10-01",
+            "latest": 123.816,
+            "yoy_pct": 2.9047,
+            "yoy_base_date": "2023-10-01",
+            "ann3m_pct": 3.0851,
+            "ann3m_base_date": "2024-07-01"
+          },
+          "core_cpi": {
+            "latest_date": "2024-11-01",
+            "yoy_pct": 3.2859,
+            "yoy_base_date": "2023-11-01",
+            "ann3m_pct": 3.6584,
+            "ann3m_base_date": "2024-08-01"
+          },
+          "labor": {
+            "unemployment_date": "2024-11-01",
+            "unemployment": 4.2,
+            "nrou_date": "2024-07-01",
+            "nrou": 4.4182,
+            "unemployment_gap_pp": -0.2182,
+            "payrolls_3m_avg_k": 107.33,
+            "payrolls_latest_date": "2024-11-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2024-07-01",
+            "gdp_yoy_pct": 2.9479,
+            "gdp_qoq_ann_pct": 3.153
+          },
+          "financial_conditions": {
+            "nfci": -0.475,
+            "nfci_date": "2024-11-29",
+            "nfci_change_4w": -0.024,
+            "hy_oas": 2.67,
+            "hy_oas_date": "2024-12-10"
+          },
+          "market_rates": {
+            "dgs2": 4.15,
+            "dgs2_date": "2024-12-11",
+            "dgs2_change_1m_bp": -11.0,
+            "dgs10": 4.26,
+            "dgs10_date": "2024-12-11",
+            "t10yie": 2.3,
+            "t10yie_date": "2024-12-11"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2024-11-07",
+        "previous_statement": "2024-09-18",
+        "statement_score": -0.1143,
+        "diff_score": 0.1407,
+        "text_score": 0.0132,
+        "action": "lower",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.324573,
+          "hold": 0.333256,
+          "hike": 0.342171
+        },
+        "expected_bp": 0.44,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.8850998592096149,
+          "hold": 0.11490014079038513,
+          "hike": 0.0
+        },
+        "expected_bp": -22.13,
+        "expected_post_rate": 4.358725,
+        "most_likely": "cut"
+      },
+      "actual": {
+        "label": "cut",
+        "change_bp": -25.0,
+        "target_lower_before": 4.5,
+        "target_upper_before": 4.75,
+        "target_lower_after": 4.25,
+        "target_upper_after": 4.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": -6.83,
+          "hold": 6.83,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": -0.04,
+          "hold": 0.04,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": -6.87,
+          "hold": 6.87,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2025-01-29",
+      "effective_date": "2025-01-30",
+      "as_of": "2025-01-22",
+      "market": {
+        "contract": "ZQF25",
+        "pricing_symbol": "ZQG25",
+        "method": "next_clean_month",
+        "quote_date": "2025-01-22",
+        "quote_age_days": 0,
+        "quote_volume": 59679.0,
+        "pricing_volume": 46340.0,
+        "pre_rate": 4.33,
+        "post_rate": 4.325,
+        "change_bp": -0.5,
+        "probability": {
+          "cut": 0.02,
+          "hold": 0.98,
+          "hike": 0.0
+        },
+        "expected_bp": -0.5,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.948,
+          "hike": 0.052
+        },
+        "expected_bp": 1.3,
+        "most_likely": "hold",
+        "macro_target_rate": 4.382,
+        "taylor_rate": 4.1293,
+        "policy_gap_bp": 20.07,
+        "scores": {
+          "inflation": 0.8716,
+          "labor": 0.5495,
+          "labor_momentum": 0.3467,
+          "growth": 0.3021,
+          "financial_conditions": 0.872,
+          "taylor_signal": -0.4014,
+          "composite": 0.146
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2024-11-01",
+            "latest": 123.989,
+            "yoy_pct": 2.8741,
+            "yoy_base_date": "2023-11-01",
+            "ann3m_pct": 2.7819,
+            "ann3m_base_date": "2024-08-01"
+          },
+          "core_cpi": {
+            "latest_date": "2024-12-01",
+            "yoy_pct": 3.2133,
+            "yoy_base_date": "2023-12-01",
+            "ann3m_pct": 3.3216,
+            "ann3m_base_date": "2024-08-01"
+          },
+          "labor": {
+            "unemployment_date": "2024-12-01",
+            "unemployment": 4.1,
+            "nrou_date": "2024-07-01",
+            "nrou": 4.4182,
+            "unemployment_gap_pp": -0.3182,
+            "payrolls_3m_avg_k": 134.67,
+            "payrolls_latest_date": "2024-12-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2024-10-01",
+            "gdp_yoy_pct": 2.6419,
+            "gdp_qoq_ann_pct": 2.4042
+          },
+          "financial_conditions": {
+            "nfci": -0.495,
+            "nfci_date": "2025-01-10",
+            "nfci_change_4w": -0.016,
+            "hy_oas": 2.61,
+            "hy_oas_date": "2025-01-21"
+          },
+          "market_rates": {
+            "dgs2": 4.29,
+            "dgs2_date": "2025-01-22",
+            "dgs2_change_1m_bp": -1.0,
+            "dgs10": 4.6,
+            "dgs10_date": "2025-01-22",
+            "t10yie": 2.4,
+            "t10yie_date": "2025-01-22"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2024-12-18",
+        "previous_statement": "2024-11-07",
+        "statement_score": -0.1143,
+        "diff_score": 0.0,
+        "text_score": -0.0571,
+        "action": "lower",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.37204,
+          "hold": 0.331889,
+          "hike": 0.296071
+        },
+        "expected_bp": -1.9,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.014457127518658552,
+          "hold": 0.9766730194452863,
+          "hike": 0.008869853036055203
+        },
+        "expected_bp": -0.14,
+        "expected_post_rate": 4.328603,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 4.25,
+        "target_upper_before": 4.5,
+        "target_lower_after": 4.25,
+        "target_upper_after": 4.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": -0.58,
+          "hold": -0.32,
+          "hike": 0.9
+        },
+        "text": {
+          "cut": 0.02,
+          "hold": -0.01,
+          "hike": -0.02
+        },
+        "total": {
+          "cut": -0.55,
+          "hold": -0.33,
+          "hike": 0.89
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2025-03-19",
+      "effective_date": "2025-03-20",
+      "as_of": "2025-03-12",
+      "market": {
+        "contract": "ZQH25",
+        "pricing_symbol": "ZQJ25",
+        "method": "next_clean_month",
+        "quote_date": "2025-03-12",
+        "quote_age_days": 0,
+        "quote_volume": 37865.0,
+        "pricing_volume": 126268.0,
+        "pre_rate": 4.33,
+        "post_rate": 4.325,
+        "change_bp": -0.5,
+        "probability": {
+          "cut": 0.02,
+          "hold": 0.98,
+          "hike": 0.0
+        },
+        "expected_bp": -0.5,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.2388,
+          "hold": 0.7612,
+          "hike": 0.0
+        },
+        "expected_bp": -5.97,
+        "most_likely": "hold",
+        "macro_target_rate": 4.0912,
+        "taylor_rate": 3.9315,
+        "policy_gap_bp": 39.85,
+        "scores": {
+          "inflation": 0.776,
+          "labor": 0.2302,
+          "labor_momentum": -0.23,
+          "growth": 0.3021,
+          "financial_conditions": 0.7308,
+          "taylor_signal": -0.797,
+          "composite": -0.117
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2025-01-01",
+            "latest": 124.609,
+            "yoy_pct": 2.8119,
+            "yoy_base_date": "2024-01-01",
+            "ann3m_pct": 2.567,
+            "ann3m_base_date": "2024-10-01"
+          },
+          "core_cpi": {
+            "latest_date": "2025-01-01",
+            "yoy_pct": 3.283,
+            "yoy_base_date": "2024-01-01",
+            "ann3m_pct": 3.6356,
+            "ann3m_base_date": "2024-10-01"
+          },
+          "labor": {
+            "unemployment_date": "2025-02-01",
+            "unemployment": 4.2,
+            "nrou_date": "2024-10-01",
+            "nrou": 4.4137,
+            "unemployment_gap_pp": -0.2137,
+            "payrolls_3m_avg_k": 77.0,
+            "payrolls_latest_date": "2025-02-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2024-10-01",
+            "gdp_yoy_pct": 2.6419,
+            "gdp_qoq_ann_pct": 2.4042
+          },
+          "financial_conditions": {
+            "nfci": -0.479,
+            "nfci_date": "2025-02-28",
+            "nfci_change_4w": 0.029,
+            "hy_oas": 3.22,
+            "hy_oas_date": "2025-03-11"
+          },
+          "market_rates": {
+            "dgs2": 4.01,
+            "dgs2_date": "2025-03-12",
+            "dgs2_change_1m_bp": -27.0,
+            "dgs10": 4.32,
+            "dgs10_date": "2025-03-12",
+            "t10yie": 2.33,
+            "t10yie_date": "2025-03-12"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2025-01-29",
+        "previous_statement": "2024-12-18",
+        "statement_score": 0.0857,
+        "diff_score": 0.5652,
+        "text_score": 0.3255,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.151651,
+          "hold": 0.290784,
+          "hike": 0.557565
+        },
+        "expected_bp": 10.15,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.035354579517932985,
+          "hold": 0.964645420482067,
+          "hike": 0.0
+        },
+        "expected_bp": -0.88,
+        "expected_post_rate": 4.321161,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 4.25,
+        "target_upper_before": 4.5,
+        "target_lower_after": 4.25,
+        "target_upper_after": 4.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 1.88,
+          "hold": -1.88,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": -0.35,
+          "hold": 0.35,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 1.54,
+          "hold": -1.54,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2025-05-07",
+      "effective_date": "2025-05-08",
+      "as_of": "2025-04-30",
+      "market": {
+        "contract": "ZQK25",
+        "pricing_symbol": "ZQK25",
+        "method": "meeting_month",
+        "quote_date": "2025-04-30",
+        "quote_age_days": 0,
+        "quote_volume": 109293.0,
+        "pricing_volume": 109293.0,
+        "pre_rate": 4.33,
+        "post_rate": 4.307396,
+        "change_bp": -2.26,
+        "probability": {
+          "cut": 0.090417,
+          "hold": 0.909583,
+          "hike": 0.0
+        },
+        "expected_bp": -2.26,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.7232,
+          "hold": 0.2768,
+          "hike": 0.0
+        },
+        "expected_bp": -18.08,
+        "most_likely": "cut",
+        "macro_target_rate": 3.6068,
+        "taylor_rate": 3.5591,
+        "policy_gap_bp": 77.09,
+        "scores": {
+          "inflation": 0.7183,
+          "labor": 0.0602,
+          "labor_momentum": -0.7967,
+          "growth": -0.8284,
+          "financial_conditions": 0.5092,
+          "taylor_signal": -1.0,
+          "composite": -0.3822
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2025-03-01",
+            "latest": 125.144,
+            "yoy_pct": 2.5636,
+            "yoy_base_date": "2024-03-01",
+            "ann3m_pct": 2.8624,
+            "ann3m_base_date": "2024-11-01"
+          },
+          "core_cpi": {
+            "latest_date": "2025-03-01",
+            "yoy_pct": 2.8088,
+            "yoy_base_date": "2024-03-01",
+            "ann3m_pct": 2.8887,
+            "ann3m_base_date": "2024-11-01"
+          },
+          "labor": {
+            "unemployment_date": "2025-03-01",
+            "unemployment": 4.2,
+            "nrou_date": "2024-10-01",
+            "nrou": 4.4137,
+            "unemployment_gap_pp": -0.2137,
+            "payrolls_3m_avg_k": 20.33,
+            "payrolls_latest_date": "2025-03-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2025-01-01",
+            "gdp_yoy_pct": 2.3111,
+            "gdp_qoq_ann_pct": 0.1431
+          },
+          "financial_conditions": {
+            "nfci": -0.381,
+            "nfci_date": "2025-04-18",
+            "nfci_change_4w": 0.043,
+            "hy_oas": 3.74,
+            "hy_oas_date": "2025-04-29"
+          },
+          "market_rates": {
+            "dgs2": 3.6,
+            "dgs2_date": "2025-04-30",
+            "dgs2_change_1m_bp": -29.0,
+            "dgs10": 4.17,
+            "dgs10_date": "2025-04-30",
+            "t10yie": 2.23,
+            "t10yie_date": "2025-04-30"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2025-03-19",
+        "previous_statement": "2025-01-29",
+        "statement_score": 0.0545,
+        "diff_score": -0.0909,
+        "text_score": -0.0182,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.345538,
+          "hold": 0.333186,
+          "hike": 0.321276
+        },
+        "expected_bp": -0.61,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.1845442607111696,
+          "hold": 0.8154557392888304,
+          "hike": 0.0
+        },
+        "expected_bp": -4.61,
+        "expected_post_rate": 4.283864,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 4.25,
+        "target_upper_before": 4.5,
+        "target_lower_after": 4.25,
+        "target_upper_after": 4.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 9.33,
+          "hold": -9.33,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": 0.08,
+          "hold": -0.08,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 9.41,
+          "hold": -9.41,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2025-06-18",
+      "effective_date": "2025-06-19",
+      "as_of": "2025-06-11",
+      "market": {
+        "contract": "ZQM25",
+        "pricing_symbol": "ZQM25",
+        "method": "meeting_month",
+        "quote_date": "2025-06-11",
+        "quote_age_days": 0,
+        "quote_volume": 19049.0,
+        "pricing_volume": 19049.0,
+        "pre_rate": 4.33,
+        "post_rate": 4.33,
+        "change_bp": -0.0,
+        "probability": {
+          "cut": 0.0,
+          "hold": 1.0,
+          "hike": 0.0
+        },
+        "expected_bp": -0.0,
+        "most_likely": "hold",
+        "reliability": "medium"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.5601,
+          "hold": 0.4399,
+          "hike": 0.0
+        },
+        "expected_bp": -14.0,
+        "most_likely": "cut",
+        "macro_target_rate": 3.7699,
+        "taylor_rate": 3.6237,
+        "policy_gap_bp": 70.63,
+        "scores": {
+          "inflation": 0.6641,
+          "labor": 0.0407,
+          "labor_momentum": -0.3733,
+          "growth": -0.8284,
+          "financial_conditions": 0.734,
+          "taylor_signal": -1.0,
+          "composite": -0.3726
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2025-04-01",
+            "latest": 125.524,
+            "yoy_pct": 2.6764,
+            "yoy_base_date": "2024-04-01",
+            "ann3m_pct": 3.2577,
+            "ann3m_base_date": "2024-12-01"
+          },
+          "core_cpi": {
+            "latest_date": "2025-05-01",
+            "yoy_pct": 2.7658,
+            "yoy_base_date": "2024-05-01",
+            "ann3m_pct": 2.1293,
+            "ann3m_base_date": "2025-01-01"
+          },
+          "labor": {
+            "unemployment_date": "2025-05-01",
+            "unemployment": 4.3,
+            "nrou_date": "2025-01-01",
+            "nrou": 4.409,
+            "unemployment_gap_pp": -0.109,
+            "payrolls_3m_avg_k": 62.67,
+            "payrolls_latest_date": "2025-05-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2025-01-01",
+            "gdp_yoy_pct": 2.3111,
+            "gdp_qoq_ann_pct": 0.1431
+          },
+          "financial_conditions": {
+            "nfci": -0.465,
+            "nfci_date": "2025-05-30",
+            "nfci_change_4w": -0.064,
+            "hy_oas": 3.12,
+            "hy_oas_date": "2025-06-10"
+          },
+          "market_rates": {
+            "dgs2": 3.94,
+            "dgs2_date": "2025-06-11",
+            "dgs2_change_1m_bp": -4.0,
+            "dgs10": 4.41,
+            "dgs10_date": "2025-06-11",
+            "t10yie": 2.27,
+            "t10yie_date": "2025-06-11"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2025-05-07",
+        "previous_statement": "2025-03-19",
+        "statement_score": 0.0545,
+        "diff_score": 0.0,
+        "text_score": 0.0272,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.315373,
+          "hold": 0.333005,
+          "hike": 0.351622
+        },
+        "expected_bp": 0.91,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.019426375115102156,
+          "hold": 0.9805736248848979,
+          "hike": 0.0
+        },
+        "expected_bp": -0.49,
+        "expected_post_rate": 4.325143,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 4.25,
+        "target_upper_before": 4.5,
+        "target_lower_after": 4.25,
+        "target_upper_after": 4.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 1.96,
+          "hold": -1.96,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": -0.02,
+          "hold": 0.02,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 1.94,
+          "hold": -1.94,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2025-07-30",
+      "effective_date": "2025-07-31",
+      "as_of": "2025-07-23",
+      "market": {
+        "contract": "ZQN25",
+        "pricing_symbol": "ZQQ25",
+        "method": "next_clean_month",
+        "quote_date": "2025-07-23",
+        "quote_age_days": 0,
+        "quote_volume": 42205.0,
+        "pricing_volume": 75550.0,
+        "pre_rate": 4.33,
+        "post_rate": 4.32,
+        "change_bp": -1.0,
+        "probability": {
+          "cut": 0.04,
+          "hold": 0.96,
+          "hike": 0.0
+        },
+        "expected_bp": -1.0,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.2011,
+          "hold": 0.7989,
+          "hike": 0.0
+        },
+        "expected_bp": -5.03,
+        "most_likely": "hold",
+        "macro_target_rate": 4.1289,
+        "taylor_rate": 3.9902,
+        "policy_gap_bp": 33.98,
+        "scores": {
+          "inflation": 0.7726,
+          "labor": 0.2337,
+          "labor_momentum": -0.6633,
+          "growth": 1.0,
+          "financial_conditions": 0.82,
+          "taylor_signal": -0.6796,
+          "composite": 0.0201
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2025-05-01",
+            "latest": 125.818,
+            "yoy_pct": 2.7874,
+            "yoy_base_date": "2024-05-01",
+            "ann3m_pct": 2.9825,
+            "ann3m_base_date": "2025-01-01"
+          },
+          "core_cpi": {
+            "latest_date": "2025-06-01",
+            "yoy_pct": 2.9109,
+            "yoy_base_date": "2024-06-01",
+            "ann3m_pct": 2.4206,
+            "ann3m_base_date": "2025-03-01"
+          },
+          "labor": {
+            "unemployment_date": "2025-06-01",
+            "unemployment": 4.1,
+            "nrou_date": "2025-01-01",
+            "nrou": 4.409,
+            "unemployment_gap_pp": -0.309,
+            "payrolls_3m_avg_k": 33.67,
+            "payrolls_latest_date": "2025-06-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2025-04-01",
+            "gdp_yoy_pct": 2.4206,
+            "gdp_qoq_ann_pct": 4.0229
+          },
+          "financial_conditions": {
+            "nfci": -0.509,
+            "nfci_date": "2025-07-11",
+            "nfci_change_4w": -0.027,
+            "hy_oas": 2.9,
+            "hy_oas_date": "2025-07-22"
+          },
+          "market_rates": {
+            "dgs2": 3.88,
+            "dgs2_date": "2025-07-23",
+            "dgs2_change_1m_bp": 4.0,
+            "dgs10": 4.4,
+            "dgs10_date": "2025-07-23",
+            "t10yie": 2.37,
+            "t10yie_date": "2025-07-23"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2025-06-18",
+        "previous_statement": "2025-05-07",
+        "statement_score": 0.0545,
+        "diff_score": 0.0,
+        "text_score": 0.0272,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.315373,
+          "hold": 0.333005,
+          "hike": 0.351622
+        },
+        "expected_bp": 0.91,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.06085026559180484,
+          "hold": 0.9391497344081952,
+          "hike": 0.0
+        },
+        "expected_bp": -1.52,
+        "expected_post_rate": 4.314787,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 4.25,
+        "target_upper_before": 4.5,
+        "target_lower_after": 4.25,
+        "target_upper_after": 4.5
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 2.13,
+          "hold": -2.13,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": -0.05,
+          "hold": 0.05,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 2.09,
+          "hold": -2.09,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2025-09-17",
+      "effective_date": "2025-09-18",
+      "as_of": "2025-09-10",
+      "market": {
+        "contract": "ZQU25",
+        "pricing_symbol": "ZQU25",
+        "method": "meeting_month",
+        "quote_date": "2025-09-10",
+        "quote_age_days": 0,
+        "quote_volume": 99141.0,
+        "pricing_volume": 99141.0,
+        "pre_rate": 4.33,
+        "post_rate": 4.064615,
+        "change_bp": -26.54,
+        "probability": {
+          "cut": 1.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "expected_bp": -26.54,
+        "most_likely": "cut",
+        "reliability": "medium"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.3548,
+          "hold": 0.6452,
+          "hike": 0.0
+        },
+        "expected_bp": -8.87,
+        "most_likely": "hold",
+        "macro_target_rate": 3.9752,
+        "taylor_rate": 3.8687,
+        "policy_gap_bp": 46.13,
+        "scores": {
+          "inflation": 0.904,
+          "labor": -0.1503,
+          "labor_momentum": -1.0,
+          "growth": 1.0,
+          "financial_conditions": 0.826,
+          "taylor_signal": -0.9227,
+          "composite": -0.113
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2025-07-01",
+            "latest": 126.363,
+            "yoy_pct": 2.8412,
+            "yoy_base_date": "2024-07-01",
+            "ann3m_pct": 2.9447,
+            "ann3m_base_date": "2025-03-01"
+          },
+          "core_cpi": {
+            "latest_date": "2025-08-01",
+            "yoy_pct": 3.1118,
+            "yoy_base_date": "2024-08-01",
+            "ann3m_pct": 3.4528,
+            "ann3m_base_date": "2025-05-01"
+          },
+          "labor": {
+            "unemployment_date": "2025-08-01",
+            "unemployment": 4.3,
+            "nrou_date": "2025-04-01",
+            "nrou": 4.4069,
+            "unemployment_gap_pp": -0.1069,
+            "payrolls_3m_avg_k": -8.67,
+            "payrolls_latest_date": "2025-08-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2025-04-01",
+            "gdp_yoy_pct": 2.4206,
+            "gdp_qoq_ann_pct": 4.0229
+          },
+          "financial_conditions": {
+            "nfci": -0.527,
+            "nfci_date": "2025-08-29",
+            "nfci_change_4w": -0.007,
+            "hy_oas": 2.87,
+            "hy_oas_date": "2025-09-09"
+          },
+          "market_rates": {
+            "dgs2": 3.54,
+            "dgs2_date": "2025-09-10",
+            "dgs2_change_1m_bp": -22.0,
+            "dgs10": 4.04,
+            "dgs10_date": "2025-09-10",
+            "t10yie": 2.35,
+            "t10yie_date": "2025-09-10"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2025-07-30",
+        "previous_statement": "2025-06-18",
+        "statement_score": -0.0816,
+        "diff_score": -0.6883,
+        "text_score": -0.385,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 1,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.596163,
+          "hold": 0.276031,
+          "hike": 0.127806
+        },
+        "expected_bp": -11.71,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.9809178711342963,
+          "hold": 0.01908212886570372,
+          "hike": 0.0
+        },
+        "expected_bp": -24.52,
+        "expected_post_rate": 4.084771,
+        "most_likely": "cut"
+      },
+      "actual": {
+        "label": "cut",
+        "change_bp": -25.0,
+        "target_lower_before": 4.25,
+        "target_upper_before": 4.5,
+        "target_lower_after": 4.0,
+        "target_upper_after": 4.25
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": -2.14,
+          "hold": 2.14,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": 0.23,
+          "hold": -0.23,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": -1.91,
+          "hold": 1.91,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2025-10-29",
+      "effective_date": "2025-10-30",
+      "as_of": "2025-10-22",
+      "market": {
+        "contract": "ZQV25",
+        "pricing_symbol": "ZQX25",
+        "method": "next_clean_month",
+        "quote_date": "2025-10-22",
+        "quote_age_days": 0,
+        "quote_volume": 16335.0,
+        "pricing_volume": 150135.0,
+        "pre_rate": 4.11,
+        "post_rate": 3.86,
+        "change_bp": -25.0,
+        "probability": {
+          "cut": 1.0,
+          "hold": 0.0,
+          "hike": 0.0
+        },
+        "expected_bp": -25.0,
+        "most_likely": "cut",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.2012,
+          "hold": 0.7988,
+          "hike": 0.0
+        },
+        "expected_bp": -5.03,
+        "most_likely": "hold",
+        "macro_target_rate": 3.9088,
+        "taylor_rate": 3.7839,
+        "policy_gap_bp": 32.61,
+        "scores": {
+          "inflation": 0.8172,
+          "labor": -0.2203,
+          "labor_momentum": -0.7667,
+          "growth": 1.0,
+          "financial_conditions": 0.806,
+          "taylor_signal": -0.6522,
+          "composite": -0.0041
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2025-08-01",
+            "latest": 126.646,
+            "yoy_pct": 2.8513,
+            "yoy_base_date": "2024-08-01",
+            "ann3m_pct": 2.6383,
+            "ann3m_base_date": "2025-05-01"
+          },
+          "core_cpi": {
+            "latest_date": "2025-09-01",
+            "yoy_pct": 3.02,
+            "yoy_base_date": "2024-09-01",
+            "ann3m_pct": 3.3863,
+            "ann3m_base_date": "2025-06-01"
+          },
+          "labor": {
+            "unemployment_date": "2025-09-01",
+            "unemployment": 4.4,
+            "nrou_date": "2025-04-01",
+            "nrou": 4.4069,
+            "unemployment_gap_pp": -0.0069,
+            "payrolls_3m_avg_k": 23.33,
+            "payrolls_latest_date": "2025-09-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2025-07-01",
+            "gdp_yoy_pct": 2.6007,
+            "gdp_qoq_ann_pct": 3.8803
+          },
+          "financial_conditions": {
+            "nfci": -0.523,
+            "nfci_date": "2025-10-10",
+            "nfci_change_4w": 0.004,
+            "hy_oas": 2.97,
+            "hy_oas_date": "2025-10-21"
+          },
+          "market_rates": {
+            "dgs2": 3.45,
+            "dgs2_date": "2025-10-22",
+            "dgs2_change_1m_bp": -16.0,
+            "dgs10": 3.97,
+            "dgs10_date": "2025-10-22",
+            "t10yie": 2.29,
+            "t10yie_date": "2025-10-22"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2025-09-17",
+        "previous_statement": "2025-07-30",
+        "statement_score": -0.4425,
+        "diff_score": -0.2352,
+        "text_score": -0.3388,
+        "action": "lower",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 1,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.566338,
+          "hold": 0.287606,
+          "hike": 0.146056
+        },
+        "expected_bp": -10.51,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.9765847778398813,
+          "hold": 0.02341522216011874,
+          "hike": 0.0
+        },
+        "expected_bp": -24.41,
+        "expected_post_rate": 3.865854,
+        "most_likely": "cut"
+      },
+      "actual": {
+        "label": "cut",
+        "change_bp": -25.0,
+        "target_lower_before": 4.0,
+        "target_upper_before": 4.25,
+        "target_lower_after": 3.75,
+        "target_upper_after": 4.0
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": -2.59,
+          "hold": 2.59,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": 0.24,
+          "hold": -0.24,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": -2.34,
+          "hold": 2.34,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2025-12-10",
+      "effective_date": "2025-12-11",
+      "as_of": "2025-12-03",
+      "market": {
+        "contract": "ZQZ25",
+        "pricing_symbol": "ZQZ25",
+        "method": "meeting_month",
+        "quote_date": "2025-12-03",
+        "quote_age_days": 0,
+        "quote_volume": 99350.0,
+        "pricing_volume": 99350.0,
+        "pre_rate": 3.89,
+        "post_rate": 3.65381,
+        "change_bp": -23.62,
+        "probability": {
+          "cut": 0.944762,
+          "hold": 0.055238,
+          "hike": 0.0
+        },
+        "expected_bp": -23.62,
+        "most_likely": "cut",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.2246,
+          "hold": 0.7754,
+          "hike": 0.0
+        },
+        "expected_bp": -5.62,
+        "most_likely": "hold",
+        "macro_target_rate": 3.6654,
+        "taylor_rate": 3.5614,
+        "policy_gap_bp": 32.86,
+        "scores": {
+          "inflation": 0.7155,
+          "labor": -0.2941,
+          "labor_momentum": -1.0,
+          "growth": 1.0,
+          "financial_conditions": 0.816,
+          "taylor_signal": -0.6571,
+          "composite": -0.0333
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2025-10-01",
+            "latest": 127.165,
+            "yoy_pct": 2.7048,
+            "yoy_base_date": "2024-10-01",
+            "ann3m_pct": 2.5436,
+            "ann3m_base_date": "2025-07-01"
+          },
+          "core_cpi": {
+            "latest_date": "2025-09-01",
+            "yoy_pct": 3.02,
+            "yoy_base_date": "2024-09-01",
+            "ann3m_pct": 3.3863,
+            "ann3m_base_date": "2025-06-01"
+          },
+          "labor": {
+            "unemployment_date": "2025-09-01",
+            "unemployment": 4.4,
+            "nrou_date": "2025-07-01",
+            "nrou": 4.4042,
+            "unemployment_gap_pp": -0.0042,
+            "payrolls_3m_avg_k": -44.67,
+            "payrolls_latest_date": "2025-10-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2025-07-01",
+            "gdp_yoy_pct": 2.6007,
+            "gdp_qoq_ann_pct": 3.8803
+          },
+          "financial_conditions": {
+            "nfci": -0.508,
+            "nfci_date": "2025-11-21",
+            "nfci_change_4w": 0.009,
+            "hy_oas": 2.92,
+            "hy_oas_date": "2025-12-02"
+          },
+          "market_rates": {
+            "dgs2": 3.49,
+            "dgs2_date": "2025-12-03",
+            "dgs2_change_1m_bp": -11.0,
+            "dgs10": 4.06,
+            "dgs10_date": "2025-12-03",
+            "t10yie": 2.24,
+            "t10yie_date": "2025-12-03"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2025-10-29",
+        "previous_statement": "2025-09-17",
+        "statement_score": -0.4425,
+        "diff_score": 0.0,
+        "text_score": -0.2213,
+        "action": "lower",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 1,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.486619,
+          "hold": 0.312587,
+          "hike": 0.200794
+        },
+        "expected_bp": -7.15,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.8683087224440118,
+          "hold": 0.13169127755598817,
+          "hike": 0.0
+        },
+        "expected_bp": -21.71,
+        "expected_post_rate": 3.672923,
+        "most_likely": "cut"
+      },
+      "actual": {
+        "label": "cut",
+        "change_bp": -25.0,
+        "target_lower_before": 3.75,
+        "target_upper_before": 4.0,
+        "target_lower_after": 3.5,
+        "target_upper_after": 3.75
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": -8.42,
+          "hold": 8.42,
+          "hike": 0.0
+        },
+        "text": {
+          "cut": 0.78,
+          "hold": -0.78,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": -7.65,
+          "hold": 7.65,
+          "hike": 0.0
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2026-01-28",
+      "effective_date": "2026-01-29",
+      "as_of": "2026-01-21",
+      "market": {
+        "contract": "ZQF26",
+        "pricing_symbol": "ZQG26",
+        "method": "next_clean_month",
+        "quote_date": "2026-01-21",
+        "quote_age_days": 0,
+        "quote_volume": 126090.0,
+        "pricing_volume": 43427.0,
+        "pre_rate": 3.64,
+        "post_rate": 3.63,
+        "change_bp": -1.0,
+        "probability": {
+          "cut": 0.04,
+          "hold": 0.96,
+          "hike": 0.0
+        },
+        "expected_bp": -1.0,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.9405,
+          "hike": 0.0595
+        },
+        "expected_bp": 1.49,
+        "most_likely": "hold",
+        "macro_target_rate": 3.6995,
+        "taylor_rate": 3.586,
+        "policy_gap_bp": 5.4,
+        "scores": {
+          "inflation": 0.427,
+          "labor": -0.2941,
+          "labor_momentum": -1.0,
+          "growth": -0.7961,
+          "financial_conditions": 0.854,
+          "taylor_signal": -0.108,
+          "composite": 0.0078
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2025-11-01",
+            "latest": 127.363,
+            "yoy_pct": 2.7212,
+            "yoy_base_date": "2024-11-01",
+            "ann3m_pct": 2.2666,
+            "ann3m_base_date": "2025-08-01"
+          },
+          "core_cpi": {
+            "latest_date": "2025-12-01",
+            "yoy_pct": 2.6465,
+            "yoy_base_date": "2024-12-01",
+            "ann3m_pct": 1.9319,
+            "ann3m_base_date": "2025-08-01"
+          },
+          "labor": {
+            "unemployment_date": "2025-12-01",
+            "unemployment": 4.4,
+            "nrou_date": "2025-07-01",
+            "nrou": 4.4042,
+            "unemployment_gap_pp": -0.0042,
+            "payrolls_3m_avg_k": -38.67,
+            "payrolls_latest_date": "2025-12-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2025-10-01",
+            "gdp_yoy_pct": 2.046,
+            "gdp_qoq_ann_pct": 0.2077
+          },
+          "financial_conditions": {
+            "nfci": -0.562,
+            "nfci_date": "2026-01-09",
+            "nfci_change_4w": -0.043,
+            "hy_oas": 2.73,
+            "hy_oas_date": "2026-01-20"
+          },
+          "market_rates": {
+            "dgs2": 3.6,
+            "dgs2_date": "2026-01-21",
+            "dgs2_change_1m_bp": 16.0,
+            "dgs10": 4.26,
+            "dgs10_date": "2026-01-21",
+            "t10yie": 2.34,
+            "t10yie_date": "2026-01-21"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2025-12-10",
+        "previous_statement": "2025-10-29",
+        "statement_score": -0.4425,
+        "diff_score": 0.0,
+        "text_score": -0.2213,
+        "action": "lower",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 1,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.486619,
+          "hold": 0.312587,
+          "hike": 0.200794
+        },
+        "expected_bp": -7.15,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.025694413753131345,
+          "hold": 0.9655205745916845,
+          "hike": 0.008785011655184152
+        },
+        "expected_bp": -0.42,
+        "expected_post_rate": 3.635773,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 3.5,
+        "target_upper_before": 3.75,
+        "target_lower_after": 3.5,
+        "target_upper_after": 3.75
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": -1.59,
+          "hold": 0.65,
+          "hike": 0.94
+        },
+        "text": {
+          "cut": 0.16,
+          "hold": -0.1,
+          "hike": -0.06
+        },
+        "total": {
+          "cut": -1.43,
+          "hold": 0.55,
+          "hike": 0.88
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2026-03-18",
+      "effective_date": "2026-03-19",
+      "as_of": "2026-03-11",
+      "market": {
+        "contract": "ZQH26",
+        "pricing_symbol": "ZQH26",
+        "method": "meeting_month",
+        "quote_date": "2026-03-11",
+        "quote_age_days": 0,
+        "quote_volume": 38954.0,
+        "pricing_volume": 38954.0,
+        "pre_rate": 3.64,
+        "post_rate": 3.64,
+        "change_bp": 0.0,
+        "probability": {
+          "cut": 0.0,
+          "hold": 1.0,
+          "hike": 0.0
+        },
+        "expected_bp": 0.0,
+        "most_likely": "hold",
+        "reliability": "medium"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.6342,
+          "hike": 0.3658
+        },
+        "expected_bp": 9.15,
+        "most_likely": "hold",
+        "macro_target_rate": 4.0058,
+        "taylor_rate": 3.9088,
+        "policy_gap_bp": -26.88,
+        "scores": {
+          "inflation": 0.8025,
+          "labor": -0.2974,
+          "labor_momentum": -1.0,
+          "growth": -0.7961,
+          "financial_conditions": 0.788,
+          "taylor_signal": 0.5377,
+          "composite": 0.3988
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2026-01-01",
+            "latest": 128.27,
+            "yoy_pct": 2.938,
+            "yoy_base_date": "2025-01-01",
+            "ann3m_pct": 3.4946,
+            "ann3m_base_date": "2025-10-01"
+          },
+          "core_cpi": {
+            "latest_date": "2026-01-01",
+            "yoy_pct": 2.512,
+            "yoy_base_date": "2025-01-01",
+            "ann3m_pct": 2.1674,
+            "ann3m_base_date": "2025-09-01"
+          },
+          "labor": {
+            "unemployment_date": "2026-02-01",
+            "unemployment": 4.4,
+            "nrou_date": "2025-10-01",
+            "nrou": 4.4018,
+            "unemployment_gap_pp": -0.0018,
+            "payrolls_3m_avg_k": -4.33,
+            "payrolls_latest_date": "2026-02-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2025-10-01",
+            "gdp_yoy_pct": 2.046,
+            "gdp_qoq_ann_pct": 0.2077
+          },
+          "financial_conditions": {
+            "nfci": -0.509,
+            "nfci_date": "2026-02-27",
+            "nfci_change_4w": 0.058,
+            "hy_oas": 3.06,
+            "hy_oas_date": "2026-03-10"
+          },
+          "market_rates": {
+            "dgs2": 3.64,
+            "dgs2_date": "2026-03-11",
+            "dgs2_change_1m_bp": 16.0,
+            "dgs10": 4.21,
+            "dgs10_date": "2026-03-11",
+            "t10yie": 2.36,
+            "t10yie_date": "2026-03-11"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2026-01-28",
+        "previous_statement": "2025-12-10",
+        "statement_score": 0.0045,
+        "diff_score": 0.4257,
+        "text_score": 0.2151,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 1,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.204012,
+          "hold": 0.313682,
+          "hike": 0.482306
+        },
+        "expected_bp": 6.96,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.9828216437900184,
+          "hike": 0.01717835620998161
+        },
+        "expected_bp": 0.43,
+        "expected_post_rate": 3.644295,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 3.5,
+        "target_upper_before": 3.75,
+        "target_lower_after": 3.5,
+        "target_upper_after": 3.75
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": -1.61,
+          "hike": 1.61
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": -0.11,
+          "hike": 0.11
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": -1.72,
+          "hike": 1.72
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2026-04-29",
+      "effective_date": "2026-04-30",
+      "as_of": "2026-04-22",
+      "market": {
+        "contract": "ZQJ26",
+        "pricing_symbol": "ZQK26",
+        "method": "next_clean_month",
+        "quote_date": "2026-04-22",
+        "quote_age_days": 0,
+        "quote_volume": 10507.0,
+        "pricing_volume": 5462.0,
+        "pre_rate": 3.64,
+        "post_rate": 3.64,
+        "change_bp": 0.0,
+        "probability": {
+          "cut": 0.0,
+          "hold": 1.0,
+          "hike": 0.0
+        },
+        "expected_bp": 0.0,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.4268,
+          "hike": 0.5732
+        },
+        "expected_bp": 14.33,
+        "most_likely": "hike",
+        "macro_target_rate": 4.2132,
+        "taylor_rate": 4.0406,
+        "policy_gap_bp": -40.06,
+        "scores": {
+          "inflation": 0.9592,
+          "labor": 0.0606,
+          "labor_momentum": -0.2733,
+          "growth": 0.3459,
+          "financial_conditions": 0.8,
+          "taylor_signal": 0.8011,
+          "composite": 0.7131
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2026-02-01",
+            "latest": 128.701,
+            "yoy_pct": 2.9592,
+            "yoy_base_date": "2025-02-01",
+            "ann3m_pct": 4.2363,
+            "ann3m_base_date": "2025-11-01"
+          },
+          "core_cpi": {
+            "latest_date": "2026-03-01",
+            "yoy_pct": 2.6022,
+            "yoy_base_date": "2025-03-01",
+            "ann3m_pct": 2.8983,
+            "ann3m_base_date": "2025-11-01"
+          },
+          "labor": {
+            "unemployment_date": "2026-03-01",
+            "unemployment": 4.3,
+            "nrou_date": "2025-10-01",
+            "nrou": 4.4018,
+            "unemployment_gap_pp": -0.1018,
+            "payrolls_3m_avg_k": 72.67,
+            "payrolls_latest_date": "2026-03-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2026-01-01",
+            "gdp_yoy_pct": 2.6392,
+            "gdp_qoq_ann_pct": 2.4918
+          },
+          "financial_conditions": {
+            "nfci": -0.475,
+            "nfci_date": "2026-04-10",
+            "nfci_change_4w": -0.001,
+            "hy_oas": 2.85,
+            "hy_oas_date": "2026-04-21"
+          },
+          "market_rates": {
+            "dgs2": 3.79,
+            "dgs2_date": "2026-04-22",
+            "dgs2_change_1m_bp": -4.0,
+            "dgs10": 4.3,
+            "dgs10_date": "2026-04-22",
+            "t10yie": 2.38,
+            "t10yie_date": "2026-04-22"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2026-03-18",
+        "previous_statement": "2026-01-28",
+        "statement_score": 0.0045,
+        "diff_score": 0.0,
+        "text_score": 0.0022,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 1,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.331868,
+          "hold": 0.333331,
+          "hike": 0.334801
+        },
+        "expected_bp": 0.07,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.9801470155588812,
+          "hike": 0.019852984441118802
+        },
+        "expected_bp": 0.5,
+        "expected_post_rate": 3.644963,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 3.5,
+        "target_upper_before": 3.75,
+        "target_lower_after": 3.5,
+        "target_upper_after": 3.75
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": -1.98,
+          "hike": 1.98
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": -0.0,
+          "hike": 0.0
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": -1.99,
+          "hike": 1.99
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2026-06-17",
+      "effective_date": "2026-06-18",
+      "as_of": "2026-06-10",
+      "market": {
+        "contract": "ZQM26",
+        "pricing_symbol": "ZQM26",
+        "method": "meeting_month",
+        "quote_date": "2026-06-10",
+        "quote_age_days": 0,
+        "quote_volume": 37771.0,
+        "pricing_volume": 37771.0,
+        "pre_rate": 3.62,
+        "post_rate": 3.62,
+        "change_bp": 0.0,
+        "probability": {
+          "cut": 0.0,
+          "hold": 1.0,
+          "hike": 0.0
+        },
+        "expected_bp": 0.0,
+        "most_likely": "hold",
+        "reliability": "medium"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.1424,
+          "hike": 0.8576
+        },
+        "expected_bp": 21.44,
+        "most_likely": "hike",
+        "macro_target_rate": 4.4776,
+        "taylor_rate": 4.2249,
+        "policy_gap_bp": -60.49,
+        "scores": {
+          "inflation": 1.0,
+          "labor": 0.2637,
+          "labor_momentum": 0.4167,
+          "growth": 0.3459,
+          "financial_conditions": 0.844,
+          "taylor_signal": 1.0,
+          "composite": 0.8454
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2026-04-01",
+            "latest": 129.395,
+            "yoy_pct": 3.0839,
+            "yoy_base_date": "2025-04-01",
+            "ann3m_pct": 3.9009,
+            "ann3m_base_date": "2025-12-01"
+          },
+          "core_cpi": {
+            "latest_date": "2026-05-01",
+            "yoy_pct": 2.8229,
+            "yoy_base_date": "2025-05-01",
+            "ann3m_pct": 3.075,
+            "ann3m_base_date": "2026-01-01"
+          },
+          "labor": {
+            "unemployment_date": "2026-05-01",
+            "unemployment": 4.3,
+            "nrou_date": "2026-01-01",
+            "nrou": 4.3991,
+            "unemployment_gap_pp": -0.0991,
+            "payrolls_3m_avg_k": 141.67,
+            "payrolls_latest_date": "2026-05-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2026-01-01",
+            "gdp_yoy_pct": 2.6392,
+            "gdp_qoq_ann_pct": 2.4918
+          },
+          "financial_conditions": {
+            "nfci": -0.51,
+            "nfci_date": "2026-05-29",
+            "nfci_change_4w": -0.005,
+            "hy_oas": 2.78,
+            "hy_oas_date": "2026-06-09"
+          },
+          "market_rates": {
+            "dgs2": 4.13,
+            "dgs2_date": "2026-06-10",
+            "dgs2_change_1m_bp": 18.0,
+            "dgs10": 4.55,
+            "dgs10_date": "2026-06-10",
+            "t10yie": 2.34,
+            "t10yie_date": "2026-06-10"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2026-04-29",
+        "previous_statement": "2026-03-18",
+        "statement_score": 0.0045,
+        "diff_score": -0.1067,
+        "text_score": -0.0511,
+        "action": "maintain",
+        "vote": null,
+        "hike_dissents": 0,
+        "cut_dissents": 1,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.36792,
+          "hold": 0.332176,
+          "hike": 0.299905
+        },
+        "expected_bp": -1.7,
+        "most_likely": "cut"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.9718100156180798,
+          "hike": 0.028189984381920243
+        },
+        "expected_bp": 0.7,
+        "expected_post_rate": 3.627047,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 3.5,
+        "target_upper_before": 3.75,
+        "target_lower_after": 3.5,
+        "target_upper_after": 3.75
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": -2.86,
+          "hike": 2.86
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": 0.04,
+          "hike": -0.04
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": -2.82,
+          "hike": 2.82
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2026-07-29",
+      "effective_date": "2026-07-30",
+      "as_of": "2026-07-22",
+      "market": {
+        "contract": "ZQN26",
+        "pricing_symbol": "ZQQ26",
+        "method": "next_clean_month",
+        "quote_date": "2026-07-22",
+        "quote_age_days": 0,
+        "quote_volume": 75688.0,
+        "pricing_volume": 364668.0,
+        "pre_rate": 3.63,
+        "post_rate": 3.715,
+        "change_bp": 8.5,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.66,
+          "hike": 0.34
+        },
+        "expected_bp": 8.5,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.0,
+          "hike": 1.0
+        },
+        "expected_bp": 25.0,
+        "most_likely": "hike",
+        "macro_target_rate": 4.6378,
+        "taylor_rate": 4.4417,
+        "policy_gap_bp": -81.17,
+        "scores": {
+          "inflation": 0.8553,
+          "labor": 0.2207,
+          "labor_momentum": -0.1933,
+          "growth": 0.2101,
+          "financial_conditions": 0.862,
+          "taylor_signal": 1.0,
+          "composite": 0.8003
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2026-05-01",
+            "latest": 129.796,
+            "yoy_pct": 3.1617,
+            "yoy_base_date": "2025-05-01",
+            "ann3m_pct": 3.6653,
+            "ann3m_base_date": "2026-01-01"
+          },
+          "core_cpi": {
+            "latest_date": "2026-06-01",
+            "yoy_pct": 2.5658,
+            "yoy_base_date": "2025-06-01",
+            "ann3m_pct": 2.2765,
+            "ann3m_base_date": "2026-03-01"
+          },
+          "labor": {
+            "unemployment_date": "2026-06-01",
+            "unemployment": 4.2,
+            "nrou_date": "2026-01-01",
+            "nrou": 4.3991,
+            "unemployment_gap_pp": -0.1991,
+            "payrolls_3m_avg_k": 80.67,
+            "payrolls_latest_date": "2026-06-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2026-04-01",
+            "gdp_yoy_pct": 2.1916,
+            "gdp_qoq_ann_pct": 2.2202
+          },
+          "financial_conditions": {
+            "nfci": -0.522,
+            "nfci_date": "2026-07-10",
+            "nfci_change_4w": -0.014,
+            "hy_oas": 2.69,
+            "hy_oas_date": "2026-07-21"
+          },
+          "market_rates": {
+            "dgs2": 4.31,
+            "dgs2_date": "2026-07-22",
+            "dgs2_change_1m_bp": 7.0,
+            "dgs10": 4.67,
+            "dgs10_date": "2026-07-22",
+            "t10yie": 2.28,
+            "t10yie_date": "2026-07-22"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2026-06-17",
+        "previous_statement": "2026-04-29",
+        "statement_score": 0.3972,
+        "diff_score": 1.0,
+        "text_score": 0.6986,
+        "action": "maintain",
+        "vote": "12-0",
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.046736,
+          "hold": 0.188995,
+          "hike": 0.764269
+        },
+        "expected_bp": 17.94,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.26178942076193884,
+          "hike": 0.7382105792380612
+        },
+        "expected_bp": 18.46,
+        "expected_post_rate": 3.814553,
+        "most_likely": "hike"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 3.5,
+        "target_upper_before": 3.75,
+        "target_lower_after": 3.5,
+        "target_upper_after": 3.75
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": -35.57,
+          "hike": 35.57
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": -4.25,
+          "hike": 4.25
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": -39.82,
+          "hike": 39.82
+        }
+      },
+      "correct": false,
+      "market_correct": true,
+      "diverges_from_market": true
+    },
+    {
+      "decision_date": "2026-09-16",
+      "effective_date": "2026-09-17",
+      "as_of": "2026-09-09",
+      "market": {
+        "contract": "ZQU26",
+        "pricing_symbol": "ZQU26",
+        "method": "meeting_month",
+        "quote_date": "2026-09-09",
+        "quote_age_days": 0,
+        "quote_volume": 40179.0,
+        "pricing_volume": 40179.0,
+        "pre_rate": 3.63,
+        "post_rate": 3.78,
+        "change_bp": 15.0,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.4,
+          "hike": 0.6
+        },
+        "expected_bp": 15.0,
+        "most_likely": "hike",
+        "reliability": "medium"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.1556,
+          "hike": 0.8444
+        },
+        "expected_bp": 21.11,
+        "most_likely": "hike",
+        "macro_target_rate": 4.4744,
+        "taylor_rate": 4.2889,
+        "policy_gap_bp": -65.89,
+        "scores": {
+          "inflation": 0.7565,
+          "labor": 0.3213,
+          "labor_momentum": -0.31,
+          "growth": 0.2101,
+          "financial_conditions": 0.866,
+          "taylor_signal": 1.0,
+          "composite": 0.791
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2026-07-01",
+            "latest": 130.148,
+            "yoy_pct": 2.9953,
+            "yoy_base_date": "2025-07-01",
+            "ann3m_pct": 2.6165,
+            "ann3m_base_date": "2026-03-01"
+          },
+          "core_cpi": {
+            "latest_date": "2026-07-01",
+            "yoy_pct": 2.4665,
+            "yoy_base_date": "2025-07-01",
+            "ann3m_pct": 2.3693,
+            "ann3m_base_date": "2026-03-01"
+          },
+          "labor": {
+            "unemployment_date": "2026-08-01",
+            "unemployment": 4.1,
+            "nrou_date": "2026-04-01",
+            "nrou": 4.3959,
+            "unemployment_gap_pp": -0.2959,
+            "payrolls_3m_avg_k": 69.0,
+            "payrolls_latest_date": "2026-08-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2026-04-01",
+            "gdp_yoy_pct": 2.1916,
+            "gdp_qoq_ann_pct": 2.2202
+          },
+          "financial_conditions": {
+            "nfci": -0.547,
+            "nfci_date": "2026-08-28",
+            "nfci_change_4w": -0.008,
+            "hy_oas": 2.67,
+            "hy_oas_date": "2026-09-08"
+          },
+          "market_rates": {
+            "dgs2": 4.43,
+            "dgs2_date": "2026-09-09",
+            "dgs2_change_1m_bp": 18.0,
+            "dgs10": 4.83,
+            "dgs10_date": "2026-09-09",
+            "t10yie": 2.37,
+            "t10yie_date": "2026-09-09"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2026-07-29",
+        "previous_statement": "2026-06-17",
+        "statement_score": 0.5472,
+        "diff_score": 0.5238,
+        "text_score": 0.5355,
+        "action": "maintain",
+        "vote": "9-3",
+        "hike_dissents": 3,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.08042,
+          "hold": 0.234689,
+          "hike": 0.684891
+        },
+        "expected_bp": 15.11,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.2916088099830708,
+          "hike": 0.7083911900169291
+        },
+        "expected_bp": 17.71,
+        "expected_post_rate": 3.807098,
+        "most_likely": "hike"
+      },
+      "actual": {
+        "label": "hike",
+        "change_bp": 25.0,
+        "target_lower_before": 3.5,
+        "target_upper_before": 3.75,
+        "target_lower_after": 3.75,
+        "target_upper_after": 4.0
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": -7.41,
+          "hike": 7.41
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": -3.43,
+          "hike": 3.43
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": -10.84,
+          "hike": 10.84
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    },
+    {
+      "decision_date": "2026-10-28",
+      "effective_date": "2026-10-29",
+      "as_of": "2026-10-21",
+      "market": {
+        "contract": "ZQV26",
+        "pricing_symbol": "ZQX26",
+        "method": "next_clean_month",
+        "quote_date": "2026-10-21",
+        "quote_age_days": 0,
+        "quote_volume": 10072.0,
+        "pricing_volume": 95446.0,
+        "pre_rate": 3.88,
+        "post_rate": 3.92,
+        "change_bp": 4.0,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.84,
+          "hike": 0.16
+        },
+        "expected_bp": 4.0,
+        "most_likely": "hold",
+        "reliability": "high"
+      },
+      "macro": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.475,
+          "hike": 0.525
+        },
+        "expected_bp": 13.13,
+        "most_likely": "hike",
+        "macro_target_rate": 4.405,
+        "taylor_rate": 4.2476,
+        "policy_gap_bp": -36.76,
+        "scores": {
+          "inflation": 0.741,
+          "labor": 0.2103,
+          "labor_momentum": -0.2133,
+          "growth": 0.7848,
+          "financial_conditions": 0.7148,
+          "taylor_signal": 0.7352,
+          "composite": 0.6868
+        },
+        "features": {
+          "core_pce": {
+            "latest_date": "2026-08-01",
+            "latest": 130.489,
+            "yoy_pct": 3.0344,
+            "yoy_base_date": "2025-08-01",
+            "ann3m_pct": 2.1366,
+            "ann3m_base_date": "2026-05-01"
+          },
+          "core_cpi": {
+            "latest_date": "2026-09-01",
+            "yoy_pct": 2.5658,
+            "yoy_base_date": "2025-09-01",
+            "ann3m_pct": 3.3865,
+            "ann3m_base_date": "2026-06-01"
+          },
+          "labor": {
+            "unemployment_date": "2026-09-01",
+            "unemployment": 4.2,
+            "nrou_date": "2026-04-01",
+            "nrou": 4.3959,
+            "unemployment_gap_pp": -0.1959,
+            "payrolls_3m_avg_k": 78.67,
+            "payrolls_latest_date": "2026-09-01"
+          },
+          "growth": {
+            "gdp_latest_date": "2026-07-01",
+            "gdp_yoy_pct": 2.0657,
+            "gdp_qoq_ann_pct": 3.3696
+          },
+          "financial_conditions": {
+            "nfci": -0.484,
+            "nfci_date": "2026-10-09",
+            "nfci_change_4w": 0.048,
+            "hy_oas": 3.33,
+            "hy_oas_date": "2026-10-20"
+          },
+          "market_rates": {
+            "dgs2": 4.81,
+            "dgs2_date": "2026-10-21",
+            "dgs2_change_1m_bp": 5.0,
+            "dgs10": 5.13,
+            "dgs10_date": "2026-10-21",
+            "t10yie": 2.37,
+            "t10yie_date": "2026-10-21"
+          }
+        }
+      },
+      "text": {
+        "as_of_statement": "2026-09-16",
+        "previous_statement": "2026-07-29",
+        "statement_score": 0.6244,
+        "diff_score": 0.0547,
+        "text_score": 0.3395,
+        "action": "raise",
+        "vote": "12-0",
+        "hike_dissents": 0,
+        "cut_dissents": 0,
+        "notes": "省略演讲信号，声明与 diff 按 0.5/0.5 归一",
+        "probability": {
+          "cut": 0.145766,
+          "hold": 0.287437,
+          "hike": 0.566798
+        },
+        "expected_bp": 10.53,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.7533947028148087,
+          "hike": 0.24660529718519136
+        },
+        "expected_bp": 6.17,
+        "expected_post_rate": 3.941651,
+        "most_likely": "hold"
+      },
+      "actual": {
+        "label": "hold",
+        "change_bp": 0.0,
+        "target_lower_before": 3.75,
+        "target_upper_before": 4.0,
+        "target_lower_after": 3.75,
+        "target_upper_after": 4.0
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": -6.82,
+          "hike": 6.82
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": -1.84,
+          "hike": 1.84
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": -8.66,
+          "hike": 8.66
+        }
+      },
+      "correct": true,
+      "market_correct": true,
+      "diverges_from_market": false
+    }
+  ],
+  "caveats": [
+    "市场先验使用 Barchart 第三方延迟 ZQ 日线，非 CME 直连结算价。",
+    "宏观数据为 FRED 当前版本（含后续修订），不是实时 vintage；已按发布滞后截断，但仍可能存在修订偏差。",
+    "文本信号只使用会前最近两份 FOMC 声明，未纳入演讲、纪要或新闻发布会。",
+    "实际决议由 FRED DFEDTARU/DFEDTARL 在决议生效日的变化推导；50bp 降息仍记为 cut 一次。",
+    "三分类概率只建模单次会议至多一个 25bp 步长；50bp 情形在类别上正确，但幅度会被低估。",
+    "样本类别极不平衡（17 次维持 / 6 次降息 / 1 次加息），准确率会被维持类主导，应结合 Brier、log loss 与分类别精确率/召回率解读。",
+    "样本为 24 次会议，统计功效有限，指标对个别会议敏感。"
+  ]
+}

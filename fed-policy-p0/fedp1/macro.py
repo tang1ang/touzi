@@ -170,12 +170,24 @@ def build_macro_signal(
     as_of: date,
     current_rate: float,
     config: MacroConfig | None = None,
+    publication_lags: dict[str, int] | None = None,
 ) -> MacroSignal:
+    """构建宏观信号。
+
+    publication_lags 为「发布滞后天数」：某序列只使用 as_of - lag 之前已发布的观测，
+    用于回测中避免前视偏差；默认不滞后（与实时管道口径一致）。
+    """
     cfg = config or MacroConfig()
     raw_dir = Path(macro_dir) / "raw"
+    lags = publication_lags or {}
 
     def series(series_id: str) -> list[tuple[date, float]]:
-        return load_series(raw_dir / f"{series_id}.csv")
+        rows = load_series(raw_dir / f"{series_id}.csv")
+        lag = int(lags.get(series_id, 0))
+        if lag <= 0:
+            return rows
+        cutoff = as_of - timedelta(days=lag)
+        return [row for row in rows if row[0] <= cutoff]
 
     pce_yoy = yoy(series("PCEPILFE"), as_of)
     pce_3m = annualized_change(series("PCEPILFE"), as_of, 92)
