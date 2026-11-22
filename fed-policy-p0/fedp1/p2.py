@@ -40,6 +40,7 @@ from fedp1.calibration import (
     normalize,
 )
 from fedp1.combine import expected_bp, most_likely, pool
+from fedp1.macro import load_vintages
 
 DEFAULT_WEIGHT_GRID = (
     (0.85, 0.10, 0.05),
@@ -290,11 +291,14 @@ def _base_row(
     rates: dict,
     statements: list[dict],
     macro_dir: str | Path,
+    vintages: dict | None = None,
 ) -> dict:
     as_of = meeting.decision_date - timedelta(days=config.cutoff_days)
     bt_config = _backtest_config(config)
     market = market_signal(meeting, as_of, calendar, zq, rates, bt_config)
-    macro = macro_signal_for(meeting, as_of, market["pre_rate"], macro_dir, bt_config)
+    macro = macro_signal_for(
+        meeting, as_of, market["pre_rate"], macro_dir, bt_config, vintages
+    )
     text_p1 = text_signal_for(
         statements, as_of, replace(bt_config, use_dissent=False)
     )
@@ -339,6 +343,53 @@ def _base_row(
     }
 
 
+def _vintage_quality(rows: list[dict], enabled: bool) -> dict:
+    """统计宏观信号实际使用了多少 ALFRED vintage、多少回退到当前版本。"""
+    by_series: dict[str, dict[str, int]] = {}
+    for row in rows:
+        for series_id, source in row["macro"].get("sources", {}).items():
+            bucket = by_series.setdefault(series_id, {"vintage": 0, "fallback": 0})
+            if source.startswith("ALFRED"):
+                bucket["vintage"] += 1
+            else:
+                bucket["fallback"] += 1
+    vintage_pairs = sum(item["vintage"] for item in by_series.values())
+    fallback_pairs = sum(item["fallback"] for item in by_series.values())
+    return {
+        "enabled": enabled,
+        "series": by_series,
+        "vintage_pairs": vintage_pairs,
+        "fallback_pairs": fallback_pairs,
+        "vintage_share": round(
+            vintage_pairs / (vintage_pairs + fallback_pairs), 4
+        )
+        if vintage_pairs + fallback_pairs
+        else None,
+    }
+
+
+def _vintage_line(quality: dict) -> str:
+    if not quality.get("enabled"):
+        return "- 宏观 vintage：未启用，回退当前版本 + 发布滞后。"
+    total = quality["vintage_pairs"] + quality["fallback_pairs"]
+    share = quality.get("vintage_share")
+    text = (
+        f"- 宏观 vintage：{quality['vintage_pairs']}/{total} 个（会议，序列）使用 ALFRED 实时数据"
+        + (f"（{share:.1%}）" if share is not None else "")
+        + f"；回退 {quality['fallback_pairs']} 个。"
+    )
+    fallback = [
+        name
+        for name, count in quality.get("series", {}).items()
+        if count.get("fallback")
+    ]
+    if fallback:
+        text += "回退序列：" + "、".join(fallback) + "。"
+        if "BAMLH0A0HYM2" in fallback:
+            text += "BAMLH0A0HYM2 在 2023-11 前不可用，由 BAA10Y vintage 覆盖。"
+    return text
+
+
 def run_p2_backtest(
     calendar_path: str | Path,
     zq_path: str | Path,
@@ -348,12 +399,14 @@ def run_p2_backtest(
     start: date,
     end: date,
     config: P2Config | None = None,
+    vintages_path: str | Path | None = None,
 ) -> dict:
     cfg = config or P2Config()
     calendar = Calendar.load(calendar_path)
     zq = load_zq_history(zq_path)
     rates = load_rates_long(rates_path)
     statements = load_statements(statements_path)
+    vintages = load_vintages(vintages_path) if vintages_path else None
 
     meetings = [
         meeting
@@ -364,7 +417,7 @@ def run_p2_backtest(
         raise ValueError(f"{start} 至 {end} 没有政策会议")
 
     base_rows = [
-        _base_row(meeting, cfg, calendar, zq, rates, statements, macro_dir)
+        _base_row(meeting, cfg, calendar, zq, rates, statements, macro_dir, vintages)
         for meeting in meetings
     ]
 
@@ -628,6 +681,7 @@ def run_p2_backtest(
             )
             for name in ("BAMLH0A0HYM2", "BAA10Y")
         },
+        "macro_vintage": _vintage_quality(rows, vintages is not None),
     }
 
     return {
@@ -714,7 +768,7 @@ def run_p2_backtest(
         "meetings": rows,
         "caveats": [
             "市场先验使用 Barchart 第三方延迟 ZQ 日线，非 CME 直连结算价；扩展窗口由两次抓取合并并逐会议校验。",
-            "FRED vintage_date 参数实测被忽略（返回当前版本且包含未来观测），因此无法获得 ALFRED 实时 vintage；宏观仍按发布滞后截断当前版本，修订偏差无法完全消除。",
+            "宏观序列使用 ALFRED 截止日 vintage（预测截止日当日或之前最近归档），不再依赖 FRED 的发布滞后近似；BAMLH0A0HYM2 在 2023-11 前不可用，回退 BAA10Y vintage。vintage 归档日与真实发布时刻之间仍可能有边界误差。",
             "ICE BofA 高收益 OAS 在 FRED 仅有约三年历史；2021-2023 会议改用 BAA10Y 信用利差，分项权重相同但量纲不同，已在校准报告中标注。",
             "文本信号只使用会前已发布的 FOMC 声明与声明 diff，并加入异议票方向微调；演讲与纪要未纳入。",
             "权重、偏离强度、校准参数与幅度斜率均只用当前会议截止日之前已开完的会议拟合，属于 walk-forward，但仍可能受小样本波动影响。",
@@ -735,6 +789,7 @@ def run_cutoff_sweep(
     end: date,
     config: P2Config | None = None,
     cutoffs: tuple[int, ...] = (7, 14, 30),
+    vintages_path: str | Path | None = None,
 ) -> dict:
     base = config or P2Config()
     results = {}
@@ -748,6 +803,7 @@ def run_cutoff_sweep(
             start,
             end,
             replace(base, cutoff_days=cutoff),
+            vintages_path=vintages_path,
         )
     return {
         "start": start.isoformat(),
@@ -1146,7 +1202,8 @@ def render_p2_markdown(result: dict, sweep: dict | None = None) -> str:
             "",
             f"- 预测截止日 T = 决议日前 {result['config']['cutoff_days']} 个自然日。",
             "- 市场：取 T 当日或之前最后交易日 ZQ 收盘价；会议月合约会后天数不足 7 天时改用次月干净合约。",
-            "- 宏观：按 FRED 发布滞后截断；ICE 高收益 OAS 不可用时改用 BAA10Y。",
+            "- 宏观：使用 ALFRED 在 T 当日或之前最近归档的实时 vintage，避免修订前视；"
+            "BAMLH0A0HYM2 在 2023-11 前无数据时改用 BAA10Y vintage。",
             "- 文本：只使用 T 之前已发布的声明；P2 在声明分与 diff 分之外加入异议票方向微调。",
             "- 合成：以市场概率为锚；仅当宏观与文本同向、且与市场方向相反、市场未接近确定时偏离；偏离幅度上限 "
             f"{result['config']['max_deviation_pp']:.0f}pp。",
@@ -1154,6 +1211,7 @@ def render_p2_markdown(result: dict, sweep: dict | None = None) -> str:
             "若改进小于容差则回到默认，避免小样本过拟合。",
             "- 校准：在 raw、向训练期基础频率收缩、Platt 缩放三者间按历史样本外 log loss 滚动选择；"
             "幅度：在市场隐含变动、线性校准、类别期望三者间按历史样本外 MAE 滚动选择。",
+            "- 修订影响对照：加 --no-vintages 可回退到当前版本 + 发布滞后，用于检验 vintage 对结论的影响。",
             "- 实际标签：决议生效日目标区间上限相对决议日的变化；上升=加息、下降=降息、不变=维持。",
             "",
             "## 十、数据与局限",
@@ -1174,6 +1232,7 @@ def render_p2_markdown(result: dict, sweep: dict | None = None) -> str:
             f"（其中 low {len(quality['low_reliability'])} 次）。",
             f"- 信用利差来源：高收益 OAS {quality['credit_spread_series']['BAMLH0A0HYM2']} 次、"
             f"BAA10Y {quality['credit_spread_series']['BAA10Y']} 次。",
+            _vintage_line(quality["macro_vintage"]),
             "",
             "## 十一、复现",
             "",
@@ -1181,6 +1240,7 @@ def render_p2_markdown(result: dict, sweep: dict | None = None) -> str:
             "python3 scripts/fetch_fomc_calendar.py --start-year 2021 --end-year 2027",
             "node scripts/fetch_barchart_history.js --start 2020-11 --months 75 --from 2020-10-01 --out data/backtest/zq_history.csv",
             "python3 scripts/fetch_backtest_data.py",
+            "python3 scripts/fetch_macro_vintages.py",
             "python3 run_backtest.py --mode p2 --start 2021-01-01 --end 2026-11-22",
             "```",
             "",

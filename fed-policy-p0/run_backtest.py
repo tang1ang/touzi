@@ -24,6 +24,14 @@ def main() -> None:
     parser.add_argument("--rates", default=str(ROOT / "data/backtest/rates_long.csv"))
     parser.add_argument("--macro-dir", default=str(ROOT / "data/macro"))
     parser.add_argument(
+        "--vintages",
+        default=str(ROOT / "data/macro/vintages/vintages_long.csv"),
+        help="ALFRED 实时 vintage 长表；文件存在时优先于发布滞后",
+    )
+    parser.add_argument(
+        "--no-vintages", action="store_true", help="禁用 ALFRED vintage，回退当前版本 + 发布滞后"
+    )
+    parser.add_argument(
         "--statements", default=str(ROOT / "data/backtest/statements.json")
     )
     parser.add_argument("--cutoff-days", type=int, default=7)
@@ -51,6 +59,10 @@ def main() -> None:
 
     start = date.fromisoformat(args.start)
     end = date.fromisoformat(args.end)
+    vintages_path = None if args.no_vintages else args.vintages
+    if vintages_path and not Path(vintages_path).exists():
+        print(f"警告: vintage 文件不存在，回退当前版本 + 发布滞后: {vintages_path}")
+        vintages_path = None
     out_json = Path(
         args.out_json
         or ROOT
@@ -88,6 +100,7 @@ def main() -> None:
             start=start,
             end=end,
             config=config,
+            vintages_path=vintages_path,
         )
         out_json.parent.mkdir(parents=True, exist_ok=True)
         out_json.write_text(
@@ -124,6 +137,7 @@ def main() -> None:
         start=start,
         end=end,
         config=config,
+        vintages_path=vintages_path,
     )
     sweep = None
     if not args.no_sweep:
@@ -138,6 +152,7 @@ def main() -> None:
             end=end,
             config=config,
             cutoffs=cutoffs,
+            vintages_path=vintages_path,
         )
 
     out_json.parent.mkdir(parents=True, exist_ok=True)

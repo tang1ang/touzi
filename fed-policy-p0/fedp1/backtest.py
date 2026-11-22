@@ -20,7 +20,7 @@ from fedp0.implied import estimate_step, implied_rate
 from fedp0.market import Quote
 from fedp0.probability import three_class_probabilities
 from fedp1.combine import CLASSES, expected_bp, most_likely, pool
-from fedp1.macro import build_macro_path, build_macro_signal
+from fedp1.macro import build_macro_path, build_macro_signal, load_vintages
 from fedp1.text import score_statement, score_statement_diff
 
 DEFAULT_PUBLICATION_LAGS = {
@@ -199,12 +199,14 @@ def macro_signal_for(
     pre_rate: float,
     macro_dir: str | Path,
     config: BacktestConfig,
+    vintages: dict | None = None,
 ) -> dict:
     signal = build_macro_signal(
         macro_dir=macro_dir,
         as_of=as_of,
         current_rate=pre_rate,
         publication_lags=config.publication_lags,
+        vintages=vintages,
     )
     market_path = [
         {
@@ -229,6 +231,7 @@ def macro_signal_for(
         "policy_gap_bp": signal.taylor["policy_gap_bp"],
         "scores": {key: round(value, 4) for key, value in signal.scores.items()},
         "features": signal.features,
+        "sources": signal.sources,
     }
 
 
@@ -392,12 +395,14 @@ def run_backtest(
     start: date,
     end: date,
     config: BacktestConfig | None = None,
+    vintages_path: str | Path | None = None,
 ) -> dict:
     cfg = config or BacktestConfig()
     calendar = Calendar.load(calendar_path)
     zq = load_zq_history(zq_path)
     rates = load_rates_long(rates_path)
     statements = load_statements(statements_path)
+    vintages = load_vintages(vintages_path) if vintages_path else None
 
     meetings = [
         meeting
@@ -412,7 +417,7 @@ def run_backtest(
         as_of = meeting.decision_date - timedelta(days=cfg.cutoff_days)
         market = market_signal(meeting, as_of, calendar, zq, rates, cfg)
         macro = macro_signal_for(
-            meeting, as_of, market["pre_rate"], macro_dir, cfg
+            meeting, as_of, market["pre_rate"], macro_dir, cfg, vintages
         )
         text = text_signal_for(statements, as_of, cfg)
         text_prob = {

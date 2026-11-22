@@ -57,6 +57,41 @@ def load_series(path: str | Path) -> list[tuple[date, float]]:
     return rows
 
 
+def load_vintages(
+    path: str | Path,
+) -> dict[str, dict[date, list[tuple[date, float]]]]:
+    """读取 ALFRED 实时 vintage 长表：series -> vintage_date -> 观测。"""
+    data: dict[str, dict[date, list[tuple[date, float]]]] = {}
+    with Path(path).open(newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            series_id = row["series"].strip()
+            vintage = date.fromisoformat(row["vintage_date"])
+            day = date.fromisoformat(row["observation_date"])
+            data.setdefault(series_id, {}).setdefault(vintage, []).append(
+                (day, float(row["value"]))
+            )
+    if not data:
+        raise ValueError(f"vintage 文件为空: {path}")
+    for by_vintage in data.values():
+        for rows in by_vintage.values():
+            rows.sort(key=lambda item: item[0])
+    return data
+
+
+def select_vintage(
+    vintages: dict[str, dict[date, list[tuple[date, float]]]],
+    series_id: str,
+    as_of: date,
+) -> tuple[date, list[tuple[date, float]]] | None:
+    """取 as_of 当日或之前最近一个 vintage；没有则返回 None（调用方回退）。"""
+    by_vintage = vintages.get(series_id) or {}
+    eligible = [day for day in by_vintage if day <= as_of]
+    if not eligible:
+        return None
+    chosen = max(eligible)
+    return chosen, by_vintage[chosen]
+
+
 def latest_on_or_before(rows: list[tuple[date, float]], day: date) -> tuple[date, float]:
     eligible = [item for item in rows if item[0] <= day]
     if not eligible:
@@ -146,6 +181,7 @@ class MacroSignal:
     scores: dict
     taylor: dict
     config: MacroConfig = field(default_factory=MacroConfig)
+    sources: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return {
@@ -164,6 +200,7 @@ class MacroSignal:
                 key: (round(value, 4) if isinstance(value, float) else value)
                 for key, value in self.taylor.items()
             },
+            "sources": self.sources,
         }
 
 
@@ -173,23 +210,35 @@ def build_macro_signal(
     current_rate: float,
     config: MacroConfig | None = None,
     publication_lags: dict[str, int] | None = None,
+    vintages: dict[str, dict[date, list[tuple[date, float]]]] | None = None,
 ) -> MacroSignal:
     """构建宏观信号。
 
-    publication_lags 为「发布滞后天数」：某序列只使用 as_of - lag 之前已发布的观测，
-    用于回测中避免前视偏差；默认不滞后（与实时管道口径一致）。
+    publication_lags 为「发布滞后天数」：某序列只使用 as_of - lag 之前已发布的观测。
+    若提供 vintages（ALFRED 实时 vintage），优先使用 as_of 当日或之前的最近
+    vintage，此时不再叠加发布滞后；缺失的序列回退到当前版本 + 滞后。
     """
     cfg = config or MacroConfig()
     raw_dir = Path(macro_dir) / "raw"
     lags = publication_lags or {}
+    sources: dict[str, str] = {}
 
     def series(series_id: str) -> list[tuple[date, float]]:
+        if vintages:
+            selected = select_vintage(vintages, series_id, as_of)
+            if selected is not None:
+                vintage_day, rows = selected
+                sources[series_id] = f"ALFRED vintage {vintage_day.isoformat()}"
+                return rows
         rows = load_series(raw_dir / f"{series_id}.csv")
         lag = int(lags.get(series_id, 0))
-        if lag <= 0:
-            return rows
-        cutoff = as_of - timedelta(days=lag)
-        return [row for row in rows if row[0] <= cutoff]
+        source = "current"
+        if lag > 0:
+            source = f"current + {lag}d lag"
+            cutoff = as_of - timedelta(days=lag)
+            rows = [row for row in rows if row[0] <= cutoff]
+        sources[series_id] = source
+        return rows
 
     pce_yoy = yoy(series("PCEPILFE"), as_of)
     pce_3m = annualized_change(series("PCEPILFE"), as_of, 92)
@@ -338,7 +387,9 @@ def build_macro_signal(
         "note": "Taylor 规则含通胀缺口与 Okun 产出缺口；就业动量与金融条件作为目标利率修正项。",
     }
 
-    return MacroSignal(features=features, scores=scores, taylor=taylor, config=cfg)
+    return MacroSignal(
+        features=features, scores=scores, taylor=taylor, config=cfg, sources=sources
+    )
 
 
 def build_macro_path(
