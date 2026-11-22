@@ -1,0 +1,1546 @@
+{
+  "schema_version": "p1.0.0",
+  "as_of": "2026-11-22",
+  "policy_basis": {
+    "current_rate": 3.88,
+    "rate_basis": "EFFR",
+    "current_rate_as_of": "2026-11-19",
+    "target_range": {
+      "lower": 3.75,
+      "upper": 4.0,
+      "midpoint": 3.875,
+      "as_of": "2026-11-21"
+    },
+    "step_bp": 25,
+    "decision_effective_lag_days": 1,
+    "contract": "CME 30-Day Fed Funds Futures (ZQ)",
+    "settlement": "月度平均 EFFR",
+    "method_priority": "次月无政策会议时用次月合约；否则用当月合约按生效日拆分日权重",
+    "min_post_days": 7
+  },
+  "market_prior": {
+    "summary": {
+      "next_meeting_date": "2026-12-09",
+      "cut": 0.0,
+      "hold": 0.098182,
+      "hike": 0.901818,
+      "most_likely": "hike",
+      "expected_post_rate": 4.105455,
+      "expected_change_bp": 22.55,
+      "path_end_meeting": "2027-04-28",
+      "path_end_rate": 4.405,
+      "path_cumulative_bp": 52.5,
+      "path_hikes_priced": 2.1
+    },
+    "path": [
+      {
+        "index": 1,
+        "meeting": {
+          "year": 2026,
+          "month": 12,
+          "start": "2026-12-08",
+          "end": "2026-12-09",
+          "decision_date": "2026-12-09",
+          "effective_date": "2026-12-10"
+        },
+        "contract": "ZQZ26",
+        "method": "meeting_month",
+        "method_label": "当月合约日权重",
+        "pre_rate": 3.88,
+        "post_rate": 4.105455,
+        "change_bp": 22.55,
+        "cumulative_change_bp": 22.55,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.098182,
+          "hike": 0.901818
+        },
+        "expected_bp": 22.55,
+        "expected_steps": 0.9018,
+        "most_likely": "hike",
+        "reliability": "high"
+      },
+      {
+        "index": 2,
+        "meeting": {
+          "year": 2027,
+          "month": 1,
+          "start": "2027-01-26",
+          "end": "2027-01-27",
+          "decision_date": "2027-01-27",
+          "effective_date": "2027-01-28"
+        },
+        "contract": "ZQF27",
+        "method": "next_clean_month",
+        "method_label": "次月干净合约",
+        "pre_rate": 4.105455,
+        "post_rate": 4.245,
+        "change_bp": 13.95,
+        "cumulative_change_bp": 36.5,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.441818,
+          "hike": 0.558182
+        },
+        "expected_bp": 13.95,
+        "expected_steps": 0.5582,
+        "most_likely": "hike",
+        "reliability": "high"
+      },
+      {
+        "index": 3,
+        "meeting": {
+          "year": 2027,
+          "month": 3,
+          "start": "2027-03-16",
+          "end": "2027-03-17",
+          "decision_date": "2027-03-17",
+          "effective_date": "2027-03-18"
+        },
+        "contract": "ZQH27",
+        "method": "meeting_month",
+        "method_label": "当月合约日权重",
+        "pre_rate": 4.245,
+        "post_rate": 4.366786,
+        "change_bp": 12.18,
+        "cumulative_change_bp": 48.68,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.512857,
+          "hike": 0.487143
+        },
+        "expected_bp": 12.18,
+        "expected_steps": 0.4871,
+        "most_likely": "hold",
+        "reliability": "medium"
+      },
+      {
+        "index": 4,
+        "meeting": {
+          "year": 2027,
+          "month": 4,
+          "start": "2027-04-27",
+          "end": "2027-04-28",
+          "decision_date": "2027-04-28",
+          "effective_date": "2027-04-29"
+        },
+        "contract": "ZQJ27",
+        "method": "next_clean_month",
+        "method_label": "次月干净合约",
+        "pre_rate": 4.366786,
+        "post_rate": 4.405,
+        "change_bp": 3.82,
+        "cumulative_change_bp": 52.5,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.847143,
+          "hike": 0.152857
+        },
+        "expected_bp": 3.82,
+        "expected_steps": 0.1529,
+        "most_likely": "hold",
+        "reliability": "high"
+      }
+    ],
+    "data_quality": {
+      "quote_date": "2026-11-20",
+      "quote_age_days": 2,
+      "target_date": "2026-11-21",
+      "target_age_days": 1,
+      "effr_date": "2026-11-19",
+      "effr_age_days": 3,
+      "liquidity_min_volume": 1000,
+      "warnings": [
+        "行情为 2026-11-20 收盘价，距基准日 2 天（非实时）",
+        "EFFR 最新观测为 2026-11-19，距基准日 3 天",
+        "估算可靠性非 high：ZQH27"
+      ]
+    }
+  },
+  "macro": {
+    "config": {
+      "target_inflation": 2.0,
+      "r_star": 0.5,
+      "okun_coefficient": 2.0,
+      "taylor_inflation_coefficient": 0.5,
+      "taylor_output_coefficient": 0.5,
+      "convergence_lambda": 0.25,
+      "max_step": 0.25
+    },
+    "features": {
+      "core_pce": {
+        "latest_date": "2026-09-01",
+        "latest": 130.902,
+        "yoy_pct": 3.1212,
+        "yoy_base_date": "2025-09-01",
+        "ann3m_pct": 2.8805,
+        "ann3m_base_date": "2026-06-01"
+      },
+      "core_cpi": {
+        "latest_date": "2026-10-01",
+        "yoy_pct": 2.8697,
+        "yoy_base_date": "2025-09-01",
+        "ann3m_pct": 3.7179,
+        "ann3m_base_date": "2026-07-01"
+      },
+      "labor": {
+        "unemployment_date": "2026-10-01",
+        "unemployment": 4.1,
+        "nrou_date": "2026-10-01",
+        "nrou": 4.3884,
+        "unemployment_gap_pp": -0.2884,
+        "payrolls_3m_avg_k": 137.0,
+        "payrolls_latest_date": "2026-10-01"
+      },
+      "growth": {
+        "gdp_latest_date": "2026-07-01",
+        "gdp_yoy_pct": 2.0657,
+        "gdp_qoq_ann_pct": 3.3696
+      },
+      "financial_conditions": {
+        "nfci": -0.478,
+        "nfci_date": "2026-11-13",
+        "nfci_change_4w": -0.002,
+        "hy_oas": 3.52,
+        "hy_oas_date": "2026-11-19"
+      },
+      "market_rates": {
+        "dgs2": 4.76,
+        "dgs2_date": "2026-11-19",
+        "dgs2_change_1m_bp": -3.0,
+        "dgs10": 5.04,
+        "dgs10_date": "2026-11-19",
+        "t10yie": 2.15,
+        "t10yie_date": "2026-11-20"
+      }
+    },
+    "scores": {
+      "inflation": 0.9642,
+      "labor": 0.5148,
+      "labor_momentum": 0.37,
+      "growth": 0.7848,
+      "financial_conditions": 0.6696,
+      "taylor_signal": 1.0,
+      "composite": 0.8898
+    },
+    "taylor": {
+      "r_star": 0.5,
+      "target_inflation": 2.0,
+      "output_gap_pct": 0.5769,
+      "taylor_rate": 4.4702,
+      "labor_momentum_adjustment_pp": 0.037,
+      "financial_conditions_adjustment_pp": 0.1674,
+      "macro_target_rate": 4.6746,
+      "policy_gap_bp": -59.02,
+      "current_rate": 3.88,
+      "convergence_lambda": 0.25,
+      "note": "Taylor 规则含通胀缺口与 Okun 产出缺口；就业动量与金融条件作为目标利率修正项。"
+    },
+    "path": [
+      {
+        "index": 1,
+        "meeting": {
+          "year": 2026,
+          "month": 12,
+          "start": "2026-12-08",
+          "end": "2026-12-09",
+          "decision_date": "2026-12-09",
+          "effective_date": "2026-12-10"
+        },
+        "pre_rate": 3.88,
+        "change_bp": 19.86,
+        "post_rate": 4.07865,
+        "cumulative_bp": 19.86,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.2054,
+          "hike": 0.7946
+        },
+        "expected_bp": 19.86,
+        "expected_steps": 0.7946,
+        "most_likely": "hike"
+      },
+      {
+        "index": 2,
+        "meeting": {
+          "year": 2027,
+          "month": 1,
+          "start": "2027-01-26",
+          "end": "2027-01-27",
+          "decision_date": "2027-01-27",
+          "effective_date": "2027-01-28"
+        },
+        "pre_rate": 4.07865,
+        "change_bp": 14.9,
+        "post_rate": 4.227638,
+        "cumulative_bp": 34.76,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.40405,
+          "hike": 0.59595
+        },
+        "expected_bp": 14.9,
+        "expected_steps": 0.596,
+        "most_likely": "hike"
+      },
+      {
+        "index": 3,
+        "meeting": {
+          "year": 2027,
+          "month": 3,
+          "start": "2027-03-16",
+          "end": "2027-03-17",
+          "decision_date": "2027-03-17",
+          "effective_date": "2027-03-18"
+        },
+        "pre_rate": 4.227638,
+        "change_bp": 11.17,
+        "post_rate": 4.339378,
+        "cumulative_bp": 45.94,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.553038,
+          "hike": 0.446962
+        },
+        "expected_bp": 11.17,
+        "expected_steps": 0.447,
+        "most_likely": "hold"
+      },
+      {
+        "index": 4,
+        "meeting": {
+          "year": 2027,
+          "month": 4,
+          "start": "2027-04-27",
+          "end": "2027-04-28",
+          "decision_date": "2027-04-28",
+          "effective_date": "2027-04-29"
+        },
+        "pre_rate": 4.339378,
+        "change_bp": 8.38,
+        "post_rate": 4.423184,
+        "cumulative_bp": 54.32,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.664778,
+          "hike": 0.335222
+        },
+        "expected_bp": 8.38,
+        "expected_steps": 0.3352,
+        "most_likely": "hold"
+      }
+    ],
+    "sources": [
+      {
+        "item": "核心 PCE 价格指数",
+        "series": "PCEPILFE",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/PCEPILFE",
+        "as_of": "2026-09-01",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "核心 CPI",
+        "series": "CPILFESL",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/CPILFESL",
+        "as_of": "2026-10-01",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "失业率",
+        "series": "UNRATE",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/UNRATE",
+        "as_of": "2026-10-01",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "CBO 自然失业率",
+        "series": "NROU",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/NROU",
+        "as_of": "2026-10-01",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "非农就业人数",
+        "series": "PAYEMS",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/PAYEMS",
+        "as_of": "2026-10-01",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "实际 GDP（链式 2017 美元）",
+        "series": "GDPC1",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/GDPC1",
+        "as_of": "2026-07-01",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "芝加哥联储全国金融条件指数",
+        "series": "NFCI",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/NFCI",
+        "as_of": "2026-11-13",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "2 年期美债收益率",
+        "series": "DGS2",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/DGS2",
+        "as_of": "2026-11-19",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "10 年期美债收益率",
+        "series": "DGS10",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/DGS10",
+        "as_of": "2026-11-19",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "10 年期盈亏平衡通胀率",
+        "series": "T10YIE",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/T10YIE",
+        "as_of": "2026-11-20",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      },
+      {
+        "item": "美国高收益债期权调整利差",
+        "series": "BAMLH0A0HYM2",
+        "source": "FRED",
+        "url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2",
+        "as_of": "2026-11-19",
+        "retrieved_at": "2026-11-22T13:20:22+08:00"
+      }
+    ]
+  },
+  "text": {
+    "statement": {
+      "date": "2026-10-28",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm",
+      "action": "maintain",
+      "vote": "10-2",
+      "hike_dissents": 2,
+      "cut_dissents": 0,
+      "lexicon": {
+        "score": 0.7273,
+        "raw": 6.4,
+        "total_abs": 6.8,
+        "hawk_hits": 7,
+        "dove_hits": 1,
+        "words": 96,
+        "terms": [
+          {
+            "phrase": "inflation remains elevated",
+            "weight": 2.0,
+            "negated": false,
+            "position": 61
+          },
+          {
+            "phrase": "deliver price stability",
+            "weight": 1.3,
+            "negated": false,
+            "position": 93
+          },
+          {
+            "phrase": "expanding at a strong pace",
+            "weight": 1.2,
+            "negated": false,
+            "position": 17
+          },
+          {
+            "phrase": "robust",
+            "weight": 0.6,
+            "negated": false,
+            "position": 45
+          },
+          {
+            "phrase": "job gains have kept pace",
+            "weight": 0.6,
+            "negated": false,
+            "position": 46
+          },
+          {
+            "phrase": "resilient",
+            "weight": 0.5,
+            "negated": false,
+            "position": 36
+          },
+          {
+            "phrase": "strong",
+            "weight": 0.4,
+            "negated": false,
+            "position": 40
+          },
+          {
+            "phrase": "uncertainty",
+            "weight": -0.2,
+            "negated": false,
+            "position": 23
+          }
+        ]
+      },
+      "action_score": 0.0,
+      "dissent_score": 0.5,
+      "score": 0.5364
+    },
+    "statement_diff": {
+      "previous_date": "2026-09-16",
+      "added": [
+        "The Committee decided to maintain the target range for the federal funds rate at 3-3/4 to 4 percent, in support of the Federal Reserve's dual mandate.",
+        "Economic activity is expanding at a strong pace.",
+        "The accumulation of more information will help the Committee determine the policy stance appropriate to ensure a timely return of inflation to the Committee's 2 percent goal.",
+        "Voting against the monetary policy action were Lisa D. Cook and Beth M. Hammack, who preferred to raise the target range for the federal funds rate by 1/4 percentage point at this meeting."
+      ],
+      "removed": [
+        "The Committee decided to raise the target range for the federal funds rate by 1/4 percentage point to 3-3/4 to 4 percent, in support of the Federal Reserve's dual mandate.",
+        "Economic activity is expanding at a solid pace.",
+        "Today's policy action will support a timelier return to the Committee's 2 percent goal."
+      ],
+      "added_score": 0.6296,
+      "removed_score": 0.6154,
+      "added_terms": [
+        {
+          "phrase": "preferred to raise",
+          "weight": 2.2,
+          "negated": false,
+          "position": 73
+        },
+        {
+          "phrase": "expanding at a strong pace",
+          "weight": 1.2,
+          "negated": false,
+          "position": 27
+        }
+      ],
+      "removed_terms": [
+        {
+          "phrase": "raise the target range",
+          "weight": 2.6,
+          "negated": false,
+          "position": 4
+        },
+        {
+          "phrase": "solid pace",
+          "weight": 0.6,
+          "negated": false,
+          "position": 33
+        }
+      ],
+      "diff_score": 0.0142
+    },
+    "speeches": {
+      "window_days": 45,
+      "count": 5,
+      "weighted_score": 0.3643,
+      "items": [
+        {
+          "date": "2026-11-20",
+          "speaker": "Governor Lisa D. Cook",
+          "role": "governor",
+          "role_label": "理事",
+          "title": "The U.S. Economy in Global Context",
+          "url": "https://www.federalreserve.gov/newsevents/speech/cook20261120a.htm",
+          "score": 0.4346,
+          "role_weight": 2.0,
+          "recency_weight": 1.0,
+          "weight": 2.0,
+          "lexicon": {
+            "score": 0.4346,
+            "raw": 8.3,
+            "total_abs": 17.1,
+            "hawk_hits": 11,
+            "dove_hits": 9,
+            "words": 3235,
+            "terms": [
+              {
+                "phrase": "preferred to raise",
+                "weight": 2.2,
+                "negated": false,
+                "position": 2141
+              },
+              {
+                "phrase": "raise rates",
+                "weight": 2.0,
+                "negated": false,
+                "position": 3141
+              },
+              {
+                "phrase": "raise rates",
+                "weight": 2.0,
+                "negated": false,
+                "position": 3221
+              },
+              {
+                "phrase": "elevated inflation",
+                "weight": 1.5,
+                "negated": false,
+                "position": 2231
+              },
+              {
+                "phrase": "inflation remains above",
+                "weight": 1.2,
+                "negated": false,
+                "position": 3092
+              },
+              {
+                "phrase": "accommodative",
+                "weight": -1.0,
+                "negated": false,
+                "position": 2166
+              },
+              {
+                "phrase": "patient",
+                "weight": -1.0,
+                "negated": false,
+                "position": 2428
+              },
+              {
+                "phrase": "price stability",
+                "weight": 0.8,
+                "negated": false,
+                "position": 200
+              },
+              {
+                "phrase": "cooled",
+                "weight": -0.8,
+                "negated": false,
+                "position": 1314
+              },
+              {
+                "phrase": "price stability",
+                "weight": 0.8,
+                "negated": false,
+                "position": 1486
+              },
+              {
+                "phrase": "broadening",
+                "weight": 0.8,
+                "negated": false,
+                "position": 1899
+              },
+              {
+                "phrase": "resilient",
+                "weight": 0.5,
+                "negated": false,
+                "position": 1269
+              }
+            ]
+          }
+        },
+        {
+          "date": "2026-11-19",
+          "speaker": "Vice Chair Philip N. Jefferson",
+          "role": "vice_chair",
+          "role_label": "副主席",
+          "title": "Monetary Policy amid Frequent and Complex Shocks",
+          "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20261119a.htm",
+          "score": -0.234,
+          "role_weight": 2.5,
+          "recency_weight": 1.0,
+          "weight": 2.5,
+          "lexicon": {
+            "score": -0.234,
+            "raw": -1.1,
+            "total_abs": 2.7,
+            "hawk_hits": 1,
+            "dove_hits": 2,
+            "words": 762,
+            "terms": [
+              {
+                "phrase": "downside risks to employment",
+                "weight": -1.5,
+                "negated": false,
+                "position": 362
+              },
+              {
+                "phrase": "price stability",
+                "weight": 0.8,
+                "negated": false,
+                "position": 598
+              },
+              {
+                "phrase": "maximum employment",
+                "weight": -0.4,
+                "negated": false,
+                "position": 223
+              }
+            ]
+          }
+        },
+        {
+          "date": "2026-11-13",
+          "speaker": "Vice Chair Philip N. Jefferson",
+          "role": "vice_chair",
+          "role_label": "副主席",
+          "title": "New Technology, Old Questions: Productivity Puzzles and the Macroeconomy",
+          "url": "https://www.federalreserve.gov/newsevents/speech/jefferson20261113a.htm",
+          "score": 0.4872,
+          "role_weight": 2.5,
+          "recency_weight": 0.8,
+          "weight": 2.0,
+          "lexicon": {
+            "score": 0.4872,
+            "raw": 5.7,
+            "total_abs": 9.7,
+            "hawk_hits": 10,
+            "dove_hits": 4,
+            "words": 3580,
+            "terms": [
+              {
+                "phrase": "elevated inflation",
+                "weight": 1.5,
+                "negated": false,
+                "position": 2516
+              },
+              {
+                "phrase": "accommodative",
+                "weight": -1.0,
+                "negated": false,
+                "position": 2067
+              },
+              {
+                "phrase": "restrictive",
+                "weight": 0.9,
+                "negated": false,
+                "position": 2079
+              },
+              {
+                "phrase": "persistent",
+                "weight": 0.8,
+                "negated": false,
+                "position": 1970
+              },
+              {
+                "phrase": "price stability",
+                "weight": 0.8,
+                "negated": false,
+                "position": 2469
+              },
+              {
+                "phrase": "persistent",
+                "weight": 0.8,
+                "negated": false,
+                "position": 2550
+              },
+              {
+                "phrase": "persistent",
+                "weight": 0.8,
+                "negated": false,
+                "position": 2728
+              },
+              {
+                "phrase": "price stability",
+                "weight": 0.8,
+                "negated": false,
+                "position": 2881
+              },
+              {
+                "phrase": "resilient",
+                "weight": 0.5,
+                "negated": false,
+                "position": 2327
+              },
+              {
+                "phrase": "strong",
+                "weight": 0.4,
+                "negated": false,
+                "position": 2322
+              },
+              {
+                "phrase": "maximum employment",
+                "weight": -0.4,
+                "negated": false,
+                "position": 2426
+              },
+              {
+                "phrase": "strong",
+                "weight": 0.4,
+                "negated": false,
+                "position": 2609
+              }
+            ]
+          }
+        },
+        {
+          "date": "2026-11-10",
+          "speaker": "Vice Chair for Supervision Michelle W. Bowman",
+          "role": "vice_chair",
+          "role_label": "副主席",
+          "title": "The U.S. Economy and Considerations for Monetary Policy",
+          "url": "https://www.federalreserve.gov/newsevents/speech/bowman20261110a.htm",
+          "score": 0.6019,
+          "role_weight": 2.5,
+          "recency_weight": 0.8,
+          "weight": 2.0,
+          "lexicon": {
+            "score": 0.6019,
+            "raw": 12.7,
+            "total_abs": 19.1,
+            "hawk_hits": 19,
+            "dove_hits": 7,
+            "words": 3360,
+            "terms": [
+              {
+                "phrase": "progress on lowering inflation has disappointed",
+                "weight": 2.2,
+                "negated": false,
+                "position": 175
+              },
+              {
+                "phrase": "inflation pressures have persisted",
+                "weight": 1.6,
+                "negated": false,
+                "position": 103
+              },
+              {
+                "phrase": "broadening",
+                "weight": 0.8,
+                "negated": false,
+                "position": 119
+              },
+              {
+                "phrase": "price stability",
+                "weight": 0.8,
+                "negated": false,
+                "position": 160
+              },
+              {
+                "phrase": "persistent",
+                "weight": 0.8,
+                "negated": false,
+                "position": 396
+              },
+              {
+                "phrase": "persistent",
+                "weight": 0.8,
+                "negated": false,
+                "position": 942
+              },
+              {
+                "phrase": "broadening",
+                "weight": 0.8,
+                "negated": false,
+                "position": 970
+              },
+              {
+                "phrase": "inflation pressures",
+                "weight": 0.8,
+                "negated": false,
+                "position": 1001
+              },
+              {
+                "phrase": "inflation pressures",
+                "weight": 0.8,
+                "negated": false,
+                "position": 1027
+              },
+              {
+                "phrase": "inflation pressures",
+                "weight": 0.8,
+                "negated": false,
+                "position": 1328
+              },
+              {
+                "phrase": "persistent",
+                "weight": 0.8,
+                "negated": false,
+                "position": 1850
+              },
+              {
+                "phrase": "broadening",
+                "weight": 0.8,
+                "negated": false,
+                "position": 2232
+              }
+            ]
+          }
+        },
+        {
+          "date": "2026-11-10",
+          "speaker": "Governor Christopher J. Waller",
+          "role": "governor",
+          "role_label": "理事",
+          "title": "The Economic Outlook and Some Thoughts on Labor Market Dynamism",
+          "url": "https://www.federalreserve.gov/newsevents/speech/waller20261110a.htm",
+          "score": 0.7609,
+          "role_weight": 2.0,
+          "recency_weight": 0.8,
+          "weight": 1.6,
+          "lexicon": {
+            "score": 0.7609,
+            "raw": 14.0,
+            "total_abs": 16.4,
+            "hawk_hits": 12,
+            "dove_hits": 5,
+            "words": 3402,
+            "terms": [
+              {
+                "phrase": "inflation remains too high",
+                "weight": 2.6,
+                "negated": false,
+                "position": 71
+              },
+              {
+                "phrase": "inflation is too high",
+                "weight": 2.6,
+                "negated": false,
+                "position": 3027
+              },
+              {
+                "phrase": "further tightening",
+                "weight": 2.0,
+                "negated": false,
+                "position": 82
+              },
+              {
+                "phrase": "raise rates",
+                "weight": 2.0,
+                "negated": false,
+                "position": 277
+              },
+              {
+                "phrase": "sooner rather than later",
+                "weight": 1.5,
+                "negated": false,
+                "position": 90
+              },
+              {
+                "phrase": "elevated inflation",
+                "weight": 1.5,
+                "negated": false,
+                "position": 2510
+              },
+              {
+                "phrase": "robust",
+                "weight": 0.6,
+                "negated": false,
+                "position": 372
+              },
+              {
+                "phrase": "solid pace",
+                "weight": 0.6,
+                "negated": false,
+                "position": 440
+              },
+              {
+                "phrase": "robust",
+                "weight": 0.6,
+                "negated": false,
+                "position": 2327
+              },
+              {
+                "phrase": "strong",
+                "weight": 0.4,
+                "negated": false,
+                "position": 368
+              },
+              {
+                "phrase": "strong",
+                "weight": 0.4,
+                "negated": false,
+                "position": 639
+              },
+              {
+                "phrase": "maximum employment",
+                "weight": -0.4,
+                "negated": false,
+                "position": 2228
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "components": {
+      "statement": 0.5364,
+      "diff": 0.0142,
+      "speeches": 0.3643
+    },
+    "weights": {
+      "statement": 0.35,
+      "diff": 0.35,
+      "speeches": 0.3
+    },
+    "text_score": 0.302,
+    "sources": {
+      "statements": "Federal Reserve FOMC statements",
+      "speeches": "Federal Reserve speeches",
+      "retrieved_at": "2026-11-22T13:28:28+08:00"
+    }
+  },
+  "combination": {
+    "weights": {
+      "market": 0.6,
+      "macro": 0.25,
+      "text": 0.15
+    },
+    "text_logit_scale": 2.0,
+    "smoothing_epsilon": 0.005,
+    "review_threshold_pp": 15.0,
+    "summary": {
+      "next_meeting_date": "2026-12-09",
+      "market": {
+        "pre_rate": 3.88,
+        "post_rate": 4.105455,
+        "change_bp": 22.55,
+        "cumulative_bp": 22.55,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.098182,
+          "hike": 0.901818
+        },
+        "expected_bp": 22.55,
+        "most_likely": "hike"
+      },
+      "macro": {
+        "pre_rate": 3.88,
+        "post_rate": 4.07865,
+        "change_bp": 19.86,
+        "cumulative_bp": 19.86,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.2054,
+          "hike": 0.7946
+        },
+        "expected_bp": 19.86,
+        "most_likely": "hike"
+      },
+      "combined": {
+        "pre_rate": 3.88,
+        "expected_bp": 22.25,
+        "expected_post_rate": 4.102531,
+        "cumulative_bp": 22.25,
+        "probability": {
+          "cut": 0.0,
+          "hold": 0.109876,
+          "hike": 0.890124
+        },
+        "expected_steps": 0.8901,
+        "most_likely": "hike"
+      },
+      "contributions_pp": {
+        "macro": {
+          "cut": 0.0,
+          "hold": 2.49,
+          "hike": -2.49
+        },
+        "text": {
+          "cut": 0.0,
+          "hold": -1.32,
+          "hike": 1.32
+        },
+        "total": {
+          "cut": 0.0,
+          "hold": 1.17,
+          "hike": -1.17
+        }
+      },
+      "divergence_pp": {
+        "cut": 0.0,
+        "hold": 1.17,
+        "hike": -1.17
+      },
+      "review_flag": false
+    },
+    "path": [
+      {
+        "index": 1,
+        "meeting": {
+          "year": 2026,
+          "month": 12,
+          "start": "2026-12-08",
+          "end": "2026-12-09",
+          "decision_date": "2026-12-09",
+          "effective_date": "2026-12-10"
+        },
+        "weights": {
+          "market": 0.6,
+          "macro": 0.25,
+          "text": 0.15
+        },
+        "market": {
+          "pre_rate": 3.88,
+          "post_rate": 4.105455,
+          "change_bp": 22.55,
+          "cumulative_bp": 22.55,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.098182,
+            "hike": 0.901818
+          },
+          "expected_bp": 22.55,
+          "most_likely": "hike"
+        },
+        "macro": {
+          "pre_rate": 3.88,
+          "post_rate": 4.07865,
+          "change_bp": 19.86,
+          "cumulative_bp": 19.86,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.2054,
+            "hike": 0.7946
+          },
+          "expected_bp": 19.86,
+          "most_likely": "hike"
+        },
+        "combined": {
+          "pre_rate": 3.88,
+          "expected_bp": 22.25,
+          "expected_post_rate": 4.102531,
+          "cumulative_bp": 22.25,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.109876,
+            "hike": 0.890124
+          },
+          "expected_steps": 0.8901,
+          "most_likely": "hike"
+        },
+        "contributions_pp": {
+          "macro": {
+            "cut": 0.0,
+            "hold": 2.49,
+            "hike": -2.49
+          },
+          "text": {
+            "cut": 0.0,
+            "hold": -1.32,
+            "hike": 1.32
+          },
+          "total": {
+            "cut": 0.0,
+            "hold": 1.17,
+            "hike": -1.17
+          }
+        },
+        "logit_contributions": {
+          "macro": {
+            "cut": 0.0,
+            "hold": 0.1845,
+            "hike": -0.0316
+          },
+          "text": {
+            "cut": -0.0906,
+            "hold": 0.0,
+            "hike": 0.0906
+          },
+          "total": {
+            "cut": -0.0906,
+            "hold": 0.1845,
+            "hike": 0.059
+          },
+          "shares": {
+            "cut": {
+              "macro": 0.0,
+              "text": 0.228
+            },
+            "hold": {
+              "macro": 0.4644,
+              "text": 0.0
+            },
+            "hike": {
+              "macro": 0.0796,
+              "text": 0.228
+            }
+          }
+        },
+        "divergence_pp": {
+          "cut": 0.0,
+          "hold": 1.17,
+          "hike": -1.17
+        },
+        "review_flag": false
+      },
+      {
+        "index": 2,
+        "meeting": {
+          "year": 2027,
+          "month": 1,
+          "start": "2027-01-26",
+          "end": "2027-01-27",
+          "decision_date": "2027-01-27",
+          "effective_date": "2027-01-28"
+        },
+        "weights": {
+          "market": 0.675,
+          "macro": 0.25,
+          "text": 0.075
+        },
+        "market": {
+          "pre_rate": 4.105455,
+          "post_rate": 4.245,
+          "change_bp": 13.95,
+          "cumulative_bp": 36.5,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.441818,
+            "hike": 0.558182
+          },
+          "expected_bp": 13.95,
+          "most_likely": "hike"
+        },
+        "macro": {
+          "pre_rate": 4.07865,
+          "post_rate": 4.227638,
+          "change_bp": 14.9,
+          "cumulative_bp": 34.76,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.40405,
+            "hike": 0.59595
+          },
+          "expected_bp": 14.9,
+          "most_likely": "hike"
+        },
+        "combined": {
+          "pre_rate": 4.105455,
+          "expected_bp": 14.47,
+          "expected_post_rate": 4.250152,
+          "cumulative_bp": 37.02,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.421213,
+            "hike": 0.578787
+          },
+          "expected_steps": 0.5788,
+          "most_likely": "hike"
+        },
+        "contributions_pp": {
+          "macro": {
+            "cut": 0.0,
+            "hold": -1.03,
+            "hike": 1.03
+          },
+          "text": {
+            "cut": 0.0,
+            "hold": -1.03,
+            "hike": 1.03
+          },
+          "total": {
+            "cut": 0.0,
+            "hold": -2.06,
+            "hike": 2.06
+          }
+        },
+        "logit_contributions": {
+          "macro": {
+            "cut": 0.0,
+            "hold": -0.0223,
+            "hike": 0.0164
+          },
+          "text": {
+            "cut": -0.0453,
+            "hold": 0.0,
+            "hike": 0.0453
+          },
+          "total": {
+            "cut": -0.0453,
+            "hold": -0.0223,
+            "hike": 0.0617
+          },
+          "shares": {
+            "cut": {
+              "macro": 0.0,
+              "text": 0.3503
+            },
+            "hold": {
+              "macro": 0.1728,
+              "text": 0.0
+            },
+            "hike": {
+              "macro": 0.1266,
+              "text": 0.3503
+            }
+          }
+        },
+        "divergence_pp": {
+          "cut": 0.0,
+          "hold": -2.06,
+          "hike": 2.06
+        },
+        "review_flag": false
+      },
+      {
+        "index": 3,
+        "meeting": {
+          "year": 2027,
+          "month": 3,
+          "start": "2027-03-16",
+          "end": "2027-03-17",
+          "decision_date": "2027-03-17",
+          "effective_date": "2027-03-18"
+        },
+        "weights": {
+          "market": 0.7125,
+          "macro": 0.25,
+          "text": 0.0375
+        },
+        "market": {
+          "pre_rate": 4.245,
+          "post_rate": 4.366786,
+          "change_bp": 12.18,
+          "cumulative_bp": 48.68,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.512857,
+            "hike": 0.487143
+          },
+          "expected_bp": 12.18,
+          "most_likely": "hold"
+        },
+        "macro": {
+          "pre_rate": 4.227638,
+          "post_rate": 4.339378,
+          "change_bp": 11.17,
+          "cumulative_bp": 45.94,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.553038,
+            "hike": 0.446962
+          },
+          "expected_bp": 11.17,
+          "most_likely": "hold"
+        },
+        "combined": {
+          "pre_rate": 4.245,
+          "expected_bp": 12.07,
+          "expected_post_rate": 4.365679,
+          "cumulative_bp": 48.57,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.517285,
+            "hike": 0.482715
+          },
+          "expected_steps": 0.4827,
+          "most_likely": "hold"
+        },
+        "contributions_pp": {
+          "macro": {
+            "cut": 0.0,
+            "hold": 1.05,
+            "hike": -1.05
+          },
+          "text": {
+            "cut": 0.0,
+            "hold": -0.6,
+            "hike": 0.6
+          },
+          "total": {
+            "cut": 0.0,
+            "hold": 0.44,
+            "hike": -0.44
+          }
+        },
+        "logit_contributions": {
+          "macro": {
+            "cut": 0.0,
+            "hold": 0.0189,
+            "hike": -0.0215
+          },
+          "text": {
+            "cut": -0.0226,
+            "hold": 0.0,
+            "hike": 0.0226
+          },
+          "total": {
+            "cut": -0.0226,
+            "hold": 0.0189,
+            "hike": 0.0011
+          },
+          "shares": {
+            "cut": {
+              "macro": 0.0,
+              "text": 0.2644
+            },
+            "hold": {
+              "macro": 0.2201,
+              "text": 0.0
+            },
+            "hike": {
+              "macro": 0.2512,
+              "text": 0.2644
+            }
+          }
+        },
+        "divergence_pp": {
+          "cut": 0.0,
+          "hold": 0.44,
+          "hike": -0.44
+        },
+        "review_flag": false
+      },
+      {
+        "index": 4,
+        "meeting": {
+          "year": 2027,
+          "month": 4,
+          "start": "2027-04-27",
+          "end": "2027-04-28",
+          "decision_date": "2027-04-28",
+          "effective_date": "2027-04-29"
+        },
+        "weights": {
+          "market": 0.73125,
+          "macro": 0.25,
+          "text": 0.01875
+        },
+        "market": {
+          "pre_rate": 4.366786,
+          "post_rate": 4.405,
+          "change_bp": 3.82,
+          "cumulative_bp": 52.5,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.847143,
+            "hike": 0.152857
+          },
+          "expected_bp": 3.82,
+          "most_likely": "hold"
+        },
+        "macro": {
+          "pre_rate": 4.339378,
+          "post_rate": 4.423184,
+          "change_bp": 8.38,
+          "cumulative_bp": 54.32,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.664778,
+            "hike": 0.335222
+          },
+          "expected_bp": 8.38,
+          "most_likely": "hold"
+        },
+        "combined": {
+          "pre_rate": 4.366786,
+          "expected_bp": 4.77,
+          "expected_post_rate": 4.414513,
+          "cumulative_bp": 53.45,
+          "probability": {
+            "cut": 0.0,
+            "hold": 0.809091,
+            "hike": 0.190909
+          },
+          "expected_steps": 0.1909,
+          "most_likely": "hold"
+        },
+        "contributions_pp": {
+          "macro": {
+            "cut": 0.0,
+            "hold": -3.71,
+            "hike": 3.71
+          },
+          "text": {
+            "cut": 0.0,
+            "hold": -0.1,
+            "hike": 0.1
+          },
+          "total": {
+            "cut": 0.0,
+            "hold": -3.81,
+            "hike": 3.81
+          }
+        },
+        "logit_contributions": {
+          "macro": {
+            "cut": 0.0,
+            "hold": -0.0606,
+            "hike": 0.1963
+          },
+          "text": {
+            "cut": -0.0113,
+            "hold": 0.0,
+            "hike": 0.0113
+          },
+          "total": {
+            "cut": -0.0113,
+            "hold": -0.0606,
+            "hike": 0.2076
+          },
+          "shares": {
+            "cut": {
+              "macro": 0.0,
+              "text": 0.0405
+            },
+            "hold": {
+              "macro": 0.2168,
+              "text": 0.0
+            },
+            "hike": {
+              "macro": 0.7022,
+              "text": 0.0405
+            }
+          }
+        },
+        "divergence_pp": {
+          "cut": 0.0,
+          "hold": -3.81,
+          "hike": 3.81
+        },
+        "review_flag": false
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "item": "FOMC 会议日历",
+      "source": "Federal Reserve",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "as_of": "2026-11-22T13:10:00+08:00"
+    },
+    {
+      "item": "目标区间上/下限",
+      "source": "FRED (DFEDTARU / DFEDTARL)",
+      "url": "https://fred.stlouisfed.org/series/DFEDTARU",
+      "as_of": "2026-11-21"
+    },
+    {
+      "item": "有效联邦基金利率",
+      "source": "FRED (EFFR)",
+      "url": "https://fred.stlouisfed.org/series/EFFR",
+      "as_of": "2026-11-19"
+    },
+    {
+      "item": "ZQ 期货收盘价",
+      "source": "Barchart（第三方延迟行情）",
+      "url": "https://www.barchart.com/futures/quotes/ZQZ26",
+      "as_of": "2026-11-20"
+    },
+    {
+      "item": "宏观数据（通胀 / 就业 / 增长 / 金融条件）",
+      "source": "FRED",
+      "url": "https://fred.stlouisfed.org/",
+      "as_of": "2026-11-22"
+    },
+    {
+      "item": "FOMC 声明与演讲文本",
+      "source": "Federal Reserve",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "as_of": "2026-11-22T13:28:28+08:00"
+    }
+  ],
+  "caveats": [
+    "ZQ 以月度平均 EFFR 结算；会前天数沿用当前 EFFR，未对月内资金面波动建模。",
+    "行情来自 Barchart 第三方延迟数据，非 CME 直连，仅用于 P0 基准。",
+    "ZQ 最小价格变动 0.005，对应 0.5bp 利率精度；日权重分解会放大该误差。",
+    "月末会议会后天数很少时，优先使用次月干净合约，避免反推放大。",
+    "2027-10-26/27 为货币政策战略会议，不含利率决议，已排除出政策路径。",
+    "宏观反应函数是规则型（Taylor 规则 + 就业动量/金融条件修正），不是估计的有序 Probit；系数与阈值是透明先验，需用 walk-forward 回测校准。",
+    "Taylor 规则使用 CBO 自然失业率（NROU）与 Okun 系数 2；产出缺口由失业率缺口推算。",
+    "FRED 提供当前版本数据，可能包含修订，不是实时 vintage；as-of 仅表示取数截止日。",
+    "文本评分采用可复现的鹰鸽词典，未使用 LLM；能稳定复现，但对上下文、反讽和条件句理解有限。",
+    "声明 diff 仅比较最近两份声明；演讲样本为近 45 天、经政策相关性筛选，并按角色与时效加权。",
+    "合成在 log-odds 空间进行，下一次会议市场权重 0.60（满足不低于 0.5 的约束），文本权重随会议期限衰减。",
+    "三分类概率假设单次会议至多一个 25bp 步长；50bp 等大幅情形未单独建模。",
+    "当合成概率与市场隐含偏离超过 15pp 时，review_flag 置为 true，需人工复核而非自动发布异见。"
+  ],
+  "generated_at": "2026-11-22T13:28:40+08:00"
+}

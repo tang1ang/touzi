@@ -1,0 +1,119 @@
+{
+  "source": "Federal Reserve Bank of St. Louis (FRED)",
+  "base_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series}",
+  "as_of": "2026-11-22",
+  "retrieved_at": "2026-11-22T13:20:22+08:00",
+  "note": "保存截至基准日的最新可用观测；FRED 为当前版本（可能含修订），非实时 vintage。",
+  "series": {
+    "PCEPILFE": {
+      "id": "PCEPILFE",
+      "name": "核心 PCE 价格指数",
+      "unit": "index",
+      "frequency": "monthly",
+      "latest_date": "2026-09-01",
+      "latest_value": 130.902,
+      "observations": 813,
+      "url": "https://fred.stlouisfed.org/series/PCEPILFE"
+    },
+    "CPILFESL": {
+      "id": "CPILFESL",
+      "name": "核心 CPI",
+      "unit": "index",
+      "frequency": "monthly",
+      "latest_date": "2026-10-01",
+      "latest_value": 339.9,
+      "observations": 837,
+      "url": "https://fred.stlouisfed.org/series/CPILFESL"
+    },
+    "UNRATE": {
+      "id": "UNRATE",
+      "name": "失业率",
+      "unit": "percent",
+      "frequency": "monthly",
+      "latest_date": "2026-10-01",
+      "latest_value": 4.1,
+      "observations": 945,
+      "url": "https://fred.stlouisfed.org/series/UNRATE"
+    },
+    "NROU": {
+      "id": "NROU",
+      "name": "CBO 自然失业率",
+      "unit": "percent",
+      "frequency": "quarterly",
+      "latest_date": "2026-10-01",
+      "latest_value": 4.38842541458118,
+      "observations": 312,
+      "url": "https://fred.stlouisfed.org/series/NROU"
+    },
+    "PAYEMS": {
+      "id": "PAYEMS",
+      "name": "非农就业人数",
+      "unit": "thousands",
+      "frequency": "monthly",
+      "latest_date": "2026-10-01",
+      "latest_value": 159293.0,
+      "observations": 1054,
+      "url": "https://fred.stlouisfed.org/series/PAYEMS"
+    },
+    "GDPC1": {
+      "id": "GDPC1",
+      "name": "实际 GDP（链式 2017 美元）",
+      "unit": "billions",
+      "frequency": "quarterly",
+      "latest_date": "2026-07-01",
+      "latest_value": 24611.077,
+      "observations": 319,
+      "url": "https://fred.stlouisfed.org/series/GDPC1"
+    },
+    "NFCI": {
+      "id": "NFCI",
+      "name": "芝加哥联储全国金融条件指数",
+      "unit": "index",
+      "frequency": "weekly",
+      "latest_date": "2026-11-13",
+      "latest_value": -0.478,
+      "observations": 2915,
+      "url": "https://fred.stlouisfed.org/series/NFCI"
+    },
+    "DGS2": {
+      "id": "DGS2",
+      "name": "2 年期美债收益率",
+      "unit": "percent",
+      "frequency": "daily",
+      "latest_date": "2026-11-19",
+      "latest_value": 4.76,
+      "observations": 12614,
+      "url": "https://fred.stlouisfed.org/series/DGS2"
+    },
+    "DGS10": {
+      "id": "DGS10",
+      "name": "10 年期美债收益率",
+      "unit": "percent",
+      "frequency": "daily",
+      "latest_date": "2026-11-19",
+      "latest_value": 5.04,
+      "observations": 16206,
+      "url": "https://fred.stlouisfed.org/series/DGS10"
+    },
+    "T10YIE": {
+      "id": "T10YIE",
+      "name": "10 年期盈亏平衡通胀率",
+      "unit": "percent",
+      "frequency": "daily",
+      "latest_date": "2026-11-20",
+      "latest_value": 2.15,
+      "observations": 5976,
+      "url": "https://fred.stlouisfed.org/series/T10YIE"
+    },
+    "BAMLH0A0HYM2": {
+      "id": "BAMLH0A0HYM2",
+      "name": "美国高收益债期权调整利差",
+      "unit": "percent",
+      "frequency": "daily",
+      "latest_date": "2026-11-19",
+      "latest_value": 3.52,
+      "observations": 786,
+      "url": "https://fred.stlouisfed.org/series/BAMLH0A0HYM2"
+    }
+  }
+}
