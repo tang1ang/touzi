@@ -1,0 +1,429 @@
+{
+  "schema_version": "p0.1.0",
+  "as_of": "2026-11-22",
+  "policy_basis": {
+    "current_rate": 3.88,
+    "rate_basis": "EFFR",
+    "current_rate_as_of": "2026-11-19",
+    "target_range": {
+      "lower": 3.75,
+      "upper": 4.0,
+      "midpoint": 3.875,
+      "as_of": "2026-11-21"
+    },
+    "step_bp": 25,
+    "decision_effective_lag_days": 1,
+    "contract": "CME 30-Day Fed Funds Futures (ZQ)",
+    "settlement": "月度平均 EFFR",
+    "method_priority": "次月无政策会议时用次月合约；否则用当月合约按生效日拆分日权重",
+    "min_post_days": 7
+  },
+  "summary": {
+    "next_meeting_date": "2026-12-09",
+    "cut": 0.0,
+    "hold": 0.098182,
+    "hike": 0.901818,
+    "most_likely": "hike",
+    "expected_post_rate": 4.105455,
+    "expected_change_bp": 22.55,
+    "path_end_meeting": "2027-04-28",
+    "path_end_rate": 4.405,
+    "path_cumulative_bp": 52.5,
+    "path_hikes_priced": 2.1
+  },
+  "path": [
+    {
+      "index": 1,
+      "meeting": {
+        "year": 2026,
+        "month": 12,
+        "start": "2026-12-08",
+        "end": "2026-12-09",
+        "decision_date": "2026-12-09",
+        "effective_date": "2026-12-10"
+      },
+      "contract": "ZQZ26",
+      "contract_month": "2026-12",
+      "contract_close": 95.96,
+      "contract_implied_rate": 4.04,
+      "contract_volume": 94741,
+      "method": "meeting_month",
+      "method_label": "当月合约日权重",
+      "pre_rate": 3.88,
+      "post_rate": 4.105455,
+      "change_bp": 22.55,
+      "cumulative_change_bp": 22.55,
+      "days": {
+        "month": 31,
+        "pre": 9,
+        "post": 22
+      },
+      "amplification": 1.409,
+      "estimation_noise_bp": 1.41,
+      "reliability": "high",
+      "note": "按决议生效日拆分 31 天：会前 9 天、会后 22 天",
+      "probability": {
+        "cut": 0.0,
+        "hold": 0.098182,
+        "hike": 0.901818
+      },
+      "expected_bp": 22.55,
+      "expected_steps": 0.9018,
+      "beyond_one_step": false,
+      "most_likely": "hike"
+    },
+    {
+      "index": 2,
+      "meeting": {
+        "year": 2027,
+        "month": 1,
+        "start": "2027-01-26",
+        "end": "2027-01-27",
+        "decision_date": "2027-01-27",
+        "effective_date": "2027-01-28"
+      },
+      "contract": "ZQF27",
+      "contract_month": "2027-01",
+      "contract_close": 95.88,
+      "contract_implied_rate": 4.12,
+      "contract_volume": 393051,
+      "method": "next_clean_month",
+      "method_label": "次月干净合约",
+      "pre_rate": 4.105455,
+      "post_rate": 4.245,
+      "change_bp": 13.95,
+      "cumulative_change_bp": 36.5,
+      "days": {
+        "month": 31,
+        "pre": 27,
+        "post": 4
+      },
+      "amplification": 1.0,
+      "estimation_noise_bp": 1.0,
+      "reliability": "high",
+      "note": "次月（2027-02）无政策会议，ZQG27 隐含利率即为会后利率",
+      "probability": {
+        "cut": 0.0,
+        "hold": 0.441818,
+        "hike": 0.558182
+      },
+      "expected_bp": 13.95,
+      "expected_steps": 0.5582,
+      "beyond_one_step": false,
+      "most_likely": "hike"
+    },
+    {
+      "index": 3,
+      "meeting": {
+        "year": 2027,
+        "month": 3,
+        "start": "2027-03-16",
+        "end": "2027-03-17",
+        "decision_date": "2027-03-17",
+        "effective_date": "2027-03-18"
+      },
+      "contract": "ZQH27",
+      "contract_month": "2027-03",
+      "contract_close": 95.7,
+      "contract_implied_rate": 4.3,
+      "contract_volume": 53399,
+      "method": "meeting_month",
+      "method_label": "当月合约日权重",
+      "pre_rate": 4.245,
+      "post_rate": 4.366786,
+      "change_bp": 12.18,
+      "cumulative_change_bp": 48.68,
+      "days": {
+        "month": 31,
+        "pre": 17,
+        "post": 14
+      },
+      "amplification": 2.214,
+      "estimation_noise_bp": 2.21,
+      "reliability": "medium",
+      "note": "按决议生效日拆分 31 天：会前 17 天、会后 14 天",
+      "probability": {
+        "cut": 0.0,
+        "hold": 0.512857,
+        "hike": 0.487143
+      },
+      "expected_bp": 12.18,
+      "expected_steps": 0.4871,
+      "beyond_one_step": false,
+      "most_likely": "hold"
+    },
+    {
+      "index": 4,
+      "meeting": {
+        "year": 2027,
+        "month": 4,
+        "start": "2027-04-27",
+        "end": "2027-04-28",
+        "decision_date": "2027-04-28",
+        "effective_date": "2027-04-29"
+      },
+      "contract": "ZQJ27",
+      "contract_month": "2027-04",
+      "contract_close": 95.635,
+      "contract_implied_rate": 4.365,
+      "contract_volume": 105651,
+      "method": "next_clean_month",
+      "method_label": "次月干净合约",
+      "pre_rate": 4.366786,
+      "post_rate": 4.405,
+      "change_bp": 3.82,
+      "cumulative_change_bp": 52.5,
+      "days": {
+        "month": 30,
+        "pre": 28,
+        "post": 2
+      },
+      "amplification": 1.0,
+      "estimation_noise_bp": 1.0,
+      "reliability": "high",
+      "note": "次月（2027-05）无政策会议，ZQK27 隐含利率即为会后利率",
+      "probability": {
+        "cut": 0.0,
+        "hold": 0.847143,
+        "hike": 0.152857
+      },
+      "expected_bp": 3.82,
+      "expected_steps": 0.1529,
+      "beyond_one_step": false,
+      "most_likely": "hold"
+    }
+  ],
+  "market_curve": [
+    {
+      "symbol": "ZQX26",
+      "month": "2026-11",
+      "as_of": "2026-11-20",
+      "close": 96.12,
+      "implied_rate": 3.88,
+      "volume": 187889,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQZ26",
+      "month": "2026-12",
+      "as_of": "2026-11-20",
+      "close": 95.96,
+      "implied_rate": 4.04,
+      "volume": 94741,
+      "used_in_path": true
+    },
+    {
+      "symbol": "ZQF27",
+      "month": "2027-01",
+      "as_of": "2026-11-20",
+      "close": 95.88,
+      "implied_rate": 4.12,
+      "volume": 393051,
+      "used_in_path": true
+    },
+    {
+      "symbol": "ZQG27",
+      "month": "2027-02",
+      "as_of": "2026-11-20",
+      "close": 95.755,
+      "implied_rate": 4.245,
+      "volume": 238712,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQH27",
+      "month": "2027-03",
+      "as_of": "2026-11-20",
+      "close": 95.7,
+      "implied_rate": 4.3,
+      "volume": 53399,
+      "used_in_path": true
+    },
+    {
+      "symbol": "ZQJ27",
+      "month": "2027-04",
+      "as_of": "2026-11-20",
+      "close": 95.635,
+      "implied_rate": 4.365,
+      "volume": 105651,
+      "used_in_path": true
+    },
+    {
+      "symbol": "ZQK27",
+      "month": "2027-05",
+      "as_of": "2026-11-20",
+      "close": 95.595,
+      "implied_rate": 4.405,
+      "volume": 49290,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQM27",
+      "month": "2027-06",
+      "as_of": "2026-11-20",
+      "close": 95.56,
+      "implied_rate": 4.44,
+      "volume": 4444,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQN27",
+      "month": "2027-07",
+      "as_of": "2026-11-20",
+      "close": 95.545,
+      "implied_rate": 4.455,
+      "volume": 30871,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQQ27",
+      "month": "2027-08",
+      "as_of": "2026-11-20",
+      "close": 95.54,
+      "implied_rate": 4.46,
+      "volume": 27008,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQU27",
+      "month": "2027-09",
+      "as_of": "2026-11-20",
+      "close": 95.535,
+      "implied_rate": 4.465,
+      "volume": 3870,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQV27",
+      "month": "2027-10",
+      "as_of": "2026-11-20",
+      "close": 95.535,
+      "implied_rate": 4.465,
+      "volume": 7363,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQX27",
+      "month": "2027-11",
+      "as_of": "2026-11-20",
+      "close": 95.555,
+      "implied_rate": 4.445,
+      "volume": 3456,
+      "used_in_path": false
+    },
+    {
+      "symbol": "ZQZ27",
+      "month": "2027-12",
+      "as_of": "2026-11-20",
+      "close": 95.58,
+      "implied_rate": 4.42,
+      "volume": 1545,
+      "used_in_path": false
+    }
+  ],
+  "curve_cross_check": [
+    {
+      "month": "2026-12",
+      "symbol": "ZQZ26",
+      "as_of": "2026-11-20",
+      "observed_rate": 4.04,
+      "model_rate": 4.04,
+      "diff_bp": 0.0,
+      "pass": true
+    },
+    {
+      "month": "2027-01",
+      "symbol": "ZQF27",
+      "as_of": "2026-11-20",
+      "observed_rate": 4.12,
+      "model_rate": 4.12346,
+      "diff_bp": 0.35,
+      "pass": true
+    },
+    {
+      "month": "2027-02",
+      "symbol": "ZQG27",
+      "as_of": "2026-11-20",
+      "observed_rate": 4.245,
+      "model_rate": 4.245,
+      "diff_bp": 0.0,
+      "pass": true
+    },
+    {
+      "month": "2027-03",
+      "symbol": "ZQH27",
+      "as_of": "2026-11-20",
+      "observed_rate": 4.3,
+      "model_rate": 4.3,
+      "diff_bp": -0.0,
+      "pass": true
+    },
+    {
+      "month": "2027-04",
+      "symbol": "ZQJ27",
+      "as_of": "2026-11-20",
+      "observed_rate": 4.365,
+      "model_rate": 4.369333,
+      "diff_bp": 0.43,
+      "pass": true
+    },
+    {
+      "month": "2027-05",
+      "symbol": "ZQK27",
+      "as_of": "2026-11-20",
+      "observed_rate": 4.405,
+      "model_rate": 4.405,
+      "diff_bp": 0.0,
+      "pass": true
+    }
+  ],
+  "data_quality": {
+    "quote_date": "2026-11-20",
+    "quote_age_days": 2,
+    "target_date": "2026-11-21",
+    "target_age_days": 1,
+    "effr_date": "2026-11-19",
+    "effr_age_days": 3,
+    "liquidity_min_volume": 1000,
+    "warnings": [
+      "行情为 2026-11-20 收盘价，距基准日 2 天（非实时）",
+      "EFFR 最新观测为 2026-11-19，距基准日 3 天",
+      "估算可靠性非 high：ZQH27"
+    ]
+  },
+  "provenance": [
+    {
+      "item": "FOMC 会议日历",
+      "source": "Federal Reserve",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "as_of": "2026-11-22T13:10:00+08:00"
+    },
+    {
+      "item": "目标区间上/下限",
+      "source": "FRED (DFEDTARU / DFEDTARL)",
+      "url": "https://fred.stlouisfed.org/series/DFEDTARU",
+      "as_of": "2026-11-21"
+    },
+    {
+      "item": "有效联邦基金利率",
+      "source": "FRED (EFFR)",
+      "url": "https://fred.stlouisfed.org/series/EFFR",
+      "as_of": "2026-11-19"
+    },
+    {
+      "item": "ZQ 期货收盘价",
+      "source": "Barchart（第三方延迟行情）",
+      "url": "https://www.barchart.com/futures/quotes/ZQZ26",
+      "as_of": "2026-11-20"
+    }
+  ],
+  "caveats": [
+    "ZQ 以月度平均 EFFR 结算；会前天数沿用当前 EFFR，未对月内资金面波动建模。",
+    "行情来自 Barchart 第三方延迟数据，非 CME 直连，仅用于 P0 基准。",
+    "ZQ 最小价格变动 0.005，对应 0.5bp 利率精度；日权重分解会放大该误差。",
+    "月末会议会后天数很少时，优先使用次月干净合约，避免反推放大。",
+    "2027-10-26/27 为货币政策战略会议，不含利率决议，已排除出政策路径。",
+    "P0 只给出市场隐含先验，尚未叠加宏观反应函数与美联储沟通文本信号。"
+  ],
+  "generated_at": "2026-11-22T13:10:20+08:00"
+}

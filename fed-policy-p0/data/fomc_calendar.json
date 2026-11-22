@@ -1,0 +1,23 @@
+{
+  "source": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+  "retrieved_at": "2026-11-22T13:10:00+08:00",
+  "note": "decision_date 为会议最后一天；effective_date 为决议生效日（次一自然日）。2027-10-26/27 为 Monetary Policy Strategy Meeting，不含利率决议，不进入政策路径。",
+  "meetings": [
+    {"year": 2026, "month": 1, "start": "2026-01-27", "end": "2026-01-28", "decision_date": "2026-01-28", "effective_date": "2026-01-29", "type": "policy"},
+    {"year": 2026, "month": 3, "start": "2026-03-17", "end": "2026-03-18", "decision_date": "2026-03-18", "effective_date": "2026-03-19", "type": "policy"},
+    {"year": 2026, "month": 4, "start": "2026-04-28", "end": "2026-04-29", "decision_date": "2026-04-29", "effective_date": "2026-04-30", "type": "policy"},
+    {"year": 2026, "month": 6, "start": "2026-06-16", "end": "2026-06-17", "decision_date": "2026-06-17", "effective_date": "2026-06-18", "type": "policy"},
+    {"year": 2026, "month": 7, "start": "2026-07-28", "end": "2026-07-29", "decision_date": "2026-07-29", "effective_date": "2026-07-30", "type": "policy"},
+    {"year": 2026, "month": 9, "start": "2026-09-15", "end": "2026-09-16", "decision_date": "2026-09-16", "effective_date": "2026-09-17", "type": "policy"},
+    {"year": 2026, "month": 10, "start": "2026-10-27", "end": "2026-10-28", "decision_date": "2026-10-28", "effective_date": "2026-10-29", "type": "policy"},
+    {"year": 2026, "month": 12, "start": "2026-12-08", "end": "2026-12-09", "decision_date": "2026-12-09", "effective_date": "2026-12-10", "type": "policy"},
+    {"year": 2027, "month": 1, "start": "2027-01-26", "end": "2027-01-27", "decision_date": "2027-01-27", "effective_date": "2027-01-28", "type": "policy"},
+    {"year": 2027, "month": 3, "start": "2027-03-16", "end": "2027-03-17", "decision_date": "2027-03-17", "effective_date": "2027-03-18", "type": "policy"},
+    {"year": 2027, "month": 4, "start": "2027-04-27", "end": "2027-04-28", "decision_date": "2027-04-28", "effective_date": "2027-04-29", "type": "policy"},
+    {"year": 2027, "month": 6, "start": "2027-06-08", "end": "2027-06-09", "decision_date": "2027-06-09", "effective_date": "2027-06-10", "type": "policy"},
+    {"year": 2027, "month": 7, "start": "2027-07-27", "end": "2027-07-28", "decision_date": "2027-07-28", "effective_date": "2027-07-29", "type": "policy"},
+    {"year": 2027, "month": 9, "start": "2027-09-14", "end": "2027-09-15", "decision_date": "2027-09-15", "effective_date": "2027-09-16", "type": "policy"},
+    {"year": 2027, "month": 10, "start": "2027-10-26", "end": "2027-10-27", "decision_date": "2027-10-27", "effective_date": "2027-10-28", "type": "strategy"},
+    {"year": 2027, "month": 11, "start": "2027-11-16", "end": "2027-11-17", "decision_date": "2027-11-17", "effective_date": "2027-11-18", "type": "policy"}
+  ]
+}
