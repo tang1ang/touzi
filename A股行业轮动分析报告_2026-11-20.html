@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A股行业轮动分析 · 2026-11-20</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:#f2f4f7;color:#1f2733;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px}
+.hero{background:linear-gradient(135deg,#14213d 0%,#1d3557 55%,#234a6d 100%);border-radius:16px;padding:34px 36px;color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.05)}
+.hero h1{font-size:27px;letter-spacing:.5px;font-weight:700}
+.hero .sub{margin-top:8px;font-size:13.5px;color:#b9c6d6}
+.hero .tagline{margin-top:18px;font-size:15px;max-width:820px;color:#e8eef6}
+.idxrow{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:22px}
+.idx{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 12px}
+.iname{font-size:11.5px;color:#a9b8c9}
+.ival{font-size:16px;font-weight:600;margin-top:2px}
+.ipct{font-size:12px;font-weight:600}
+.sec{margin-top:34px}
+.sec h2{font-size:18.5px;font-weight:700;display:flex;align-items:center;gap:10px}
+.sec h2:before{content:"";width:4px;height:18px;border-radius:2px;background:#1d3557;display:inline-block}
+.sec .desc{color:#69748a;font-size:13px;margin:6px 0 16px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 4px}
+.kpi{background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #e6e9ef}
+.kpi .k{font-size:12.5px;color:#7c8698}
+.kpi .v{font-size:24px;font-weight:700;margin-top:2px}
+.kpi .n{font-size:12px;color:#8b95a7;margin-top:2px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:#fff;border:1px solid #e6e9ef;border-radius:12px;padding:16px 18px;position:relative}
+.ctag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600}
+.cname{font-size:17px;font-weight:700;margin-top:8px}
+.cscore{font-size:26px;font-weight:700;color:#1d3557}
+.cscore span{font-size:12px;color:#8b95a7;font-weight:400;margin-left:2px}
+.cmeta{font-size:12px;color:#6b7688;margin-top:3px}
+.panel{background:#fff;border:1px solid #e6e9ef;border-radius:14px;padding:20px 18px 8px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:#5c6779;padding:4px 6px 12px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:13px}
+th,td{padding:9px 10px;border-bottom:1px solid #eef1f5;text-align:left;white-space:nowrap}
+th{background:#f8f9fb;color:#5c6779;font-size:12px;font-weight:600;cursor:pointer;user-select:none;position:sticky;top:0}
+th:hover{color:#1d3557}
+th.num,td.num{text-align:right}
+td.rk{color:#9aa4b5;font-variant-numeric:tabular-nums}
+td.nm{font-weight:600}
+tbody tr:hover{background:#f7f9fc}
+.scorecell{display:flex;align-items:center;gap:8px;min-width:110px}
+.scorecell b{font-variant-numeric:tabular-nums;color:#1d3557}
+.sbar{flex:1;height:5px;background:#eef1f5;border-radius:3px;overflow:hidden}
+.sbar i{display:block;height:100%;background:linear-gradient(90deg,#3b6ea5,#1d3557);border-radius:3px}
+.badge{font-size:11.5px;padding:2px 8px;border-radius:20px;font-weight:600}
+.up{color:#d93a3a} .dn{color:#1f9d66} .mut{color:#9aa4b5}
+.tblwrap{max-height:640px;overflow:auto;border:1px solid #e6e9ef;border-radius:12px}
+.tier{font-weight:700;width:96px}
+.t1{color:#d9480f} .t2{color:#2563eb} .t3{color:#b8860b} .t4{color:#6b7688}
+.note{background:#fff;border:1px solid #e6e9ef;border-radius:12px;padding:18px 20px;font-size:12.8px;color:#5c6779}
+.note b{color:#1f2733}
+.note li{margin:5px 0 5px 18px}
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}
+@media(max-width:900px){.idxrow{grid-template-columns:repeat(4,1fr)}.cards{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}}
+</style></head><body><div class="wrap">
+
+<div class="hero">
+<div class="sub">行业轮动 · 增长期识别 ｜ 数据截至 2026-11-20 收盘</div>
+<h1>A股行业轮动分析报告</h1>
+<div class="tagline">以"景气度 × 趋势动量 × 资金流向 × 拥挤度"四维打分，覆盖同花顺 90 个行业板块，定位当前处于增长期（景气上行 + 趋势确立 + 资金加持）的行业方向。</div>
+<div class="idxrow"><div class="idx"><div class="iname">上证指数</div><div class="ival dn">3533.79</div><div class="ipct dn">-1.23%</div></div><div class="idx"><div class="iname">深证成指</div><div class="ival dn">10256.39</div><div class="ipct dn">-3.09%</div></div><div class="idx"><div class="iname">创业板指</div><div class="ival dn">2212.13</div><div class="ipct dn">-3.54%</div></div><div class="idx"><div class="iname">沪深300</div><div class="ival dn">3954.57</div><div class="ipct dn">-0.76%</div></div><div class="idx"><div class="iname">中证500</div><div class="ival dn">6006.08</div><div class="ipct dn">-3.93%</div></div><div class="idx"><div class="iname">中证1000</div><div class="ival dn">5648.63</div><div class="ipct dn">-4.89%</div></div><div class="idx"><div class="iname">上证50</div><div class="ival up">2785.92</div><div class="ipct up">+0.45%</div></div></div>
+</div>
+
+<div class="sec">
+<h2>市场状态</h2>
+<div class="desc">当日呈现典型"大盘价值稳、小盘成长杀"的防御型轮动：上证50 逆势收涨，中证1000 与创业板显著调整，资金由高弹性成长向金融、红利与低估值周期集中。</div>
+<div class="kpis">
+<div class="kpi"><div class="k">参与评分行业</div><div class="v">90</div><div class="n">同花顺行业板块</div></div>
+<div class="kpi"><div class="k">增长期</div><div class="v" style="color:#d9480f">18</div><div class="n">景气 + 趋势资金双强</div></div>
+<div class="kpi"><div class="k">潜伏期</div><div class="v" style="color:#2563eb">27</div><div class="n">高景气、趋势待修复</div></div>
+<div class="kpi"><div class="k">衰退期</div><div class="v" style="color:#6b7688">18</div><div class="n">双弱，建议规避</div></div>
+</div>
+</div>
+
+<div class="sec">
+<h2>核心结论 · 增长期方向</h2>
+<div class="desc">综合得分前六名中，5 个落在增长期象限，构成当前主线：金融（银行/证券）+ 红利防御（煤炭/公路铁路）+ 周期（港口航运/石油加工）。</div>
+<div class="cards"><div class="card">
+<div class="ctag" style="background:#fdeee7;color:#d9480f">增长期</div>
+<div class="cname">银行</div>
+<div class="cscore">81.2<span>分</span></div>
+<div class="cmeta">净流入 43.1亿 · 20日超额 11.1pct</div>
+<div class="cmeta">净利同比 4% · 营收同比 6%</div>
+</div><div class="card">
+<div class="ctag" style="background:#fdeee7;color:#d9480f">增长期</div>
+<div class="cname">港口航运</div>
+<div class="cscore">71.5<span>分</span></div>
+<div class="cmeta">净流入 -0.1亿 · 20日超额 1.3pct</div>
+<div class="cmeta">净利同比 10% · 营收同比 9%</div>
+</div><div class="card">
+<div class="ctag" style="background:#fdeee7;color:#d9480f">增长期</div>
+<div class="cname">证券</div>
+<div class="cscore">67.3<span>分</span></div>
+<div class="cmeta">净流入 9.8亿 · 20日超额 -2.7pct</div>
+<div class="cmeta">净利同比 7% · 营收同比 8%</div>
+</div><div class="card">
+<div class="ctag" style="background:#fdeee7;color:#d9480f">增长期</div>
+<div class="cname">煤炭开采加工</div>
+<div class="cscore">65.9<span>分</span></div>
+<div class="cmeta">净流入 -2.3亿 · 20日超额 -3.1pct</div>
+<div class="cmeta">净利同比 37% · 营收同比 9%</div>
+</div><div class="card">
+<div class="ctag" style="background:#fdf6e3;color:#d99b00">增长期</div>
+<div class="cname">公路铁路运输</div>
+<div class="cscore">65.9<span>分</span></div>
+<div class="cmeta">净流入 2.5亿 · 20日超额 3.8pct</div>
+<div class="cmeta">净利同比 -6% · 营收同比 -4%</div>
+</div><div class="card">
+<div class="ctag" style="background:#fdeee7;color:#d9480f">增长期</div>
+<div class="cname">石油加工贸易</div>
+<div class="cscore">65.2<span>分</span></div>
+<div class="cmeta">净流入 6.2亿 · 20日超额 -8.3pct</div>
+<div class="cmeta">净利同比 115% · 营收同比 6%</div>
+</div></div>
+</div>
+
+<div class="sec">
+<h2>轮动四象限</h2>
+<div class="desc">横轴为景气度得分（2026Q3 业绩：净利同比、营收同比、净利环比、盈利公司占比），纵轴为趋势动量与资金流均值；气泡大小代表当日净流入绝对值。</div>
+<div class="panel">
+<div class="legend">
+<span><i style="background:#d9480f"></i>增长期</span><span><i style="background:#2563eb"></i>潜伏期</span>
+<span><i style="background:#d99b00"></i>过热期</span><span><i style="background:#8a94a6"></i>衰退期</span>
+<span style="margin-left:auto;color:#9aa4b5">虚线为 90 个行业中位数</span>
+</div>
+<svg viewBox="0 0 880 540" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="468.2" y="30.0" width="383.8" height="252.2" fill="#fdeee7" opacity=".55"/><rect x="74.0" y="30.0" width="394.2" height="252.2" fill="#fdf6e3" opacity=".55"/><rect x="468.2" y="282.2" width="383.8" height="199.8" fill="#e8f0fd" opacity=".55"/><rect x="74.0" y="282.2" width="394.2" height="199.8" fill="#eef0f4" opacity=".55"/><line x1="74.0" y1="30" x2="74.0" y2="482" stroke="#e6e9ef" stroke-width="1"/><line x1="74" y1="482.0" x2="852" y2="482.0" stroke="#e6e9ef" stroke-width="1"/><text x="74.0" y="504" text-anchor="middle" font-size="11" fill="#7c8698">0</text><text x="64" y="486.0" text-anchor="end" font-size="11" fill="#7c8698">0</text><line x1="268.5" y1="30" x2="268.5" y2="482" stroke="#e6e9ef" stroke-width="1"/><line x1="74" y1="369.0" x2="852" y2="369.0" stroke="#e6e9ef" stroke-width="1"/><text x="268.5" y="504" text-anchor="middle" font-size="11" fill="#7c8698">25</text><text x="64" y="373.0" text-anchor="end" font-size="11" fill="#7c8698">25</text><line x1="463.0" y1="30" x2="463.0" y2="482" stroke="#e6e9ef" stroke-width="1"/><line x1="74" y1="256.0" x2="852" y2="256.0" stroke="#e6e9ef" stroke-width="1"/><text x="463.0" y="504" text-anchor="middle" font-size="11" fill="#7c8698">50</text><text x="64" y="260.0" text-anchor="end" font-size="11" fill="#7c8698">50</text><line x1="657.5" y1="30" x2="657.5" y2="482" stroke="#e6e9ef" stroke-width="1"/><line x1="74" y1="143.0" x2="852" y2="143.0" stroke="#e6e9ef" stroke-width="1"/><text x="657.5" y="504" text-anchor="middle" font-size="11" fill="#7c8698">75</text><text x="64" y="147.0" text-anchor="end" font-size="11" fill="#7c8698">75</text><line x1="852.0" y1="30" x2="852.0" y2="482" stroke="#e6e9ef" stroke-width="1"/><line x1="74" y1="30.0" x2="852" y2="30.0" stroke="#e6e9ef" stroke-width="1"/><text x="852.0" y="504" text-anchor="middle" font-size="11" fill="#7c8698">100</text><text x="64" y="34.0" text-anchor="end" font-size="11" fill="#7c8698">100</text><circle cx="657.1" cy="39.7" r="7.3" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>银行｜综合81.2｜景气74.9｜趋势资金97.9｜净流入43.1亿</title></circle><circle cx="674.4" cy="135.2" r="4.0" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>港口航运｜综合71.5｜景气77.2｜趋势资金76.7｜净流入-0.1亿</title></circle><circle cx="564.1" cy="133.1" r="4.8" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>证券｜综合67.3｜景气63.0｜趋势资金77.2｜净流入9.8亿</title></circle><circle cx="691.2" cy="185.2" r="4.2" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>煤炭开采加工｜综合65.9｜景气79.3｜趋势资金65.7｜净流入-2.3亿</title></circle><circle cx="455.7" cy="98.2" r="4.2" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>公路铁路运输｜综合65.9｜景气49.1｜趋势资金84.9｜净流入2.5亿</title></circle><circle cx="603.0" cy="162.6" r="4.5" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>石油加工贸易｜综合65.2｜景气68.0｜趋势资金70.7｜净流入6.2亿</title></circle><circle cx="830.4" cy="283.5" r="4.9" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>元件｜综合63.0｜景气97.2｜趋势资金43.9｜净流入10.3亿</title></circle><circle cx="579.7" cy="184.7" r="4.2" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>工程机械｜综合60.9｜景气65.0｜趋势资金65.8｜净流入1.9亿</title></circle><circle cx="355.8" cy="126.6" r="4.2" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>养殖业｜综合59.5｜景气36.2｜趋势资金78.6｜净流入2.4亿</title></circle><circle cx="283.2" cy="117.0" r="4.6" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>电力｜综合59.2｜景气26.9｜趋势资金80.8｜净流入6.9亿</title></circle><circle cx="443.1" cy="178.0" r="4.1" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>燃气｜综合58.5｜景气47.4｜趋势资金67.2｜净流入-0.7亿</title></circle><circle cx="489.4" cy="178.5" r="4.1" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>饮料制造｜综合57.9｜景气53.4｜趋势资金67.1｜净流入-1.1亿</title></circle><circle cx="193.7" cy="89.4" r="5.0" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>保险｜综合57.0｜景气15.4｜趋势资金86.9｜净流入12.5亿</title></circle><circle cx="426.7" cy="189.1" r="4.1" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>汽车整车｜综合57.0｜景气45.3｜趋势资金64.8｜净流入-1.5亿</title></circle><circle cx="747.4" cy="307.9" r="4.3" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>电池｜综合57.0｜景气86.6｜趋势资金38.5｜净流入3.6亿</title></circle><circle cx="453.5" cy="184.3" r="4.0" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>轨交设备｜综合56.9｜景气48.8｜趋势资金65.9｜净流入-0.5亿</title></circle><circle cx="566.7" cy="223.1" r="4.1" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>其他社会服务｜综合56.5｜景气63.3｜趋势资金57.3｜净流入-0.6亿</title></circle><circle cx="541.7" cy="241.4" r="4.1" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>油气开采及服务｜综合56.2｜景气60.1｜趋势资金53.2｜净流入-0.7亿</title></circle><circle cx="668.3" cy="244.3" r="4.2" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>黑色家电｜综合55.7｜景气76.4｜趋势资金52.6｜净流入-3.0亿</title></circle><circle cx="236.5" cy="123.7" r="4.5" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>影视院线｜综合54.6｜景气20.9｜趋势资金79.3｜净流入6.3亿</title></circle><circle cx="521.3" cy="209.5" r="4.4" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>食品加工制造｜综合54.4｜景气57.5｜趋势资金60.3｜净流入-4.8亿</title></circle><circle cx="273.3" cy="138.5" r="4.5" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>白酒｜综合53.8｜景气25.6｜趋势资金76.0｜净流入5.6亿</title></circle><circle cx="329.4" cy="176.6" r="4.4" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>白色家电｜综合53.7｜景气32.8｜趋势资金67.6｜净流入5.1亿</title></circle><circle cx="421.1" cy="201.1" r="4.1" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>机场航运｜综合53.2｜景气44.6｜趋势资金62.1｜净流入-1.8亿</title></circle><circle cx="549.9" cy="241.8" r="4.2" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>物流｜综合52.3｜景气61.2｜趋势资金53.1｜净流入-2.3亿</title></circle><circle cx="569.3" cy="269.6" r="4.2" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>多元金融｜综合52.2｜景气63.7｜趋势资金47.0｜净流入-1.9亿</title></circle><circle cx="527.8" cy="251.9" r="4.1" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>旅游及酒店｜综合52.2｜景气58.3｜趋势资金50.9｜净流入-1.4亿</title></circle><circle cx="715.0" cy="314.5" r="4.0" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>贵金属｜综合52.0｜景气82.4｜趋势资金37.1｜净流入0.1亿</title></circle><circle cx="302.2" cy="179.7" r="4.1" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>通信服务｜综合51.9｜景气29.3｜趋势资金66.9｜净流入1.3亿</title></circle><circle cx="329.0" cy="182.6" r="4.0" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>汽车服务及其他｜综合51.6｜景气32.8｜趋势资金66.2｜净流入-0.5亿</title></circle><circle cx="289.2" cy="197.4" r="4.0" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>综合｜综合51.6｜景气27.7｜趋势资金63.0｜净流入-0.3亿</title></circle><circle cx="724.9" cy="344.6" r="4.6" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>工业金属｜综合51.0｜景气83.7｜趋势资金30.4｜净流入-7.2亿</title></circle><circle cx="750.0" cy="373.1" r="4.1" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>金属新材料｜综合49.7｜景气86.9｜趋势资金24.1｜净流入-1.8亿</title></circle><circle cx="525.2" cy="266.9" r="4.3" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>服装家纺｜综合49.4｜景气58.0｜趋势资金47.6｜净流入-3.1亿</title></circle><circle cx="476.0" cy="260.9" r="4.1" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>医药商业｜综合49.4｜景气51.7｜趋势资金48.9｜净流入-1.1亿</title></circle><circle cx="482.0" cy="264.7" r="4.1" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>贸易｜综合49.1｜景气52.4｜趋势资金48.1｜净流入-0.7亿</title></circle><circle cx="382.6" cy="224.4" r="4.3" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>中药｜综合49.0｜景气39.7｜趋势资金57.0｜净流入-3.2亿</title></circle><circle cx="543.4" cy="298.4" r="4.3" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>化学原料｜综合48.9｜景气60.3｜趋势资金40.6｜净流入-3.5亿</title></circle><circle cx="508.8" cy="256.4" r="4.2" fill="#d9480f" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>纺织制造｜综合48.9｜景气55.9｜趋势资金49.9｜净流入-2.4亿</title></circle><circle cx="766.4" cy="367.5" r="4.8" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>电子化学品｜综合48.4｜景气89.0｜趋势资金25.3｜净流入-9.0亿</title></circle><circle cx="268.5" cy="194.9" r="4.0" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>农产品加工｜综合48.2｜景气25.0｜趋势资金63.5｜净流入-0.4亿</title></circle><circle cx="564.1" cy="296.9" r="4.4" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>医疗器械｜综合47.4｜景气63.0｜趋势资金40.9｜净流入-4.3亿</title></circle><circle cx="699.9" cy="368.1" r="4.1" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>非金属材料｜综合47.3｜景气80.4｜趋势资金25.2｜净流入-0.9亿</title></circle><circle cx="661.8" cy="367.5" r="4.6" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>通信设备｜综合47.0｜景气75.6｜趋势资金25.3｜净流入-7.2亿</title></circle><circle cx="497.6" cy="288.0" r="4.4" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>环境治理｜综合46.5｜景气54.4｜趋势资金42.9｜净流入-4.3亿</title></circle><circle cx="403.4" cy="279.0" r="4.1" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>橡胶制品｜综合46.5｜景气42.3｜趋势资金44.9｜净流入-0.8亿</title></circle><circle cx="748.7" cy="369.8" r="7.3" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>半导体｜综合46.4｜景气86.7｜趋势资金24.8｜净流入-80.2亿</title></circle><circle cx="365.8" cy="264.0" r="4.1" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>光学光电子｜综合46.1｜景气37.5｜趋势资金48.2｜净流入1.2亿</title></circle><circle cx="456.9" cy="281.0" r="4.1" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>美容护理｜综合45.6｜景气49.2｜趋势资金44.5｜净流入-1.5亿</title></circle><circle cx="305.2" cy="217.7" r="4.5" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>小家电｜综合44.8｜景气29.7｜趋势资金58.5｜净流入-5.7亿</title></circle><circle cx="327.3" cy="242.2" r="4.9" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>文化传媒｜综合44.8｜景气32.6｜趋势资金53.1｜净流入-11.0亿</title></circle><circle cx="538.2" cy="334.7" r="4.2" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>包装印刷｜综合44.7｜景气59.7｜趋势资金32.6｜净流入-2.7亿</title></circle><circle cx="739.2" cy="407.3" r="4.8" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>小金属｜综合44.6｜景气85.5｜趋势资金16.5｜净流入-10.2亿</title></circle><circle cx="336.8" cy="260.6" r="4.2" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>零售｜综合44.1｜景气33.8｜趋势资金49.0｜净流入-2.9亿</title></circle><circle cx="676.5" cy="385.2" r="4.7" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>自动化设备｜综合43.8｜景气77.4｜趋势资金21.4｜净流入-8.6亿</title></circle><circle cx="514.9" cy="327.2" r="4.2" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>化学纤维｜综合43.6｜景气56.7｜趋势资金34.2｜净流入-2.3亿</title></circle><circle cx="483.7" cy="306.5" r="4.1" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>造纸｜综合43.5｜景气52.7｜趋势资金38.8｜净流入-1.8亿</title></circle><circle cx="297.9" cy="255.3" r="4.2" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>游戏｜综合43.1｜景气28.8｜趋势资金50.2｜净流入-2.7亿</title></circle><circle cx="527.0" cy="323.5" r="4.4" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>医疗服务｜综合42.6｜景气58.2｜趋势资金35.1｜净流入-4.6亿</title></circle><circle cx="163.0" cy="207.4" r="4.1" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>厨卫电器｜综合42.4｜景气11.4｜趋势资金60.8｜净流入-1.1亿</title></circle><circle cx="467.3" cy="323.4" r="4.4" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>塑料制品｜综合42.2｜景气50.6｜趋势资金35.1｜净流入-4.4亿</title></circle><circle cx="236.5" cy="254.4" r="4.4" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>建筑装饰｜综合42.0｜景气20.9｜趋势资金50.3｜净流入-4.7亿</title></circle><circle cx="436.6" cy="329.6" r="4.1" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>电机｜综合41.9｜景气46.6｜趋势资金33.7｜净流入-1.4亿</title></circle><circle cx="391.3" cy="311.4" r="4.7" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>软件开发｜综合41.7｜景气40.8｜趋势资金37.8｜净流入-8.8亿</title></circle><circle cx="512.3" cy="356.1" r="4.8" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>通用设备｜综合41.4｜景气56.3｜趋势资金27.9｜净流入-9.1亿</title></circle><circle cx="522.6" cy="352.4" r="5.2" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>化学制品｜综合41.2｜景气57.7｜趋势资金28.7｜净流入-13.9亿</title></circle><circle cx="505.4" cy="358.8" r="4.9" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>电网设备｜综合41.1｜景气55.4｜趋势资金27.2｜净流入-10.7亿</title></circle><circle cx="710.2" cy="430.1" r="4.5" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>其他电子｜综合41.1｜景气81.8｜趋势资金11.5｜净流入-5.5亿</title></circle><circle cx="509.2" cy="369.6" r="4.9" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>消费电子｜综合40.5｜景气55.9｜趋势资金24.9｜净流入-10.2亿</title></circle><circle cx="546.0" cy="367.6" r="5.0" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>计算机设备｜综合40.4｜景气60.7｜趋势资金25.3｜净流入-12.0亿</title></circle><circle cx="367.9" cy="302.8" r="5.5" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>IT服务｜综合40.3｜景气37.8｜趋势资金39.6｜净流入-18.4亿</title></circle><circle cx="450.9" cy="332.6" r="4.2" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>互联网电商｜综合40.2｜景气48.4｜趋势资金33.1｜净流入-2.1亿</title></circle><circle cx="602.2" cy="402.6" r="4.4" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>其他电源设备｜综合40.0｜景气67.9｜趋势资金17.6｜净流入-4.4亿</title></circle><circle cx="318.6" cy="285.5" r="4.1" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>教育｜综合40.0｜景气31.4｜趋势资金43.5｜净流入-1.4亿</title></circle><circle cx="224.4" cy="264.4" r="4.2" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>家居用品｜综合39.5｜景气19.3｜趋势资金48.1｜净流入-2.2亿</title></circle><circle cx="699.0" cy="436.7" r="4.4" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>能源金属｜综合38.9｜景气80.3｜趋势资金10.0｜净流入-4.7亿</title></circle><circle cx="398.2" cy="354.6" r="4.8" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>专用设备｜综合37.5｜景气41.7｜趋势资金28.2｜净流入-9.2亿</title></circle><circle cx="402.5" cy="323.5" r="4.3" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>环保设备｜综合37.3｜景气42.2｜趋势资金35.1｜净流入-3.4亿</title></circle><circle cx="144.9" cy="256.0" r="4.3" fill="#d99b00" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>钢铁｜综合37.3｜景气9.1｜趋势资金50.0｜净流入-3.3亿</title></circle><circle cx="420.6" cy="347.7" r="5.6" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>汽车零部件｜综合36.6｜景气44.6｜趋势资金29.7｜净流入-18.7亿</title></circle><circle cx="469.1" cy="368.5" r="4.3" fill="#2563eb" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>生物制品｜综合36.0｜景气50.8｜趋势资金25.1｜净流入-3.3亿</title></circle><circle cx="315.2" cy="333.3" r="4.3" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>农化制品｜综合35.9｜景气31.0｜趋势资金32.9｜净流入-4.0亿</title></circle><circle cx="346.3" cy="342.6" r="4.8" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>房地产｜综合35.0｜景气35.0｜趋势资金30.8｜净流入-9.6亿</title></circle><circle cx="285.8" cy="331.1" r="4.2" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>种植业与林业｜综合34.7｜景气27.2｜趋势资金33.4｜净流入-2.3亿</title></circle><circle cx="408.5" cy="390.0" r="4.4" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>风电设备｜综合33.0｜景气43.0｜趋势资金20.3｜净流入-4.7亿</title></circle><circle cx="402.5" cy="379.4" r="5.0" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>化学制药｜综合32.5｜景气42.2｜趋势资金22.7｜净流入-12.3亿</title></circle><circle cx="144.0" cy="313.9" r="4.6" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>建筑材料｜综合31.3｜景气9.0｜趋势资金37.2｜净流入-7.6亿</title></circle><circle cx="331.6" cy="405.0" r="4.7" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>军工电子｜综合28.8｜景气33.1｜趋势资金17.0｜净流入-8.6亿</title></circle><circle cx="232.2" cy="371.8" r="4.8" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>光伏设备｜综合27.7｜景气20.3｜趋势资金24.4｜净流入-9.8亿</title></circle><circle cx="232.2" cy="407.5" r="5.3" fill="#8a94a6" fill-opacity=".62" stroke="#fff" stroke-width=".8"><title>军工装备｜综合24.6｜景气20.3｜趋势资金16.5｜净流入-15.3亿</title></circle><text x="665.1" y="43.2" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="600">银行</text><text x="682.4" y="138.7" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="600">港口航运</text><text x="572.1" y="136.6" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="600">证券</text><text x="699.2" y="188.7" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="600">煤炭开采加工</text><text x="463.7" y="101.7" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="400">公路铁路运输</text><text x="611.0" y="166.1" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="600">石油加工贸易</text><text x="822.4" y="287.0" text-anchor="end" font-size="11.5" fill="#2b3445" font-weight="400">元件</text><text x="587.7" y="188.2" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="600">工程机械</text><text x="363.8" y="130.1" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="400">养殖业</text><text x="755.4" y="311.4" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="400">电池</text><text x="669.8" y="371.0" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="400">通信设备</text><text x="756.7" y="373.3" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="400">半导体</text><text x="240.2" y="375.3" text-anchor="start" font-size="11.5" fill="#2b3445" font-weight="400">光伏设备</text><text x="82" y="50" font-size="12" fill="#d99b00" font-weight="700">过热期 · 低景气强趋势</text>
+<text x="844" y="50" text-anchor="end" font-size="12" fill="#d9480f" font-weight="700">增长期 · 高景气强趋势</text>
+<text x="844" y="472" text-anchor="end" font-size="12" fill="#2563eb" font-weight="700">潜伏期 · 高景气弱趋势</text>
+<text x="82" y="472" font-size="12" fill="#8a94a6" font-weight="700">衰退期 · 低景气弱趋势</text>
+<line x1="468.2" y1="30" x2="468.2" y2="482" stroke="#9aa4b5" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="74" y1="282.2" x2="852" y2="282.2" stroke="#9aa4b5" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="463.0" y="530" text-anchor="middle" font-size="12.5" fill="#4a5568">景气度得分 →</text>
+<text transform="translate(18,256.0) rotate(-90)" text-anchor="middle" font-size="12.5" fill="#4a5568">趋势+资金得分 →</text></svg>
+</div>
+</div>
+
+<div class="sec">
+<h2>当日资金流向</h2>
+<div class="desc">净流入前 12 与净流出前 8 的行业（单位：亿元）。银行单日净流入 43.1 亿元居首，半导体净流出 80.2 亿元，成长板块资金撤离明显。</div>
+<div class="panel"><svg viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="430.0" y="10" width="152.8" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="575.8" y="22" text-anchor="end" font-size="11" fill="#fff" font-weight="600">+43.1亿</text><text x="104" y="22" text-anchor="end" font-size="12" fill="#2b3445">银行</text><rect x="430.0" y="36" width="44.4" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="480.4" y="48" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+12.5亿</text><text x="104" y="48" text-anchor="end" font-size="12" fill="#2b3445">保险</text><rect x="430.0" y="62" width="36.6" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="472.6" y="74" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+10.3亿</text><text x="104" y="74" text-anchor="end" font-size="12" fill="#2b3445">元件</text><rect x="430.0" y="88" width="34.9" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="470.9" y="100" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+9.8亿</text><text x="104" y="100" text-anchor="end" font-size="12" fill="#2b3445">证券</text><rect x="430.0" y="114" width="24.4" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="460.4" y="126" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+6.9亿</text><text x="104" y="126" text-anchor="end" font-size="12" fill="#2b3445">电力</text><rect x="430.0" y="140" width="22.3" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="458.3" y="152" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+6.3亿</text><text x="104" y="152" text-anchor="end" font-size="12" fill="#2b3445">影视院线</text><rect x="430.0" y="166" width="22.1" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="458.1" y="178" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+6.2亿</text><text x="104" y="178" text-anchor="end" font-size="12" fill="#2b3445">石油加工贸易</text><rect x="430.0" y="192" width="19.8" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="455.8" y="204" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+5.6亿</text><text x="104" y="204" text-anchor="end" font-size="12" fill="#2b3445">白酒</text><rect x="430.0" y="218" width="18.0" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="454.0" y="230" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+5.1亿</text><text x="104" y="230" text-anchor="end" font-size="12" fill="#2b3445">白色家电</text><rect x="430.0" y="244" width="12.6" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="448.6" y="256" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+3.6亿</text><text x="104" y="256" text-anchor="end" font-size="12" fill="#2b3445">电池</text><rect x="430.0" y="270" width="8.8" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="444.8" y="282" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+2.5亿</text><text x="104" y="282" text-anchor="end" font-size="12" fill="#2b3445">公路铁路运输</text><rect x="430.0" y="296" width="8.3" height="16" rx="2" fill="#d9480f" fill-opacity=".8"/><text x="444.3" y="308" text-anchor="start" font-size="11" fill="#d9480f" font-weight="600">+2.4亿</text><text x="104" y="308" text-anchor="end" font-size="12" fill="#2b3445">养殖业</text><rect x="146.0" y="322" width="284.0" height="16" rx="2" fill="#2f9e6e" fill-opacity=".8"/><text x="153.0" y="334" text-anchor="start" font-size="11" fill="#fff" font-weight="600">-80.2亿</text><text x="104" y="334" text-anchor="end" font-size="12" fill="#2b3445">半导体</text><rect x="363.7" y="348" width="66.3" height="16" rx="2" fill="#2f9e6e" fill-opacity=".8"/><text x="357.7" y="360" text-anchor="end" font-size="11" fill="#2f9e6e" font-weight="600">-18.7亿</text><text x="104" y="360" text-anchor="end" font-size="12" fill="#2b3445">汽车零部件</text><rect x="364.7" y="374" width="65.3" height="16" rx="2" fill="#2f9e6e" fill-opacity=".8"/><text x="358.7" y="386" text-anchor="end" font-size="11" fill="#2f9e6e" font-weight="600">-18.4亿</text><text x="104" y="386" text-anchor="end" font-size="12" fill="#2b3445">IT服务</text><rect x="375.8" y="400" width="54.2" height="16" rx="2" fill="#2f9e6e" fill-opacity=".8"/><text x="369.8" y="412" text-anchor="end" font-size="11" fill="#2f9e6e" font-weight="600">-15.3亿</text><text x="104" y="412" text-anchor="end" font-size="12" fill="#2b3445">军工装备</text><rect x="380.9" y="426" width="49.1" height="16" rx="2" fill="#2f9e6e" fill-opacity=".8"/><text x="374.9" y="438" text-anchor="end" font-size="11" fill="#2f9e6e" font-weight="600">-13.9亿</text><text x="104" y="438" text-anchor="end" font-size="12" fill="#2b3445">化学制品</text><rect x="386.2" y="452" width="43.8" height="16" rx="2" fill="#2f9e6e" fill-opacity=".8"/><text x="380.2" y="464" text-anchor="end" font-size="11" fill="#2f9e6e" font-weight="600">-12.3亿</text><text x="104" y="464" text-anchor="end" font-size="12" fill="#2b3445">化学制药</text><rect x="387.3" y="478" width="42.7" height="16" rx="2" fill="#2f9e6e" fill-opacity=".8"/><text x="381.3" y="490" text-anchor="end" font-size="11" fill="#2f9e6e" font-weight="600">-12.0亿</text><text x="104" y="490" text-anchor="end" font-size="12" fill="#2b3445">计算机设备</text><rect x="390.9" y="504" width="39.1" height="16" rx="2" fill="#2f9e6e" fill-opacity=".8"/><text x="384.9" y="516" text-anchor="end" font-size="11" fill="#2f9e6e" font-weight="600">-11.0亿</text><text x="104" y="516" text-anchor="end" font-size="12" fill="#2b3445">文化传媒</text><line x1="430" y1="4" x2="430" y2="548" stroke="#c9cfda" stroke-width="1"/><text x="430" y="558" text-anchor="middle" font-size="11" fill="#7c8698">0</text></svg></div>
+</div>
+
+<div class="sec">
+<h2>全行业打分排名</h2>
+<div class="desc">点击表头可排序。综合分 = 30% 趋势动量 + 30% 资金流向 + 30% 景气度 + 10% (100 − 拥挤度)。</div>
+<div class="tblwrap"><table id="tbl">
+<thead><tr>
+<th data-t="num">排名</th><th>行业</th><th data-t="num">综合</th><th data-t="num" class="num">趋势</th><th data-t="num" class="num">资金</th>
+<th data-t="num" class="num">景气</th><th data-t="num" class="num">拥挤</th><th data-t="num" class="num">净流入(亿)</th>
+<th data-t="num" class="num">20日超额</th><th data-t="num" class="num">净利同比</th><th>阶段</th>
+</tr></thead>
+<tbody><tr data-phase="增长期">
+<td class="rk">1</td>
+<td class="nm">银行</td>
+<td><div class="scorecell"><b>81.2</b><div class="sbar"><i style="width:81%"></i></div></div></td>
+<td class="num">100</td><td class="num">96</td><td class="num">75</td><td class="num">100</td>
+<td class="num"><span class="up">+43.12</span></td><td class="num"><span class="up">+11.1pct</span></td>
+<td class="num"><span class="up">+4.5%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">2</td>
+<td class="nm">港口航运</td>
+<td><div class="scorecell"><b>71.5</b><div class="sbar"><i style="width:71%"></i></div></div></td>
+<td class="num">74</td><td class="num">79</td><td class="num">77</td><td class="num">77</td>
+<td class="num"><span class="dn">-0.13</span></td><td class="num"><span class="up">+1.3pct</span></td>
+<td class="num"><span class="up">+9.5%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">3</td>
+<td class="nm">证券</td>
+<td><div class="scorecell"><b>67.3</b><div class="sbar"><i style="width:67%"></i></div></div></td>
+<td class="num">72</td><td class="num">82</td><td class="num">63</td><td class="num">79</td>
+<td class="num"><span class="up">+9.84</span></td><td class="num"><span class="dn">-2.7pct</span></td>
+<td class="num"><span class="up">+7.5%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">4</td>
+<td class="nm">煤炭开采加工</td>
+<td><div class="scorecell"><b>65.9</b><div class="sbar"><i style="width:66%"></i></div></div></td>
+<td class="num">65</td><td class="num">66</td><td class="num">79</td><td class="num">73</td>
+<td class="num"><span class="dn">-2.31</span></td><td class="num"><span class="dn">-3.1pct</span></td>
+<td class="num"><span class="up">+36.6%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">5</td>
+<td class="nm">公路铁路运输</td>
+<td><div class="scorecell"><b>65.9</b><div class="sbar"><i style="width:66%"></i></div></div></td>
+<td class="num">78</td><td class="num">92</td><td class="num">49</td><td class="num">98</td>
+<td class="num"><span class="up">+2.48</span></td><td class="num"><span class="up">+3.8pct</span></td>
+<td class="num"><span class="dn">-5.6%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">6</td>
+<td class="nm">石油加工贸易</td>
+<td><div class="scorecell"><b>65.2</b><div class="sbar"><i style="width:65%"></i></div></div></td>
+<td class="num">57</td><td class="num">85</td><td class="num">68</td><td class="num">76</td>
+<td class="num"><span class="up">+6.25</span></td><td class="num"><span class="dn">-8.3pct</span></td>
+<td class="num"><span class="up">+115.2%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">7</td>
+<td class="nm">元件</td>
+<td><div class="scorecell"><b>63.0</b><div class="sbar"><i style="width:63%"></i></div></div></td>
+<td class="num">8</td><td class="num">80</td><td class="num">97</td><td class="num">26</td>
+<td class="num"><span class="up">+10.34</span></td><td class="num"><span class="dn">-20.0pct</span></td>
+<td class="num"><span class="up">+79.0%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">8</td>
+<td class="nm">工程机械</td>
+<td><div class="scorecell"><b>60.9</b><div class="sbar"><i style="width:61%"></i></div></div></td>
+<td class="num">58</td><td class="num">74</td><td class="num">65</td><td class="num">81</td>
+<td class="num"><span class="up">+1.85</span></td><td class="num"><span class="dn">-8.3pct</span></td>
+<td class="num"><span class="dn">-0.4%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">9</td>
+<td class="nm">养殖业</td>
+<td><div class="scorecell"><b>59.5</b><div class="sbar"><i style="width:59%"></i></div></div></td>
+<td class="num">66</td><td class="num">92</td><td class="num">36</td><td class="num">86</td>
+<td class="num"><span class="up">+2.35</span></td><td class="num"><span class="dn">-3.2pct</span></td>
+<td class="num"><span class="dn">-72.7%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">10</td>
+<td class="nm">电力</td>
+<td><div class="scorecell"><b>59.2</b><div class="sbar"><i style="width:59%"></i></div></div></td>
+<td class="num">71</td><td class="num">90</td><td class="num">27</td><td class="num">74</td>
+<td class="num"><span class="up">+6.90</span></td><td class="num"><span class="dn">-3.0pct</span></td>
+<td class="num"><span class="dn">-23.3%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">11</td>
+<td class="nm">燃气</td>
+<td><div class="scorecell"><b>58.5</b><div class="sbar"><i style="width:58%"></i></div></div></td>
+<td class="num">68</td><td class="num">67</td><td class="num">47</td><td class="num">61</td>
+<td class="num"><span class="dn">-0.73</span></td><td class="num"><span class="dn">-3.0pct</span></td>
+<td class="num"><span class="up">+0.6%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">12</td>
+<td class="nm">饮料制造</td>
+<td><div class="scorecell"><b>57.9</b><div class="sbar"><i style="width:58%"></i></div></div></td>
+<td class="num">64</td><td class="num">70</td><td class="num">53</td><td class="num">84</td>
+<td class="num"><span class="dn">-1.10</span></td><td class="num"><span class="dn">-6.0pct</span></td>
+<td class="num"><span class="dn">-2.5%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">13</td>
+<td class="nm">保险</td>
+<td><div class="scorecell"><b>57.0</b><div class="sbar"><i style="width:57%"></i></div></div></td>
+<td class="num">78</td><td class="num">96</td><td class="num">15</td><td class="num">97</td>
+<td class="num"><span class="up">+12.52</span></td><td class="num"><span class="up">+8.2pct</span></td>
+<td class="num"><span class="dn">-32.0%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">14</td>
+<td class="nm">汽车整车</td>
+<td><div class="scorecell"><b>57.0</b><div class="sbar"><i style="width:57%"></i></div></div></td>
+<td class="num">63</td><td class="num">66</td><td class="num">45</td><td class="num">55</td>
+<td class="num"><span class="dn">-1.54</span></td><td class="num"><span class="dn">-4.7pct</span></td>
+<td class="num"><span class="dn">-4.2%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">15</td>
+<td class="nm">电池</td>
+<td><div class="scorecell"><b>57.0</b><div class="sbar"><i style="width:57%"></i></div></div></td>
+<td class="num">19</td><td class="num">58</td><td class="num">87</td><td class="num">21</td>
+<td class="num"><span class="up">+3.57</span></td><td class="num"><span class="dn">-12.4pct</span></td>
+<td class="num"><span class="up">+45.1%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">16</td>
+<td class="nm">轨交设备</td>
+<td><div class="scorecell"><b>56.9</b><div class="sbar"><i style="width:57%"></i></div></div></td>
+<td class="num">57</td><td class="num">74</td><td class="num">49</td><td class="num">72</td>
+<td class="num"><span class="dn">-0.45</span></td><td class="num"><span class="dn">-9.2pct</span></td>
+<td class="num"><span class="up">+3.0%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">17</td>
+<td class="nm">其他社会服务</td>
+<td><div class="scorecell"><b>56.5</b><div class="sbar"><i style="width:56%"></i></div></div></td>
+<td class="num">44</td><td class="num">70</td><td class="num">63</td><td class="num">69</td>
+<td class="num"><span class="dn">-0.62</span></td><td class="num"><span class="dn">-9.4pct</span></td>
+<td class="num"><span class="up">+0.4%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">18</td>
+<td class="nm">油气开采及服务</td>
+<td><div class="scorecell"><b>56.2</b><div class="sbar"><i style="width:56%"></i></div></div></td>
+<td class="num">46</td><td class="num">61</td><td class="num">60</td><td class="num">37</td>
+<td class="num"><span class="dn">-0.74</span></td><td class="num"><span class="dn">-9.0pct</span></td>
+<td class="num"><span class="up">+0.7%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">19</td>
+<td class="nm">黑色家电</td>
+<td><div class="scorecell"><b>55.7</b><div class="sbar"><i style="width:56%"></i></div></div></td>
+<td class="num">71</td><td class="num">34</td><td class="num">76</td><td class="num">87</td>
+<td class="num"><span class="dn">-2.97</span></td><td class="num"><span class="dn">-4.1pct</span></td>
+<td class="num"><span class="up">+13.2%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">20</td>
+<td class="nm">影视院线</td>
+<td><div class="scorecell"><b>54.6</b><div class="sbar"><i style="width:55%"></i></div></div></td>
+<td class="num">68</td><td class="num">91</td><td class="num">21</td><td class="num">92</td>
+<td class="num"><span class="up">+6.30</span></td><td class="num"><span class="dn">-2.5pct</span></td>
+<td class="num"><span class="dn">-72.2%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">21</td>
+<td class="nm">食品加工制造</td>
+<td><div class="scorecell"><b>54.4</b><div class="sbar"><i style="width:54%"></i></div></div></td>
+<td class="num">71</td><td class="num">50</td><td class="num">58</td><td class="num">91</td>
+<td class="num"><span class="dn">-4.75</span></td><td class="num"><span class="dn">-3.1pct</span></td>
+<td class="num"><span class="dn">-4.3%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">22</td>
+<td class="nm">白酒</td>
+<td><div class="scorecell"><b>53.8</b><div class="sbar"><i style="width:54%"></i></div></div></td>
+<td class="num">76</td><td class="num">76</td><td class="num">26</td><td class="num">95</td>
+<td class="num"><span class="up">+5.58</span></td><td class="num"><span class="up">+3.1pct</span></td>
+<td class="num"><span class="dn">-42.9%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">23</td>
+<td class="nm">白色家电</td>
+<td><div class="scorecell"><b>53.7</b><div class="sbar"><i style="width:54%"></i></div></div></td>
+<td class="num">48</td><td class="num">87</td><td class="num">33</td><td class="num">67</td>
+<td class="num"><span class="up">+5.09</span></td><td class="num"><span class="dn">-9.3pct</span></td>
+<td class="num"><span class="dn">-20.7%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">24</td>
+<td class="nm">机场航运</td>
+<td><div class="scorecell"><b>53.2</b><div class="sbar"><i style="width:53%"></i></div></div></td>
+<td class="num">78</td><td class="num">47</td><td class="num">45</td><td class="num">74</td>
+<td class="num"><span class="dn">-1.75</span></td><td class="num"><span class="up">+7.9pct</span></td>
+<td class="num"><span class="dn">-70.6%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">25</td>
+<td class="nm">物流</td>
+<td><div class="scorecell"><b>52.3</b><div class="sbar"><i style="width:52%"></i></div></div></td>
+<td class="num">65</td><td class="num">41</td><td class="num">61</td><td class="num">79</td>
+<td class="num"><span class="dn">-2.32</span></td><td class="num"><span class="dn">-6.3pct</span></td>
+<td class="num"><span class="dn">-0.1%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">26</td>
+<td class="nm">多元金融</td>
+<td><div class="scorecell"><b>52.2</b><div class="sbar"><i style="width:52%"></i></div></div></td>
+<td class="num">57</td><td class="num">37</td><td class="num">64</td><td class="num">51</td>
+<td class="num"><span class="dn">-1.94</span></td><td class="num"><span class="dn">-7.1pct</span></td>
+<td class="num"><span class="up">+14.7%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">27</td>
+<td class="nm">旅游及酒店</td>
+<td><div class="scorecell"><b>52.2</b><div class="sbar"><i style="width:52%"></i></div></div></td>
+<td class="num">51</td><td class="num">51</td><td class="num">58</td><td class="num">59</td>
+<td class="num"><span class="dn">-1.35</span></td><td class="num"><span class="dn">-5.7pct</span></td>
+<td class="num"><span class="up">+1.1%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">28</td>
+<td class="nm">贵金属</td>
+<td><div class="scorecell"><b>52.0</b><div class="sbar"><i style="width:52%"></i></div></div></td>
+<td class="num">6</td><td class="num">68</td><td class="num">82</td><td class="num">50</td>
+<td class="num"><span class="up">+0.09</span></td><td class="num"><span class="dn">-14.7pct</span></td>
+<td class="num"><span class="up">+54.6%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">29</td>
+<td class="nm">通信服务</td>
+<td><div class="scorecell"><b>51.9</b><div class="sbar"><i style="width:52%"></i></div></div></td>
+<td class="num">48</td><td class="num">86</td><td class="num">29</td><td class="num">71</td>
+<td class="num"><span class="up">+1.32</span></td><td class="num"><span class="dn">-7.5pct</span></td>
+<td class="num"><span class="dn">-5.9%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">30</td>
+<td class="nm">汽车服务及其他</td>
+<td><div class="scorecell"><b>51.6</b><div class="sbar"><i style="width:52%"></i></div></div></td>
+<td class="num">58</td><td class="num">75</td><td class="num">33</td><td class="num">80</td>
+<td class="num"><span class="dn">-0.51</span></td><td class="num"><span class="dn">-7.9pct</span></td>
+<td class="num"><span class="dn">-20.8%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">31</td>
+<td class="nm">综合</td>
+<td><div class="scorecell"><b>51.6</b><div class="sbar"><i style="width:52%"></i></div></div></td>
+<td class="num">49</td><td class="num">77</td><td class="num">28</td><td class="num">45</td>
+<td class="num"><span class="dn">-0.28</span></td><td class="num"><span class="dn">-8.9pct</span></td>
+<td class="num"><span class="dn">-10.9%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">32</td>
+<td class="nm">工业金属</td>
+<td><div class="scorecell"><b>51.0</b><div class="sbar"><i style="width:51%"></i></div></div></td>
+<td class="num">18</td><td class="num">43</td><td class="num">84</td><td class="num">23</td>
+<td class="num"><span class="dn">-7.23</span></td><td class="num"><span class="dn">-11.9pct</span></td>
+<td class="num"><span class="up">+49.9%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">33</td>
+<td class="nm">金属新材料</td>
+<td><div class="scorecell"><b>49.7</b><div class="sbar"><i style="width:50%"></i></div></div></td>
+<td class="num">9</td><td class="num">39</td><td class="num">87</td><td class="num">8</td>
+<td class="num"><span class="dn">-1.78</span></td><td class="num"><span class="dn">-16.2pct</span></td>
+<td class="num"><span class="up">+20.6%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">34</td>
+<td class="nm">服装家纺</td>
+<td><div class="scorecell"><b>49.4</b><div class="sbar"><i style="width:49%"></i></div></div></td>
+<td class="num">46</td><td class="num">49</td><td class="num">58</td><td class="num">65</td>
+<td class="num"><span class="dn">-3.14</span></td><td class="num"><span class="dn">-8.9pct</span></td>
+<td class="num"><span class="up">+12.7%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">35</td>
+<td class="nm">医药商业</td>
+<td><div class="scorecell"><b>49.4</b><div class="sbar"><i style="width:49%"></i></div></div></td>
+<td class="num">57</td><td class="num">41</td><td class="num">52</td><td class="num">55</td>
+<td class="num"><span class="dn">-1.15</span></td><td class="num"><span class="dn">-7.1pct</span></td>
+<td class="num"><span class="dn">-2.2%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">36</td>
+<td class="nm">贸易</td>
+<td><div class="scorecell"><b>49.1</b><div class="sbar"><i style="width:49%"></i></div></div></td>
+<td class="num">57</td><td class="num">39</td><td class="num">52</td><td class="num">55</td>
+<td class="num"><span class="dn">-0.70</span></td><td class="num"><span class="dn">-7.1pct</span></td>
+<td class="num"><span class="up">+5.2%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">37</td>
+<td class="nm">中药</td>
+<td><div class="scorecell"><b>49.0</b><div class="sbar"><i style="width:49%"></i></div></div></td>
+<td class="num">62</td><td class="num">52</td><td class="num">40</td><td class="num">71</td>
+<td class="num"><span class="dn">-3.20</span></td><td class="num"><span class="dn">-4.9pct</span></td>
+<td class="num"><span class="dn">-2.9%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">38</td>
+<td class="nm">化学原料</td>
+<td><div class="scorecell"><b>48.9</b><div class="sbar"><i style="width:49%"></i></div></div></td>
+<td class="num">38</td><td class="num">44</td><td class="num">60</td><td class="num">36</td>
+<td class="num"><span class="dn">-3.52</span></td><td class="num"><span class="dn">-10.1pct</span></td>
+<td class="num"><span class="up">+36.0%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="增长期">
+<td class="rk">39</td>
+<td class="nm">纺织制造</td>
+<td><div class="scorecell"><b>48.9</b><div class="sbar"><i style="width:49%"></i></div></div></td>
+<td class="num">59</td><td class="num">41</td><td class="num">56</td><td class="num">78</td>
+<td class="num"><span class="dn">-2.44</span></td><td class="num"><span class="dn">-8.1pct</span></td>
+<td class="num"><span class="dn">-5.2%</span></td>
+<td><span class="badge" style="background:#fdeee7;color:#d9480f">增长期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">40</td>
+<td class="nm">电子化学品</td>
+<td><div class="scorecell"><b>48.4</b><div class="sbar"><i style="width:48%"></i></div></div></td>
+<td class="num">8</td><td class="num">43</td><td class="num">89</td><td class="num">35</td>
+<td class="num"><span class="dn">-9.00</span></td><td class="num"><span class="dn">-13.9pct</span></td>
+<td class="num"><span class="up">+19.4%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">41</td>
+<td class="nm">农产品加工</td>
+<td><div class="scorecell"><b>48.2</b><div class="sbar"><i style="width:48%"></i></div></div></td>
+<td class="num">54</td><td class="num">73</td><td class="num">25</td><td class="num">74</td>
+<td class="num"><span class="dn">-0.38</span></td><td class="num"><span class="dn">-7.3pct</span></td>
+<td class="num"><span class="dn">-28.7%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">42</td>
+<td class="nm">医疗器械</td>
+<td><div class="scorecell"><b>47.4</b><div class="sbar"><i style="width:47%"></i></div></div></td>
+<td class="num">38</td><td class="num">44</td><td class="num">63</td><td class="num">61</td>
+<td class="num"><span class="dn">-4.27</span></td><td class="num"><span class="dn">-10.6pct</span></td>
+<td class="num"><span class="dn">-0.3%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">43</td>
+<td class="nm">非金属材料</td>
+<td><div class="scorecell"><b>47.3</b><div class="sbar"><i style="width:47%"></i></div></div></td>
+<td class="num">9</td><td class="num">41</td><td class="num">80</td><td class="num">19</td>
+<td class="num"><span class="dn">-0.90</span></td><td class="num"><span class="dn">-15.4pct</span></td>
+<td class="num"><span class="up">+6.5%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">44</td>
+<td class="nm">通信设备</td>
+<td><div class="scorecell"><b>47.0</b><div class="sbar"><i style="width:47%"></i></div></div></td>
+<td class="num">3</td><td class="num">47</td><td class="num">76</td><td class="num">8</td>
+<td class="num"><span class="dn">-7.24</span></td><td class="num"><span class="dn">-20.0pct</span></td>
+<td class="num"><span class="up">+8.1%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">45</td>
+<td class="nm">环境治理</td>
+<td><div class="scorecell"><b>46.5</b><div class="sbar"><i style="width:47%"></i></div></div></td>
+<td class="num">34</td><td class="num">52</td><td class="num">54</td><td class="num">56</td>
+<td class="num"><span class="dn">-4.29</span></td><td class="num"><span class="dn">-10.3pct</span></td>
+<td class="num"><span class="up">+2.3%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">46</td>
+<td class="nm">橡胶制品</td>
+<td><div class="scorecell"><b>46.5</b><div class="sbar"><i style="width:46%"></i></div></div></td>
+<td class="num">25</td><td class="num">64</td><td class="num">42</td><td class="num">32</td>
+<td class="num"><span class="dn">-0.79</span></td><td class="num"><span class="dn">-13.7pct</span></td>
+<td class="num"><span class="dn">-21.8%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">47</td>
+<td class="nm">半导体</td>
+<td><div class="scorecell"><b>46.4</b><div class="sbar"><i style="width:46%"></i></div></div></td>
+<td class="num">9</td><td class="num">41</td><td class="num">87</td><td class="num">45</td>
+<td class="num"><span class="dn">-80.15</span></td><td class="num"><span class="dn">-14.4pct</span></td>
+<td class="num"><span class="up">+28.5%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">48</td>
+<td class="nm">光学光电子</td>
+<td><div class="scorecell"><b>46.1</b><div class="sbar"><i style="width:46%"></i></div></div></td>
+<td class="num">20</td><td class="num">76</td><td class="num">38</td><td class="num">41</td>
+<td class="num"><span class="up">+1.25</span></td><td class="num"><span class="dn">-13.6pct</span></td>
+<td class="num"><span class="dn">-13.1%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">49</td>
+<td class="nm">美容护理</td>
+<td><div class="scorecell"><b>45.6</b><div class="sbar"><i style="width:46%"></i></div></div></td>
+<td class="num">49</td><td class="num">40</td><td class="num">49</td><td class="num">58</td>
+<td class="num"><span class="dn">-1.48</span></td><td class="num"><span class="dn">-10.7pct</span></td>
+<td class="num"><span class="dn">-2.3%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">50</td>
+<td class="nm">小家电</td>
+<td><div class="scorecell"><b>44.8</b><div class="sbar"><i style="width:45%"></i></div></div></td>
+<td class="num">72</td><td class="num">45</td><td class="num">30</td><td class="num">92</td>
+<td class="num"><span class="dn">-5.69</span></td><td class="num"><span class="dn">-3.2pct</span></td>
+<td class="num"><span class="dn">-39.5%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">51</td>
+<td class="nm">文化传媒</td>
+<td><div class="scorecell"><b>44.8</b><div class="sbar"><i style="width:45%"></i></div></div></td>
+<td class="num">62</td><td class="num">45</td><td class="num">33</td><td class="num">68</td>
+<td class="num"><span class="dn">-11.04</span></td><td class="num"><span class="dn">-8.5pct</span></td>
+<td class="num"><span class="dn">-9.1%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">52</td>
+<td class="nm">包装印刷</td>
+<td><div class="scorecell"><b>44.7</b><div class="sbar"><i style="width:45%"></i></div></div></td>
+<td class="num">34</td><td class="num">31</td><td class="num">60</td><td class="num">28</td>
+<td class="num"><span class="dn">-2.74</span></td><td class="num"><span class="dn">-11.3pct</span></td>
+<td class="num"><span class="dn">-8.9%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">53</td>
+<td class="nm">小金属</td>
+<td><div class="scorecell"><b>44.6</b><div class="sbar"><i style="width:45%"></i></div></div></td>
+<td class="num">8</td><td class="num">25</td><td class="num">86</td><td class="num">10</td>
+<td class="num"><span class="dn">-10.16</span></td><td class="num"><span class="dn">-14.8pct</span></td>
+<td class="num"><span class="up">+47.2%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">54</td>
+<td class="nm">零售</td>
+<td><div class="scorecell"><b>44.1</b><div class="sbar"><i style="width:44%"></i></div></div></td>
+<td class="num">53</td><td class="num">45</td><td class="num">34</td><td class="num">54</td>
+<td class="num"><span class="dn">-2.87</span></td><td class="num"><span class="dn">-8.8pct</span></td>
+<td class="num"><span class="dn">-2.8%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">55</td>
+<td class="nm">自动化设备</td>
+<td><div class="scorecell"><b>43.8</b><div class="sbar"><i style="width:44%"></i></div></div></td>
+<td class="num">8</td><td class="num">34</td><td class="num">77</td><td class="num">22</td>
+<td class="num"><span class="dn">-8.56</span></td><td class="num"><span class="dn">-18.3pct</span></td>
+<td class="num"><span class="up">+19.1%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">56</td>
+<td class="nm">化学纤维</td>
+<td><div class="scorecell"><b>43.6</b><div class="sbar"><i style="width:44%"></i></div></div></td>
+<td class="num">37</td><td class="num">31</td><td class="num">57</td><td class="num">39</td>
+<td class="num"><span class="dn">-2.34</span></td><td class="num"><span class="dn">-9.5pct</span></td>
+<td class="num"><span class="up">+1.1%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">57</td>
+<td class="nm">造纸</td>
+<td><div class="scorecell"><b>43.5</b><div class="sbar"><i style="width:44%"></i></div></div></td>
+<td class="num">37</td><td class="num">41</td><td class="num">53</td><td class="num">56</td>
+<td class="num"><span class="dn">-1.78</span></td><td class="num"><span class="dn">-10.5pct</span></td>
+<td class="num"><span class="up">+2.9%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">58</td>
+<td class="nm">游戏</td>
+<td><div class="scorecell"><b>43.1</b><div class="sbar"><i style="width:43%"></i></div></div></td>
+<td class="num">51</td><td class="num">49</td><td class="num">29</td><td class="num">57</td>
+<td class="num"><span class="dn">-2.74</span></td><td class="num"><span class="dn">-8.5pct</span></td>
+<td class="num"><span class="dn">-19.7%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">59</td>
+<td class="nm">医疗服务</td>
+<td><div class="scorecell"><b>42.6</b><div class="sbar"><i style="width:43%"></i></div></div></td>
+<td class="num">28</td><td class="num">42</td><td class="num">58</td><td class="num">59</td>
+<td class="num"><span class="dn">-4.56</span></td><td class="num"><span class="dn">-10.0pct</span></td>
+<td class="num"><span class="dn">-0.9%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">60</td>
+<td class="nm">厨卫电器</td>
+<td><div class="scorecell"><b>42.4</b><div class="sbar"><i style="width:42%"></i></div></div></td>
+<td class="num">56</td><td class="num">65</td><td class="num">11</td><td class="num">75</td>
+<td class="num"><span class="dn">-1.13</span></td><td class="num"><span class="dn">-9.6pct</span></td>
+<td class="num"><span class="dn">-27.5%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">61</td>
+<td class="nm">塑料制品</td>
+<td><div class="scorecell"><b>42.2</b><div class="sbar"><i style="width:42%"></i></div></div></td>
+<td class="num">22</td><td class="num">48</td><td class="num">51</td><td class="num">41</td>
+<td class="num"><span class="dn">-4.42</span></td><td class="num"><span class="dn">-13.5pct</span></td>
+<td class="num"><span class="dn">-7.5%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">62</td>
+<td class="nm">建筑装饰</td>
+<td><div class="scorecell"><b>42.0</b><div class="sbar"><i style="width:42%"></i></div></div></td>
+<td class="num">42</td><td class="num">59</td><td class="num">21</td><td class="num">45</td>
+<td class="num"><span class="dn">-4.67</span></td><td class="num"><span class="dn">-10.4pct</span></td>
+<td class="num"><span class="dn">-16.6%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">63</td>
+<td class="nm">电机</td>
+<td><div class="scorecell"><b>41.9</b><div class="sbar"><i style="width:42%"></i></div></div></td>
+<td class="num">21</td><td class="num">46</td><td class="num">47</td><td class="num">23</td>
+<td class="num"><span class="dn">-1.44</span></td><td class="num"><span class="dn">-18.5pct</span></td>
+<td class="num"><span class="dn">-31.2%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">64</td>
+<td class="nm">软件开发</td>
+<td><div class="scorecell"><b>41.7</b><div class="sbar"><i style="width:42%"></i></div></div></td>
+<td class="num">27</td><td class="num">48</td><td class="num">41</td><td class="num">32</td>
+<td class="num"><span class="dn">-8.83</span></td><td class="num"><span class="dn">-16.9pct</span></td>
+<td class="num"><span class="dn">-6.0%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">65</td>
+<td class="nm">通用设备</td>
+<td><div class="scorecell"><b>41.4</b><div class="sbar"><i style="width:41%"></i></div></div></td>
+<td class="num">17</td><td class="num">39</td><td class="num">56</td><td class="num">22</td>
+<td class="num"><span class="dn">-9.11</span></td><td class="num"><span class="dn">-16.0pct</span></td>
+<td class="num"><span class="dn">-7.9%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">66</td>
+<td class="nm">化学制品</td>
+<td><div class="scorecell"><b>41.2</b><div class="sbar"><i style="width:41%"></i></div></div></td>
+<td class="num">27</td><td class="num">30</td><td class="num">58</td><td class="num">33</td>
+<td class="num"><span class="dn">-13.87</span></td><td class="num"><span class="dn">-11.8pct</span></td>
+<td class="num"><span class="dn">-3.9%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">67</td>
+<td class="nm">电网设备</td>
+<td><div class="scorecell"><b>41.1</b><div class="sbar"><i style="width:41%"></i></div></div></td>
+<td class="num">23</td><td class="num">31</td><td class="num">55</td><td class="num">18</td>
+<td class="num"><span class="dn">-10.66</span></td><td class="num"><span class="dn">-12.7pct</span></td>
+<td class="num"><span class="dn">-10.6%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">68</td>
+<td class="nm">其他电子</td>
+<td><div class="scorecell"><b>41.1</b><div class="sbar"><i style="width:41%"></i></div></div></td>
+<td class="num">6</td><td class="num">17</td><td class="num">82</td><td class="num">3</td>
+<td class="num"><span class="dn">-5.48</span></td><td class="num"><span class="dn">-17.6pct</span></td>
+<td class="num"><span class="up">+19.6%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">69</td>
+<td class="nm">消费电子</td>
+<td><div class="scorecell"><b>40.5</b><div class="sbar"><i style="width:41%"></i></div></div></td>
+<td class="num">15</td><td class="num">35</td><td class="num">56</td><td class="num">12</td>
+<td class="num"><span class="dn">-10.22</span></td><td class="num"><span class="dn">-14.4pct</span></td>
+<td class="num"><span class="dn">-14.2%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">70</td>
+<td class="nm">计算机设备</td>
+<td><div class="scorecell"><b>40.4</b><div class="sbar"><i style="width:40%"></i></div></div></td>
+<td class="num">20</td><td class="num">30</td><td class="num">61</td><td class="num">29</td>
+<td class="num"><span class="dn">-12.04</span></td><td class="num"><span class="dn">-15.6pct</span></td>
+<td class="num"><span class="up">+0.3%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">71</td>
+<td class="nm">IT服务</td>
+<td><div class="scorecell"><b>40.3</b><div class="sbar"><i style="width:40%"></i></div></div></td>
+<td class="num">35</td><td class="num">45</td><td class="num">38</td><td class="num">48</td>
+<td class="num"><span class="dn">-18.44</span></td><td class="num"><span class="dn">-13.8pct</span></td>
+<td class="num"><span class="dn">-23.9%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">72</td>
+<td class="nm">互联网电商</td>
+<td><div class="scorecell"><b>40.2</b><div class="sbar"><i style="width:40%"></i></div></div></td>
+<td class="num">28</td><td class="num">38</td><td class="num">48</td><td class="num">42</td>
+<td class="num"><span class="dn">-2.12</span></td><td class="num"><span class="dn">-14.2pct</span></td>
+<td class="num"><span class="up">+1.6%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">73</td>
+<td class="nm">其他电源设备</td>
+<td><div class="scorecell"><b>40.0</b><div class="sbar"><i style="width:40%"></i></div></div></td>
+<td class="num">9</td><td class="num">26</td><td class="num">68</td><td class="num">9</td>
+<td class="num"><span class="dn">-4.38</span></td><td class="num"><span class="dn">-15.2pct</span></td>
+<td class="num"><span class="dn">-0.3%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">74</td>
+<td class="nm">教育</td>
+<td><div class="scorecell"><b>40.0</b><div class="sbar"><i style="width:40%"></i></div></div></td>
+<td class="num">46</td><td class="num">41</td><td class="num">31</td><td class="num">56</td>
+<td class="num"><span class="dn">-1.37</span></td><td class="num"><span class="dn">-8.4pct</span></td>
+<td class="num"><span class="dn">-27.3%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">75</td>
+<td class="nm">家居用品</td>
+<td><div class="scorecell"><b>39.5</b><div class="sbar"><i style="width:40%"></i></div></div></td>
+<td class="num">38</td><td class="num">58</td><td class="num">19</td><td class="num">52</td>
+<td class="num"><span class="dn">-2.22</span></td><td class="num"><span class="dn">-11.2pct</span></td>
+<td class="num"><span class="dn">-32.8%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">76</td>
+<td class="nm">能源金属</td>
+<td><div class="scorecell"><b>38.9</b><div class="sbar"><i style="width:39%"></i></div></div></td>
+<td class="num">7</td><td class="num">13</td><td class="num">80</td><td class="num">12</td>
+<td class="num"><span class="dn">-4.70</span></td><td class="num"><span class="dn">-13.8pct</span></td>
+<td class="num"><span class="up">+211.5%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">77</td>
+<td class="nm">专用设备</td>
+<td><div class="scorecell"><b>37.5</b><div class="sbar"><i style="width:37%"></i></div></div></td>
+<td class="num">21</td><td class="num">36</td><td class="num">42</td><td class="num">19</td>
+<td class="num"><span class="dn">-9.18</span></td><td class="num"><span class="dn">-13.7pct</span></td>
+<td class="num"><span class="dn">-12.1%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">78</td>
+<td class="nm">环保设备</td>
+<td><div class="scorecell"><b>37.3</b><div class="sbar"><i style="width:37%"></i></div></div></td>
+<td class="num">24</td><td class="num">46</td><td class="num">42</td><td class="num">64</td>
+<td class="num"><span class="dn">-3.38</span></td><td class="num"><span class="dn">-10.3pct</span></td>
+<td class="num"><span class="dn">-25.8%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="过热期">
+<td class="rk">79</td>
+<td class="nm">钢铁</td>
+<td><div class="scorecell"><b>37.3</b><div class="sbar"><i style="width:37%"></i></div></div></td>
+<td class="num">57</td><td class="num">43</td><td class="num">9</td><td class="num">55</td>
+<td class="num"><span class="dn">-3.26</span></td><td class="num"><span class="dn">-6.4pct</span></td>
+<td class="num"><span class="dn">-55.9%</span></td>
+<td><span class="badge" style="background:#fdf6e3;color:#d99b00">过热期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">80</td>
+<td class="nm">汽车零部件</td>
+<td><div class="scorecell"><b>36.6</b><div class="sbar"><i style="width:37%"></i></div></div></td>
+<td class="num">33</td><td class="num">26</td><td class="num">45</td><td class="num">46</td>
+<td class="num"><span class="dn">-18.71</span></td><td class="num"><span class="dn">-12.6pct</span></td>
+<td class="num"><span class="dn">-16.3%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="复苏期">
+<td class="rk">81</td>
+<td class="nm">生物制品</td>
+<td><div class="scorecell"><b>36.0</b><div class="sbar"><i style="width:36%"></i></div></div></td>
+<td class="num">20</td><td class="num">30</td><td class="num">51</td><td class="num">43</td>
+<td class="num"><span class="dn">-3.29</span></td><td class="num"><span class="dn">-12.0pct</span></td>
+<td class="num"><span class="dn">-1.5%</span></td>
+<td><span class="badge" style="background:#e8f0fd;color:#2563eb">复苏期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">82</td>
+<td class="nm">农化制品</td>
+<td><div class="scorecell"><b>35.9</b><div class="sbar"><i style="width:36%"></i></div></div></td>
+<td class="num">31</td><td class="num">35</td><td class="num">31</td><td class="num">32</td>
+<td class="num"><span class="dn">-3.96</span></td><td class="num"><span class="dn">-9.6pct</span></td>
+<td class="num"><span class="dn">-12.4%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">83</td>
+<td class="nm">房地产</td>
+<td><div class="scorecell"><b>35.0</b><div class="sbar"><i style="width:35%"></i></div></div></td>
+<td class="num">32</td><td class="num">29</td><td class="num">35</td><td class="num">40</td>
+<td class="num"><span class="dn">-9.58</span></td><td class="num"><span class="dn">-11.1pct</span></td>
+<td class="num"><span class="dn">-4.0%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">84</td>
+<td class="nm">种植业与林业</td>
+<td><div class="scorecell"><b>34.7</b><div class="sbar"><i style="width:35%"></i></div></div></td>
+<td class="num">27</td><td class="num">40</td><td class="num">27</td><td class="num">35</td>
+<td class="num"><span class="dn">-2.26</span></td><td class="num"><span class="dn">-10.9pct</span></td>
+<td class="num"><span class="dn">-13.5%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">85</td>
+<td class="nm">风电设备</td>
+<td><div class="scorecell"><b>33.0</b><div class="sbar"><i style="width:33%"></i></div></div></td>
+<td class="num">24</td><td class="num">17</td><td class="num">43</td><td class="num">21</td>
+<td class="num"><span class="dn">-4.67</span></td><td class="num"><span class="dn">-12.3pct</span></td>
+<td class="num"><span class="dn">-14.0%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">86</td>
+<td class="nm">化学制药</td>
+<td><div class="scorecell"><b>32.5</b><div class="sbar"><i style="width:33%"></i></div></div></td>
+<td class="num">27</td><td class="num">19</td><td class="num">42</td><td class="num">38</td>
+<td class="num"><span class="dn">-12.35</span></td><td class="num"><span class="dn">-11.4pct</span></td>
+<td class="num"><span class="dn">-5.2%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">87</td>
+<td class="nm">建筑材料</td>
+<td><div class="scorecell"><b>31.3</b><div class="sbar"><i style="width:31%"></i></div></div></td>
+<td class="num">49</td><td class="num">25</td><td class="num">9</td><td class="num">38</td>
+<td class="num"><span class="dn">-7.64</span></td><td class="num"><span class="dn">-9.9pct</span></td>
+<td class="num"><span class="dn">-48.3%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">88</td>
+<td class="nm">军工电子</td>
+<td><div class="scorecell"><b>28.8</b><div class="sbar"><i style="width:29%"></i></div></div></td>
+<td class="num">11</td><td class="num">23</td><td class="num">33</td><td class="num">13</td>
+<td class="num"><span class="dn">-8.60</span></td><td class="num"><span class="dn">-17.0pct</span></td>
+<td class="num"><span class="dn">-12.0%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">89</td>
+<td class="nm">光伏设备</td>
+<td><div class="scorecell"><b>27.7</b><div class="sbar"><i style="width:28%"></i></div></div></td>
+<td class="num">23</td><td class="num">25</td><td class="num">20</td><td class="num">31</td>
+<td class="num"><span class="dn">-9.79</span></td><td class="num"><span class="dn">-10.6pct</span></td>
+<td class="num"><span class="dn">-24.5%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr><tr data-phase="衰退期">
+<td class="rk">90</td>
+<td class="nm">军工装备</td>
+<td><div class="scorecell"><b>24.6</b><div class="sbar"><i style="width:25%"></i></div></div></td>
+<td class="num">20</td><td class="num">13</td><td class="num">20</td><td class="num">14</td>
+<td class="num"><span class="dn">-15.29</span></td><td class="num"><span class="dn">-16.6pct</span></td>
+<td class="num"><span class="dn">-25.4%</span></td>
+<td><span class="badge" style="background:#eef0f4;color:#8a94a6">衰退期</span></td>
+</tr></tbody></table></div>
+</div>
+
+<div class="sec">
+<h2>梯队与配置思路</h2>
+<div class="panel" style="padding:6px 0">
+<table>
+<thead><tr><th style="width:96px">梯队</th><th style="width:38%">行业</th><th>逻辑与操作要点</th></tr></thead>
+<tbody><tr><td class="tier t1">核心配置</td><td>银行、港口航运、证券、煤炭开采加工、石油加工贸易、工程机械</td><td>景气、趋势、资金三重共振，主升特征完整；注意银行拥挤度已达历史高位，宜回调加仓而非追高。</td></tr>
+<tr><td class="tier t2">重点跟踪</td><td>元件、电池、贵金属、工业金属、金属新材料、化学原料、电子化学品、医疗器械</td><td>景气仍在上行但价格趋势破坏，属"景气未破、估值消化"，等待企稳信号与资金回流确认。</td></tr>
+<tr><td class="tier t3">交易性机会</td><td>公路铁路运输、养殖业、电力、燃气、保险、汽车整车</td><td>短期资金强但基本面未验证，属防御或情绪驱动，需严格止盈止损。</td></tr>
+<tr><td class="tier t4">规避</td><td>军工装备、光伏设备、军工电子、建筑材料、化学制药、风电设备、种植业与林业、房地产</td><td>景气与趋势双弱，反弹缺乏基本面支撑。</td></tr></tbody></table>
+</div>
+</div>
+
+<div class="sec">
+<h2>方法与数据说明</h2>
+<div class="note">
+<b>指标体系</b>
+<ul>
+<li><b>趋势动量（30%）</b>：20日/60日相对沪深300超额收益、距60日高点位置、均线多头排列（收盘 &gt; MA20 &gt; MA60）。</li>
+<li><b>资金流向（30%）</b>：当日主力净流入强度（净额/成交额）、净流入绝对值、行业内上涨家数占比、成交额 5日/20日扩张比。</li>
+<li><b>景气度（30%）</b>：2026 年三季报行业成分股中位数——净利同比（40%）、营收同比（30%）、净利环比（20%）、盈利公司占比（10%）。</li>
+<li><b>拥挤度（10%，负向）</b>：行业成交额占全市场比重的 260 日分位（50%）+ 近 20 日涨幅分位（50%），越拥挤得分越低。</li>
+</ul>
+<b>数据来源与口径</b>
+<ul>
+<li>行情与资金流：同花顺行业指数（2024年至今）、同花顺行业资金流；基准为沪深300。</li>
+<li>业绩数据：东方财富数据中心 2026 年三季报，按申万口径的东财二级行业映射至同花顺行业后取中位数。</li>
+<li>指标均为行业内截面分位打分（0–100），再按权重合成。景气样本不足 3 家的行业以中位数填充并标记。</li>
+</ul>
+<b>局限提示</b>
+<ul>
+<li>资金流为单日快照，未包含 5 日/10 日累计；多日趋势以成交额扩张近似，结论更适用于"方向"而非"点位"。</li>
+<li>行业分类体系不同（同花顺 vs 东财）存在映射误差，个别小行业样本偏少。</li>
+<li>业绩为最近一期财报，存在披露滞后；拥挤度仅反映交易拥挤，不代表估值高低。</li>
+<li>本报告基于公开数据做统计归纳，不构成任何投资建议。</li>
+</ul>
+</div>
+</div>
+
+<div style="text-align:center;color:#9aa4b5;font-size:12px;margin-top:34px">数据截至 2026-11-20 ｜ 由行业轮动模型自动生成</div>
+</div>
+<script>
+document.querySelectorAll('#tbl th').forEach(function(th,i){
+  th.addEventListener('click',function(){
+    var tb=document.querySelector('#tbl tbody');
+    var rows=Array.from(tb.querySelectorAll('tr'));
+    var parse=function(tr){
+      var tds=tr.children; var v=tds[i].innerText.replace(/[^0-9\.\-]/g,'');
+      return parseFloat(v)||0;
+    };
+    var asc=th.dataset.asc==='1';
+    rows.sort(function(a,b){return asc?parse(a)-parse(b):parse(b)-parse(a)});
+    th.dataset.asc=asc?'0':'1';
+    rows.forEach(function(r){tb.appendChild(r)});
+  });
+});
+</script>
+</body></html>
